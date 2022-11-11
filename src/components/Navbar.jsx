@@ -1,45 +1,50 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { FiSettings } from "react-icons/fi";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { BsQuestionCircle, BsPlusLg } from "react-icons/bs";
 const Navbar = () => {
   return (
-    <div className="bg-sky-900 px-8 text-white py-3">
+    <div className="bg-gradient-to-r from-indigo-900 to-indigo-500 px-8 text-white py-3">
       <div className="flex justify-between items-center">
         <div className="flex justify-center gap-2 items-center">
           <h1 className="font-bold text-2xl mr-4 font-roboto">QHR</h1>
           <div className="flex justify-center gap-5 items-center">
-            
-              
-  {/* <Link className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150" to="/checklist">Checklists</Link> */}
+            {/* <Link className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150" to="/checklist">Checklists</Link> */}
             <Link className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150">
               Recuitment
             </Link>
             <Link
-                className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
-                to="/checklist"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Checklists                 
-              </Link>
+              className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
+              to="/checklist"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Checklists
+            </Link>
             {/* <a className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150">
               Checklists
             </a> */}
             <Link className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150">
               Onboading
             </Link>
-            <Link className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
-            to="/employee"
+            <Link
+              className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
+              to="/employee"
             >
               Employees
             </Link>
-            <Link to="/timeoff" className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150">
+            <Link
+              to="/timeoff"
+              className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
+            >
               Time Off
             </Link>
-            <Link className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150">
+            <Link
+              to="/attendance/self"
+              className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
+            >
               Attendance
             </Link>
             <Link className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150">

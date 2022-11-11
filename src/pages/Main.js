@@ -1,14 +1,14 @@
 import React from "react";
 import { AiOutlineDashboard } from "react-icons/ai";
-import Approval from "./Approval";
-import ClockInOut from "./ClockInOut";
-import Follows from "./Follows";
-import NewMember from "./NewMember";
-import NewsFeed from "./NewsFeed";
-import Payrool from "./Payrool";
-import TimeOff from "./TimeOff";
-import ToDo from "./ToDo";
-import WhOff from "./WhOff";
+import Approval from "../components/Approval";
+import ClockInOut from "../components/ClockInOut";
+import Follows from "../components/Follows";
+import NewMember from "../components/NewMember";
+import NewsFeed from "../components/NewsFeed";
+import Payrool from "../components/Payrool";
+import TimeOff from "../components/TimeOff";
+import ToDo from "../components/ToDo";
+import WhOff from "../components/WhOff";
 const Main = () => {
   return (
     <div className="bg-sky-50 h-full">

@@ -1,25 +1,36 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  theme: {
-    extend: {},
-    fontFamily: {
-      roboto: ["Roboto", "sans-serif"],
-      sans: ["Open Sans", "sans-serif"],
-    },
-  },
-  variants: {
-    extend: {},
+
+  daisyui: {
+    themes: [
+      {
+        light: {
+          primary: "#1b2857fb",
+          secondary: "#FFC000",
+          accent: "#FFEDD5",
+          neutral: "#F3F4F6",
+          "base-100": "#FFFFFF",
+
+          info: "#98A8DD",
+          success: "#1BBB70",
+          warning: "#DF7E07",
+          error: "#FA5C5C",
+          login: "#6358DC",
+        },
+        fontFamily: {
+          roboto: ["Roboto", "sans-serif"],
+          poppins: ["Poppins", "sans-serif"],
+
+          info: "#98A8DD",
+          success: "#1BBB70",
+          warning: "#DF7E07",
+          error: "#FA5C5C",
+          login: "#6358DC",
+          profile: "#858A89",
+        },
+      },
+      "light",
+    ],
   },
   plugins: [require("daisyui")],
-  daisyui: {
-    styled: true,
-    themes: true,
-    base: true,
-    utils: true,
-    logs: true,
-    rtl: false,
-    prefix: "",
-    darkTheme: "dark",
-  },
 };
