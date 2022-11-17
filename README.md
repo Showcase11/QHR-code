@@ -1,1 +1,2 @@
 QHR project
+npm install
