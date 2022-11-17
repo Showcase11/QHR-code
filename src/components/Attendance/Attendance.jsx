@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import AttendanceLayout from "../Attendance/AttendanceLayout";
 import { ImBell } from "react-icons/im";
 import { IoTimerOutline } from "react-icons/io5";
@@ -174,7 +174,7 @@ const Attendance = () => {
           </div>
           {/* Data Table */}
           <div className="w-full mt-8">
-            <h1>Tables</h1>
+            <h1>Create a table for self attendance</h1>
           </div>
         </div>
       </div>

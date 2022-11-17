@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   Attendance,
@@ -19,6 +19,8 @@ import Offboarding from "./components/Offboarding/Offboarding";
 // import Settings from './components/Settings';
 
 const App = () => {
+  const [open, setOpen] = useState(false);
+  const [message, setMessage] = useState("something went wrong");
   return (
     <Router>
       <Navbar />
@@ -31,8 +33,32 @@ const App = () => {
         <Route path="/employee" element={<ManageEmployee />} />
         <Route path="/attendance">
           <Route path="self" element={<Attendance />} />
-          <Route path="team" element={<TeamAttendance />} />
-          <Route path="employee" element={<EmployeeAttendance />} />
+          <Route
+            path="team"
+            element={
+              <TeamAttendance
+                open={open}
+                setOpen={setOpen}
+                message={message}
+                setMessage={setMessage}
+              />
+            }
+          />
+          <Route
+            path="employee"
+            element={
+              <EmployeeAttendance
+                open={open}
+                setOpen={setOpen}
+                message={message}
+                setMessage={setMessage}
+              />
+            }
+            open={open}
+            setOpen={setOpen}
+            message={message}
+            setMessage={setMessage}
+          />
           <Route path="settings/general" element={<GeneralSettings />} />
           <Route path="settings/location" element={<Location />} />
           <Route path="settings/qrcode" element={<QrCode />} />
