@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from 'react-router-dom';
-import Offboarding from "../Offboarding/Offboarding";
-import Onboarding from "../Onboarding/Onboarding";
+import Offboarding from "../Checklist/Offboarding/Offboarding";
+import Onboarding from "../Checklist/Onboarding/Onboarding";
 import Todos from '../Todos/Todos';
 import { BiCheck } from "react-icons/bi";
-import Settings from "../Settings/Settings";
+import Settings from "./Settings/Settings";
 
 export default function Checklist() {
     const [openTab, setOpenTab] = useState(1);

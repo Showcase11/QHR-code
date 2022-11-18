@@ -170,11 +170,7 @@ const Job = () => {
 </div>)}
         </div>
         <div className='w-full bg-base-100 border p-7 mt-5'>
-        <div className='pb-7'>
-            <h1 className='font-bold'>Job History</h1>
-            </div>
-            <div>
-            <div tabIndex={0} className="collapse collapse-arrow border border-base-300 bg-base-100 rounded-box">
+        <div tabIndex={0} className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
   <div className="collapse-title text-xl font-medium">
     Focus me to see content
   </div>
@@ -182,8 +178,12 @@ const Job = () => {
     <p>tabIndex={0} attribute is necessary to make the div focusable</p>
   </div>
 </div>
+</div>
+        {/* <div className='w-full bg-base-100 border p-7 mt-5'>
+        <div className='pb-7'>
+            <h1 className='font-bold'>Job History</h1>
             </div>
-        </div>
+        </div> */}
         </div>
     );
 };

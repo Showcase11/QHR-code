@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { HiChevronRight } from "react-icons/hi";
 import { HiChevronDown } from "react-icons/hi";
 import {Link} from 'react-router-dom';
-import Img1 from '../../Images/portrait-cheerful-attractive-young-woman-longsleeve-standing-with-arms-crossed-smiling.jpg';
+import Img1 from '../../../Images/portrait-cheerful-attractive-young-woman-longsleeve-standing-with-arms-crossed-smiling.jpg';
 import Completedtable from './Completedtable';
 
 const Completed = () => {

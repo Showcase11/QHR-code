@@ -5,7 +5,7 @@ import Table from './Table';
 import { BiCheck } from "react-icons/bi";
 import { RiPencilLine } from "react-icons/ri";
 import {Link} from 'react-router-dom';
-import Img1 from '../../Images/portrait-cheerful-attractive-young-woman-longsleeve-standing-with-arms-crossed-smiling.jpg';
+import Img1 from '../../../Images/portrait-cheerful-attractive-young-woman-longsleeve-standing-with-arms-crossed-smiling.jpg';
 import { IoInformationCircleOutline } from "react-icons/io5";
 
 const Inprogress = () => {

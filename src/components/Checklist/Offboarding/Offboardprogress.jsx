@@ -5,10 +5,9 @@ import Table1 from './Table1';
 import { BiCheck } from "react-icons/bi";
 import { RiPencilLine } from "react-icons/ri";
 import { Link } from 'react-router-dom';
-import Img1 from '../../Images/portrait-cheerful-attractive-young-woman-longsleeve-standing-with-arms-crossed-smiling.jpg';
-import Offcompletedtable from './Offcompletedtable';
+import Img1 from '../../../Images/portrait-cheerful-attractive-young-woman-longsleeve-standing-with-arms-crossed-smiling.jpg';
 
-const Offboardcomplet = () => {
+const Offboardprogress = () => {
     const [openTab, setOpenTab] = useState(1);
   const[show,setShow]=useState(true);
 
@@ -47,11 +46,8 @@ className="mask w-12 h-12 rounded-full"
   <Link className='pl-3'>Delphia Feil</Link>
 </div>
 <div className="flex-none gap-5">
-Offboarding completed by me on 31 Oct 2022
-</div>
-{/* <div className="flex-none gap-5">
   <h2 className='justify-items-end'>0/14 Completed</h2>
-<label htmlFor="completeoffboarding" className="flex modal-button bg-zinc-200 hover:bg-zinc-300 px-3 py-2 rounded-md cursor-pointer"><BiCheck className='text-lg mr-2 mt-1' /> Offboarding</label>
+<label htmlFor="completeoffboarding" className="flex modal-button bg-zinc-200 hover:bg-zinc-300 px-3 py-2 rounded-md cursor-pointer"><BiCheck className='text-lg mr-2 mt-1' />Complete Offboarding</label>
 <input type="checkbox" id="completeoffboarding" className="modal-toggle" />
 <div className="modal modal-bottom sm:modal-middle">
 <div className="modal-box">
@@ -104,16 +100,16 @@ Offboarding completed by me on 31 Oct 2022
 </div>
 </div>
 </div>
-</div> */}
+</div>
 </div>
 </div>
 <hr />
 {
- show ? null : <Offcompletedtable />
+ show ? null : <Table1 />
 }
 </div>
         </div>
     );
 };
 
-export default Offboardcomplet;
+export default Offboardprogress;

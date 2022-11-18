@@ -1,16 +1,16 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import { HiOutlineCalendar } from 'react-icons/hi';
-import Img1 from '../../Images/portrait-cheerful-attractive-young-woman-longsleeve-standing-with-arms-crossed-smiling.jpg';
+import Img1 from '../../../Images/portrait-cheerful-attractive-young-woman-longsleeve-standing-with-arms-crossed-smiling.jpg';
 
-const Offboardcomplete = () => {
+const Onboardcomplete = () => {
     return (
-             <div>
-            <input type="checkbox" id="offboardprogress" className="modal-toggle" />
+        <div>
+            <input type="checkbox" id="onboardprogress" className="modal-toggle" />
 <div className="modal">
   <div className="modal-box relative">
-    <label htmlFor="offboardprogress" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-    <div className='flex'><h5 className='font-bold pr-3 pb-5'>Offboarding for </h5>
+    <label htmlFor="onboardprogress" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <div className='flex'><h5 className='font-bold pr-3 pb-5'>Onboarding for </h5>
     <img
             src={Img1}
             alt="profile"
@@ -22,15 +22,15 @@ const Offboardcomplete = () => {
   <div className="flex col-span-2"><HiOutlineCalendar className='mt-0.5 mr-1' />Due date <p className='pl-5'>07 Jan 2020</p></div>
   <div>Assignee @ Ettie</div>
 </div>
-<small>Please read through provided documents carefully, sign and upload them. Then, hand over one hard copies to HR:</small>
-<div className='pl-8 pt-3 pb-10'>
+<p>Please ensure that your new team member have a prepared workstation with:</p>
+<div className='pl-8'>
 <ol className="list-decimal">
-    <li>Non-disclosure agreement</li>
-    <li>Final payroll</li>
+    <li>Laptop</li>
+    <li>Work email</li>
+    <li>Intranet/Team sites access</li>
     <li>...</li>
 </ol>
 </div>
-<small>Completed by me on 31 Oct 2022</small>
 <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
             {/* <div className="rounded-md shadow">
               <button className="flex w-full items-center justify-center rounded-md border border-transparent bg-green-400 px-3 py-2 text-base font-bold text-white hover:bg-green-500  md:px-5 text-sm">Mark as Completed</button>
@@ -45,4 +45,4 @@ const Offboardcomplete = () => {
     );
 };
 
-export default Offboardcomplete;
+export default Onboardcomplete;

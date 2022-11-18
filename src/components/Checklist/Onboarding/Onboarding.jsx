@@ -3,7 +3,7 @@ import Select from 'react-select';
 import Inprogress from './Inprogress';
 import Completed from './Completed';
 import { IoIosNotifications } from "react-icons/io";
-import Img1 from '../../Images/portrait-cheerful-attractive-young-woman-longsleeve-standing-with-arms-crossed-smiling.jpg';
+import Img1 from '../../../Images/portrait-cheerful-attractive-young-woman-longsleeve-standing-with-arms-crossed-smiling.jpg';
 import { IoPersonCircleOutline } from "react-icons/io5";
 import { IoInformationCircleOutline } from "react-icons/io5";
 

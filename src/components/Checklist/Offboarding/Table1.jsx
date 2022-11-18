@@ -3,7 +3,7 @@ import { RiPencilLine } from "react-icons/ri";
 import { BiTrashAlt } from "react-icons/bi";
 import { IoIosRadioButtonOff } from "react-icons/io";
 import { Link } from 'react-router-dom';
-import Img1 from '../../Images/portrait-cheerful-attractive-young-woman-longsleeve-standing-with-arms-crossed-smiling.jpg';
+import Img1 from '../../../Images/portrait-cheerful-attractive-young-woman-longsleeve-standing-with-arms-crossed-smiling.jpg';
 
 const Table1 = () => {
     return (
