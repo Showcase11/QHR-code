@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Progresstable from "./Progresstable";
-import Completedtable from "./Completedtable";
+import Progresstable from "../components/Todos/Progresstable";
+
+import Completedtable from "../components/Todos/Completedtable";
 import Select from "react-select";
+import { Layout } from "../components";
 
 const Todos = () => {
   const [selectedOption, setSelectedOption] = useState({
@@ -38,7 +40,7 @@ const Todos = () => {
   // border-radius: 25px;
 
   return (
-    <div>
+    <Layout>
       <div className="flex mt-5 gap-5">
         <Select
           placeholder="Select Option"
@@ -82,7 +84,7 @@ const Todos = () => {
           <Completedtable />
         </div>
       )}
-    </div>
+    </Layout>
   );
 };
 

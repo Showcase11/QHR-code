@@ -4,6 +4,7 @@ import { HiOutlineOfficeBuilding } from "react-icons/hi";
 import { MdMoreVert } from "react-icons/md";
 import SettingLayout from "./SettingLayout";
 import SettingSideBar from "./SettingSideBar";
+import Layout from "../Layout";
 const data = [
   {
     title: "Web App",
@@ -137,19 +138,21 @@ const Location = () => {
   const [edit, setEdit] = useState(false);
 
   return (
-    <SettingLayout select="settings">
-      <div className="flex flex-row   basis-3/4 bg-white shadow-sm ">
-        <SettingSideBar selected="location" />
-        <div className="basis-2/3 py-5">
-          {!edit ? (
-            <LocationPolices setEdit={setEdit} />
-          ) : (
-            <EditPage setEdit={setEdit} />
-          )}
-          {/* After edit click */}
+    <Layout>
+      <SettingLayout select="settings">
+        <div className="flex flex-row   basis-3/4 bg-white shadow-sm ">
+          <SettingSideBar selected="location" />
+          <div className="basis-2/3 py-5">
+            {!edit ? (
+              <LocationPolices setEdit={setEdit} />
+            ) : (
+              <EditPage setEdit={setEdit} />
+            )}
+            {/* After edit click */}
+          </div>
         </div>
-      </div>
-    </SettingLayout>
+      </SettingLayout>
+    </Layout>
   );
 };
 

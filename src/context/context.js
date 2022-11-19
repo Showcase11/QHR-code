@@ -9,7 +9,11 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [selfAttendance, setSelfAttendance] = useState([]);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(
+    localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))
+      : null
+  );
   return (
     <AppContext.Provider
       value={{
