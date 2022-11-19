@@ -9,6 +9,12 @@ import { IoPersonCircleOutline } from "react-icons/io5";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import General from './General';
 import Job from './Job';
+<<<<<<< HEAD
+=======
+import Payroll from './Payroll';
+import Documents from './Documents';
+import Dependends from './Dependends';
+>>>>>>> master
 
 const Empprofile = () => {
   const [openTab, setOpenTab] = useState(1);
@@ -17,7 +23,11 @@ const Empprofile = () => {
   // })
 
     return (
+<<<<<<< HEAD
       <div className="flex p-12 bg-zinc-100">
+=======
+      <div className="flex p-12 bg-zinc-100" id='profile'>
+>>>>>>> master
             <div className="flex flex-col h-[1008px] p-3 bg-base-100 border w-1/5 mr-6">
             <div className='p-7'>
         <img
@@ -245,7 +255,11 @@ className="mask rounded-full w-28 h-28 mb-4"
                         <li>
                             <Link
                                 to="/employee/dependends"
+<<<<<<< HEAD
                                 onClick={() => setOpenTab(4)}
+=======
+                                onClick={() => setOpenTab(5)}
+>>>>>>> master
                                 className="inline-block px-4 py-2 text-gray-600 rounded underline-offset-8"
                             >
                                 DEPENDENDS
@@ -254,7 +268,11 @@ className="mask rounded-full w-28 h-28 mb-4"
                         <li>
                             <Link
                                 to="/employee/accountsettings"
+<<<<<<< HEAD
                                 onClick={() => setOpenTab(4)}
+=======
+                                onClick={() => setOpenTab(6)}
+>>>>>>> master
                                 className="inline-block px-4 py-2 text-gray-600 rounded underline-offset-8"
                             >
                                 ACCOUNT SETTINGS
@@ -270,6 +288,21 @@ className="mask rounded-full w-28 h-28 mb-4"
                           {" "}
                           <Job />
                     </div>
+<<<<<<< HEAD
+=======
+                    <div className={openTab === 3 ? "block" : "hidden"}>
+                          {" "}
+                          <Payroll />
+                    </div>
+                    <div className={openTab === 4 ? "block" : "hidden"}>
+                          {" "}
+                          <Documents />
+                    </div>
+                    <div className={openTab === 5 ? "block" : "hidden"}>
+                          {" "}
+                          <Dependends />
+                    </div>
+>>>>>>> master
                 </div>
             </div>
         </div>
