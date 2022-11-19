@@ -111,6 +111,18 @@ const Signin = () => {
       </div>
       <button type="primary" className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10'>Sign in</button>
         </form>
+        <div className="toast toast-start toast-middle">
+  <div className="alert alert-info">
+    <div>
+      <span>New mail arrived.</span>
+    </div>
+  </div>
+  <div className="alert alert-success">
+    <div>
+      <span>Message sent successfully.</span>
+    </div>
+  </div>
+</div>
         <p className="mt-8 text-lg font-light text-center text-gray-700">
                     {" "}
                     Don't have an account?{" "}
