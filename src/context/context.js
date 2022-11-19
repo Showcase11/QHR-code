@@ -9,6 +9,7 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [selfAttendance, setSelfAttendance] = useState([]);
+  const [user, setUser] = useState();
   return (
     <AppContext.Provider
       value={{
@@ -16,6 +17,8 @@ const AppProvider = ({ children }) => {
         selfAttendance,
         setSelfAttendance,
         setLoading,
+        setUser,
+        user,
       }}
     >
       {children}
