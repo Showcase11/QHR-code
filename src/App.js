@@ -17,8 +17,10 @@ import ManageEmployee from "./components/ManageEmployee/empprofile";
 import Onboarding from "./components/Onboarding/Onboarding";
 import Offboarding from "./components/Offboarding/Offboarding";
 // import Settings from './components/Settings';
-
+import { useGlobalContext } from "./context/context";
 const App = () => {
+  const { loading } = useGlobalContext();
+  console.log(loading);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("something went wrong");
   return (

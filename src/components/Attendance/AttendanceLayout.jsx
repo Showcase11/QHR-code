@@ -2,6 +2,8 @@ import React from "react";
 import { BiTimeFive } from "react-icons/bi";
 import { Link } from "react-router-dom";
 const AttendanceLayout = ({ select, children }) => {
+  const isAdmin = false;
+
   return (
     <div>
       <div className=" bg-white shadow-lg flex justify-between items-center px-5 py-3">
@@ -29,15 +31,18 @@ const AttendanceLayout = ({ select, children }) => {
               team attendance
             </p>
           </Link>
-          <Link to="/attendance/employee">
-            <p
-              className={`uppercase text-sm font-semibold   ${
-                select === "employee" ? "text-green-600" : "text-gray-600"
-              }  `}
-            >
-              employee attendance
-            </p>
-          </Link>
+          {isAdmin && (
+            <Link to="/attendance/employee">
+              <p
+                className={`uppercase text-sm font-semibold   ${
+                  select === "employee" ? "text-green-600" : "text-gray-600"
+                }  `}
+              >
+                employee attendance
+              </p>
+            </Link>
+          )}
+
           <Link to="/attendance/settings/general">
             <p
               className={`uppercase text-sm font-semibold   ${

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AttendanceLayout from "../Attendance/AttendanceLayout";
 import { ImBell } from "react-icons/im";
 import { IoTimerOutline } from "react-icons/io5";
@@ -7,7 +7,9 @@ import { FaDotCircle } from "react-icons/fa";
 import useTimer from "../../utils/useTimer";
 import { formatTime } from "../../utils";
 import { BiPlayCircle, BiReset } from "react-icons/bi";
-
+import { useGlobalContext } from "../../context/context";
+import axios from "axios";
+import NormalTable from "./NormalTable";
 const Attendance = () => {
   const {
     timer,
@@ -17,7 +19,54 @@ const Attendance = () => {
     handlePause,
     handleResume,
     handleReset,
-  } = useTimer(0);
+    setTimer,
+    outTime,
+    inTime,
+  } = useTimer();
+  const { selfAttendance, setSelfAttendance, setLoading } = useGlobalContext();
+  // console.log(localStorage.getItem("timer");
+  const [takeData, setTakeData] = useState();
+
+  const handleAttendance = async () => {
+    handleReset();
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    let currentDate = `${day}-${month}-${year}`;
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/employee/takeAttendance",
+        {
+          inTime: formatTime(inTime),
+          outTime: formatTime(inTime + timer),
+          duration: formatTime(timer),
+          date: currentDate,
+        }
+      );
+      console.log(new Date().getDate().toString());
+      setTakeData(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchDailyAttendance = async () => {
+    try {
+      setLoading(true);
+      const res = await axios.get(
+        "http://localhost:5000/api/employee/selfAttendance"
+      );
+      console.log(res);
+      setSelfAttendance(res.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchDailyAttendance();
+  }, [takeData]);
   const cardData = [
     {
       name: "Work Schedule",
@@ -64,12 +113,12 @@ const Attendance = () => {
               </h1>
             </div>
             <div className="flex gap-2 items-center">
-              <div className="bg-gray-100 px-3 py-2 flex justify-between items-center my-5">
+              <div className="bg-gray-100 px-3 py-2 gap-1 flex justify-between items-center my-5">
                 <h1 className="font-bold font-sans text-md">
-                  First clock in --:--
+                  Last clock in {formatTime(inTime)}
                 </h1>
                 <h1 className="font-bold font-sans text-md">
-                  Last clock out --:--
+                  Last clock out {formatTime(outTime)}
                 </h1>
               </div>
 
@@ -98,7 +147,7 @@ const Attendance = () => {
               )}
               {isActive && (
                 <button
-                  onClick={handleReset}
+                  onClick={handleAttendance}
                   className="hover:scale-110 transition-transform ease-in-out delay-75 bg-red-600 font-medium font-sans  text-md flex items-center justify-center gap-2 text-white px-3 py-2 rounded-md"
                 >
                   <BiReset /> Clock out
@@ -174,7 +223,7 @@ const Attendance = () => {
           </div>
           {/* Data Table */}
           <div className="w-full mt-8">
-            <h1>Create a table for self attendance</h1>
+            <NormalTable />
           </div>
         </div>
       </div>
