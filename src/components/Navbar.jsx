@@ -16,7 +16,7 @@ const Navbar = () => {
   };
   // console.log(user);
   return (
-    <div className="bg-gradient-to-r from-indigo-900 to-indigo-500 px-8 text-white py-3">
+    <div className="bg-gradient-to-r from-indigo-800 to-indigo-300 px-8 text-white py-3">
       <div className="flex justify-between items-center">
         <div className="flex justify-center gap-2 items-center">
           <Link to="/" className="font-bold text-2xl mr-4 font-roboto">
@@ -25,48 +25,55 @@ const Navbar = () => {
           {user && (
             <div className="flex justify-center gap-5 items-center">
               {/* <Link className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150" to="/checklist">Checklists</Link> */}
-              <Link className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150">
-                Recuitment
-              </Link>
-              <Link
-                className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
-                to="/checklist"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Checklists
-              </Link>
-              {/* <a className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150">
-              Checklists
-            </a> */}
-              <Link className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150">
-                Onboading
-              </Link>
-              <Link
-                className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
-                to="/employee"
-              >
-                Employees
-              </Link>
-              <Link
-                to="/timeoff"
-                className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
-              >
-                Time Off
-              </Link>
-              <Link
-                to="/attendance/self"
-                className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
-              >
-                Attendance
-              </Link>
-              <Link className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150">
-                Reports
-              </Link>
-              <Link className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150">
-                News
-              </Link>
+
+              {user?.isAdmin && (
+                <>
+                  <Link
+                    to="/dashboard"
+                    className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
+                  >
+                    Dashboard
+                  </Link>
+                  <Link
+                    to="/departments"
+                    className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
+                  >
+                    Departments
+                  </Link>
+                  <Link
+                    to="/employees"
+                    className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
+                  >
+                    Employees
+                  </Link>
+                </>
+              )}
+              {!user?.isAdmin && (
+                <>
+                  <Link
+                    className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
+                    to="/leaves"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Leaves
+                  </Link>
+                  <Link
+                    to="/attendance/self"
+                    className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
+                  >
+                    Attendance
+                  </Link>
+
+                  <Link
+                    to="/news"
+                    className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
+                  >
+                    News
+                  </Link>
+                </>
+              )}
             </div>
           )}
         </div>
@@ -117,10 +124,7 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="flex gap-3 items-center">
-              <button className="btn text-white btn-outline btn-sm">
-                <Link to="/register">Register</Link>
-              </button>
-              <button className="btn  btn-sm">
+              <button className="btn px-6 font-semibold tracking-wider btn-primary  btn-sm">
                 <Link to="/login">Login</Link>
               </button>
             </div>
