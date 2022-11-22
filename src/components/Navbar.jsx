@@ -31,7 +31,7 @@ const Navbar = () => {
             </Link>
             <Link
               className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
-              to="/employee"
+              to="/profile"
             >
               Employees
             </Link>

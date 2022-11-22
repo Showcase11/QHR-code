@@ -16,8 +16,8 @@ import Navbar from "./components/Navbar";
 import ManageEmployee from "./components/ManageEmployee/empprofile";
 import Onboarding from "./components/Onboarding/Onboarding";
 import Offboarding from "./components/Offboarding/Offboarding";
+import Employee from "./components/Employee/Employee"
 // import Settings from './components/Settings';
-
 const App = () => {
   return (
     <Router>
@@ -28,7 +28,9 @@ const App = () => {
         <Route path="/checklist" element={<Checklists />} />
         <Route path="/timeoff" element={<Main />} />
         <Route path="/todos" element={<Todos />} />
-        <Route path="/employee" element={<ManageEmployee />} />
+       <Route path="/employee" element={<ManageEmployee />} />
+        <Route path="/profile" element={<Employee />} />
+    
         <Route path="/attendance">
           <Route path="self" element={<Attendance />} />
           <Route path="team" element={<TeamAttendance />} />
@@ -36,6 +38,7 @@ const App = () => {
           <Route path="settings/general" element={<GeneralSettings />} />
           <Route path="settings/location" element={<Location />} />
           <Route path="settings/qrcode" element={<QrCode />} />
+          
         </Route>
         {/* <Route path="dashboard" element={<Checklists />} >
           <Route index path='todos' element={<Todos />} />
