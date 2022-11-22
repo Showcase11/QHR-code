@@ -1,10 +1,12 @@
 import React from "react";
 import { Layout } from "../components";
 import DepartmentTable from "../components/Department/DepartmentTable";
+import EmployeeTable from "../components/EmployeeTable";
+import { PeiChart } from "./PeiChart";
 const Dashboad = () => {
   return (
     <Layout>
-      <div className="h-full px-16">
+      <div className="h-full px-16 mb-12">
         <div className="flex flex-wrap gap-5 items-center justify-center ">
           <div className="shadow-md rounded-sm px-6 py-3 border-l-4 border-green-600 mt-12">
             <h1 className="text-2xl font-semibold text-green-600 font-rubik">
@@ -49,7 +51,20 @@ const Dashboad = () => {
               <DepartmentTable />
             </div>
           </div>
-          <div className="flex-1">45</div>
+          <div className="flex-1 flex flex-col items-center justify-center">
+            <h1 className="text-xl font-roboto font-semibold  ">
+              Employee Status
+            </h1>
+            <div className="px-9 py-12 h-auto w-[400px]">
+              <PeiChart />
+            </div>
+          </div>
+        </div>
+        <div className="mt-8">
+          <h1 className="text-xl my-5 font-roboto font-semibold  ">
+            Employee Details
+          </h1>
+          <EmployeeTable />
         </div>
       </div>
     </Layout>
