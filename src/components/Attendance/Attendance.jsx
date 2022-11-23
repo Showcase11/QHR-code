@@ -21,7 +21,7 @@ const Attendance = () => {
     handlePause,
     handleResume,
     handleReset,
-    setTimer,
+    setOutTime,
     outTime,
     inTime,
   } = useTimer();
@@ -33,23 +33,22 @@ const Attendance = () => {
   const handleAttendance = async () => {
     handleReset();
     const date = new Date();
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-    let currentDate = `${day}-${month}-${year}`;
+    // let day = date.getDate();
+    // let month = date.getMonth() + 1;
+    // let year = date.getFullYear();
+    // let currentDate = `${day}-${month}-${year}`;
     try {
-      console.log("HJello");
       const res = await axios.post(
         "http://localhost:5000/api/employee/takeAttendance",
         {
-          inTime: formatTime(inTime),
-          outTime: formatTime(inTime + timer),
-          duration: formatTime(timer),
-          date: currentDate,
+          inTime: inTime,
+          outTime: date,
+          duration: timer,
+          date: date,
           userId: user._id,
         }
       );
-
+      setOutTime(date);
       console.log(res);
       console.log(new Date().getDate().toString());
       setTakeData(res.data);
@@ -131,10 +130,24 @@ const Attendance = () => {
               <div className="flex gap-2 items-center">
                 <div className="bg-gray-100 px-3 py-2 gap-1 flex justify-between items-center my-5">
                   <h1 className="font-bold font-sans text-md">
-                    Last clock in {formatTime(inTime)}
+                    Last clock in{" "}
+                    {inTime
+                      ? formatTime(
+                          inTime.getHours() * 3600 +
+                            inTime.getMinutes() * 60 +
+                            inTime.getSeconds()
+                        )
+                      : "00:00:00"}
                   </h1>
                   <h1 className="font-bold font-sans text-md">
-                    Last clock out {formatTime(outTime)}
+                    Last clock out{" "}
+                    {outTime
+                      ? formatTime(
+                          outTime.getHours() * 3600 +
+                            outTime.getMinutes() * 60 +
+                            outTime.getSeconds()
+                        )
+                      : "00:00:00"}
                   </h1>
                 </div>
 

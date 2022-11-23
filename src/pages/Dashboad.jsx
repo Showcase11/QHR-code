@@ -2,7 +2,7 @@ import React from "react";
 import { Layout } from "../components";
 import DepartmentTable from "../components/Department/DepartmentTable";
 import EmployeeTable from "../components/EmployeeTable";
-import { PeiChart } from "./PeiChart";
+import { PeiChart } from "../components/PeiChart";
 import { useGlobalContext } from "../context/context";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +13,7 @@ const Dashboad = () => {
     if (!user) {
       navigate("/login");
     }
-  }, []);
+  }, [user]);
   return (
     <Layout>
       <div className="h-full px-16 mb-12">
@@ -43,7 +43,10 @@ const Dashboad = () => {
               12
             </p>
           </div>
-          <div className="shadow-md rounded-sm px-6 py-3 border-l-4 border-cyan-600 mt-12">
+          <div
+            className="shadow-md rounded-sm px-6 py-3 border-l-4 border-cyan-600 mt-12 cursor-pointer"
+            onClick={() => navigate("/leaveAdmin")}
+          >
             <h1 className="text-2xl font-semibold text-cyan-600 font-rubik ">
               LEAVE APPPLICATION
             </h1>
