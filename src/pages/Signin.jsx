@@ -3,11 +3,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
-
+import animationData from "../assets/signin.json";
 import { useGlobalContext } from "../context/context";
 import axios from "axios";
 import { Layout } from "../components";
-
+import Lottie from "react-lottie";
+import toast, { Toaster } from "react-hot-toast";
 const Signin = () => {
   const { setUser, user } = useGlobalContext();
   const schema = Yup.object().shape({
@@ -42,19 +43,42 @@ const Signin = () => {
       console.log(res);
       setUser(res.data);
       localStorage.setItem("user", JSON.stringify(res.data));
+      toast.success("Login SuccessFully");
+      navigate("/");
     } catch (e) {
       console.log(e);
+      // toast(e?.response?.data?.message, {
+      //   style: { color: "white", backgroundColor: "red" },
+      //   icon: "👏",
+      // });
+      toast.error(e?.response?.data?.message);
     }
-
-    navigate("/");
   };
-
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
   return (
     <Layout>
-      <div className="bg-zinc-100">
-        <div className="relative flex flex-col justify-center h-screen overflow-hidden">
-          <div className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
-            <h1 className="text-3xl font-semibold text-center text-blue-700 underline">
+      <Toaster
+        toastOptions={{
+          className: "",
+          style: {
+            padding: "16px",
+          },
+        }}
+      />
+      <div className=" flex items-center justify-center h-screen">
+        <div className="relative items-stretch flex w-[60%] border-[1px] border-gray-200 shadow-lg bg-white justify-center overflow-hidden">
+          <div className="flex-1">
+            <Lottie options={defaultOptions} height={390} />
+          </div>
+          <div className="w-full h-full flex-1 p-6 m-auto bg-gradient-to-r from-indigo-200 to-indigo-50 px-8  lg:max-w-xl">
+            <h1 className="text-3xl font-semibold text-center text-black  underline">
               Sign in
             </h1>
             <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
@@ -101,7 +125,7 @@ const Signin = () => {
                     id="remember-me"
                     name="remember-me"
                     type="checkbox"
-                    className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+                    className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
                   />
                   <label
                     htmlFor="remember-me"
@@ -122,21 +146,11 @@ const Signin = () => {
               </div>
               <button
                 type="primary"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
               >
                 Sign in
               </button>
             </form>
-            <p className="mt-8 text-lg font-light text-center text-gray-700">
-              {" "}
-              Don't have an account?{" "}
-              <Link
-                to="/register"
-                className="font-medium text-purple-600 hover:underline"
-              >
-                Sign up
-              </Link>
-            </p>
           </div>
         </div>
       </div>
