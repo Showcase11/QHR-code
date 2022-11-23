@@ -23,11 +23,12 @@ const useTimer = () => {
     countRef.current = setInterval(() => {
       setTimer((timer) => timer + 1);
     }, 1000);
-    let today = new Date();
-    setInTime(
-      today.getHours() * 3600 + today.getMinutes() * 60 + today.getSeconds()
-    );
-    setOutTime(0);
+    // let today = new Date();
+    // setInTime(
+    //   today.getHours() * 3600 + today.getMinutes() * 60 + today.getSeconds()
+    // );
+    setInTime(new Date());
+    setOutTime(null);
   };
 
   const handlePause = () => {
@@ -47,14 +48,12 @@ const useTimer = () => {
 
   const handleReset = () => {
     clearInterval(countRef.current);
+    setTimer(0);
     setIsActive(false);
     setIsPaused(false);
     localStorage.removeItem("isActive");
     localStorage.removeItem("isPause");
     localStorage.removeItem("timer");
-    setOutTime(inTime + timer);
-    setTimer(0);
-    console.log("Clockout");
   };
 
   return {
@@ -69,6 +68,7 @@ const useTimer = () => {
     setInTime,
     setTimer,
     outTime,
+    setOutTime,
   };
 };
 

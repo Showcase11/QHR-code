@@ -28,6 +28,7 @@ import Checklists from "./pages/Checklist";
 import { useGlobalContext } from "./context/context";
 import Home from "./pages/Home";
 import Dashboad from "./pages/Dashboad";
+import AdminLeave from "./pages/AdminLeave";
 const App = () => {
   const { loading } = useGlobalContext();
   console.log(loading);
@@ -84,6 +85,7 @@ const App = () => {
           <Route path="/employee" element={<ManageEmployee />} />
           <Route path="/profile" element={<Empprofile />} />
           <Route path="/dashboard" element={<Dashboad />} />
+          <Route path="/leaveAdmin" element={<AdminLeave />} />
 
           {/* <Route path="/changepassword" element={<Changepswd />} /> */}
 
