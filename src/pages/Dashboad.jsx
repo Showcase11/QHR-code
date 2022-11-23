@@ -3,7 +3,17 @@ import { Layout } from "../components";
 import DepartmentTable from "../components/Department/DepartmentTable";
 import EmployeeTable from "../components/EmployeeTable";
 import { PeiChart } from "./PeiChart";
+import { useGlobalContext } from "../context/context";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 const Dashboad = () => {
+  const { user } = useGlobalContext();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, []);
   return (
     <Layout>
       <div className="h-full px-16 mb-12">
