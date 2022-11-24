@@ -6,6 +6,7 @@ import { PeiChart } from "../components/PeiChart";
 import { useGlobalContext } from "../context/context";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import DailyAttendanceTable from "../components/DailyAttendanceTable";
 const Dashboad = () => {
   const { user } = useGlobalContext();
   const navigate = useNavigate();
@@ -72,6 +73,12 @@ const Dashboad = () => {
               <PeiChart />
             </div>
           </div>
+        </div>
+        <div className="my-8">
+          <h1 className="text-xl my-5 font-roboto font-semibold  ">
+            Today's Employee Attendance
+          </h1>
+          <DailyAttendanceTable />
         </div>
         <div className="mt-8">
           <h1 className="text-xl my-5 font-roboto font-semibold  ">

@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const DepartmentTable = () => {
+  const [departmentData, setDepartmentData] = useState();
+
+  useEffect(() => {
+    const fetchDepartments = async () => {
+      const res = await axios.get(`http://localhost:5000/api/departments/}`);
+      setDepartmentData(res.data);
+    };
+  }, []);
+
   return (
     <div className="overflow-x-auto">
       <table className="table table-zebra w-full">
