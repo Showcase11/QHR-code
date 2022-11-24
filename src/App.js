@@ -30,6 +30,7 @@ import Home from "./pages/Home";
 import Dashboad from "./pages/Dashboad";
 import Employees from './pages/Employees';
 
+import AdminLeave from "./pages/AdminLeave";
 const App = () => {
   const { loading } = useGlobalContext();
   console.log(loading);
@@ -87,6 +88,7 @@ const App = () => {
           <Route path="/profile" element={<Empprofile />} />
           <Route path="/dashboard" element={<Dashboad />} />
           <Route path="/employees" element={<Employees />} />
+          <Route path="/leaveAdmin" element={<AdminLeave />} />
 
           {/* <Route path="/changepassword" element={<Changepswd />} /> */}
 
