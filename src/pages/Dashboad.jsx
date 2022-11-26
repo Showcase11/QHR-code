@@ -8,13 +8,16 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DailyAttendanceTable from "../components/DailyAttendanceTable";
 const Dashboad = () => {
-  const { user } = useGlobalContext();
+  const { user, pendingData, fetchAttendance } = useGlobalContext();
   const navigate = useNavigate();
   useEffect(() => {
     if (!user) {
       navigate("/login");
     }
   }, [user]);
+  useEffect(() => {
+    fetchAttendance();
+  }, []);
   return (
     <Layout>
       <div className="h-full px-16 mb-12">
@@ -52,7 +55,7 @@ const Dashboad = () => {
               LEAVE APPPLICATION
             </h1>
             <p className="text-center font-semibold text-cyan-600 text-xl font-roboto">
-              15
+              {pendingData.length}
             </p>
           </div>
         </div>

@@ -29,7 +29,7 @@ import { useGlobalContext } from "./context/context";
 import Home from "./pages/Home";
 import Dashboad from "./pages/Dashboad";
 import Employees from "./pages/Employees";
-
+import { Toaster } from "react-hot-toast";
 import AdminLeave from "./pages/AdminLeave";
 import EmployeeLeave from "./pages/EmployeeLeave";
 const App = () => {
@@ -41,6 +41,7 @@ const App = () => {
 
   return (
     <div>
+      <Toaster />
       <Router>
         <Routes>
           <Route path="/" exact element={<Home />} />

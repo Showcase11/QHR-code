@@ -1,23 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LeaveTableRow from "./LeaveTableRow";
-
+import { useGlobalContext } from "../context/context";
 const LeaveTable = () => {
-  const [pendingData, setPendingData] = useState([]);
+  const [action, setAction] = useState();
+  const { pendingData, fetchAttendance } = useGlobalContext();
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(
-          "http://localhost:5000/api/leave/status/pending"
-        );
-        setPendingData(res.data);
-        console.log(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
+    fetchAttendance();
+  }, [action]);
 
   return (
     <div className="overflow-x-auto w-full">
@@ -42,7 +32,12 @@ const LeaveTable = () => {
         <tbody>
           {/* <!-- row 1 --> */}
           {pendingData.map((item, index) => (
-            <LeaveTableRow key={index} index={index} item={item} />
+            <LeaveTableRow
+              key={index}
+              index={index}
+              item={item}
+              setAction={setAction}
+            />
           ))}
         </tbody>
       </table>

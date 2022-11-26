@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { getFullDate } from "../utils";
 import { useGlobalContext } from "../context/context";
+import toast from "react-hot-toast";
 
-const LeaveTableRow = ({ item, index }) => {
+const LeaveTableRow = ({ item, setAction }) => {
   const [userInfo, setUserInfo] = useState();
   const { loading, setLoading } = useGlobalContext();
+
   useEffect(() => {
     const fetUser = async () => {
       setLoading(true);
@@ -21,14 +23,16 @@ const LeaveTableRow = ({ item, index }) => {
   }, [item._id]);
 
   const actions = async (id, status) => {
-    console.log(id, status);
     try {
       const res = await axios.put(`http://localhost:5000/api/leave/${id}`, {
         status,
       });
+      toast.success(status);
+      setAction(status);
       console.log(res);
     } catch (error) {
       console.log(error.message);
+      toast.error(error.message);
     }
   };
   if (loading || !userInfo) return <tr>Loading...</tr>;
