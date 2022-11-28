@@ -6,14 +6,18 @@ import { PeiChart } from "../components/PeiChart";
 import { useGlobalContext } from "../context/context";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import DailyAttendanceTable from "../components/DailyAttendanceTable";
 const Dashboad = () => {
-  const { user } = useGlobalContext();
+  const { user, pendingData, fetchAttendance } = useGlobalContext();
   const navigate = useNavigate();
   useEffect(() => {
     if (!user) {
       navigate("/login");
     }
   }, [user]);
+  useEffect(() => {
+    fetchAttendance();
+  }, []);
   return (
     <Layout>
       <div className="h-full px-16 mb-12">
@@ -51,7 +55,7 @@ const Dashboad = () => {
               LEAVE APPPLICATION
             </h1>
             <p className="text-center font-semibold text-cyan-600 text-xl font-roboto">
-              15
+              {pendingData.length}
             </p>
           </div>
         </div>
@@ -72,6 +76,12 @@ const Dashboad = () => {
               <PeiChart />
             </div>
           </div>
+        </div>
+        <div className="my-8">
+          <h1 className="text-xl my-5 font-roboto font-semibold  ">
+            Today's Employee Attendance
+          </h1>
+          <DailyAttendanceTable />
         </div>
         <div className="mt-8">
           <h1 className="text-xl my-5 font-roboto font-semibold  ">
