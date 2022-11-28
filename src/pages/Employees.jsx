@@ -64,9 +64,11 @@ import { nanoid } from "nanoid";
 import ReadOnlyRow from "../components/ReadOnlyRow";
 import EditableRow from "../components/EditTableRow";
 import { Layout } from "../components";
+import { PhoneInput } from "react-contact-number-input";
 
 const Employees = () => {
   const [contacts, setContacts] = useState([]);
+  const [inputValue, setInputValue] = useState("");
   const [addFormData, setAddFormData] = useState({
     fullName: "",
     address: "",
@@ -114,10 +116,9 @@ const Employees = () => {
       id: nanoid(),
       fullName: addFormData.fullName,
       address: addFormData.address,
-      phoneNumber: addFormData.phoneNumber,
+      phoneNumber: inputValue.countryCode+ '' +inputValue.phoneNumber,
       email: addFormData.email,
     };
-
     const newContacts = [...contacts, newContact];
     setContacts(newContacts);
     // const emptyInput= {fullName:'', address:'', phoneNumber:'', email:''}
@@ -194,14 +195,15 @@ const Employees = () => {
           placeholder="Enter an addres..."
           onChange={handleAddFormChange}
         />
-        <input
-          type="text"
-          className="block px-4 py-2 mt-2 mr-4 bg-white border rounded-md focus:outline-none focus:ring focus:ring-opacity-40"
-          name="phoneNumber"
-          required="required"
-          placeholder="Enter a phone number..."
-          onChange={handleAddFormChange}
-        />
+        <div className="mt-2 mr-4 bg-white rounded-md focus:outline-none focus:ring focus:ring-opacity-40">
+        <PhoneInput
+        name="phoneNumber"
+        required="required"
+        placeholder="Enter a phone number..."
+        value={inputValue}
+        onChange={setInputValue}
+      />
+      </div>
         <input
           type="email"
           className="block px-4 py-2 mt-2 mr-4 bg-white border rounded-md focus:outline-none focus:ring focus:ring-opacity-40"
@@ -211,7 +213,7 @@ const Employees = () => {
           onChange={handleAddFormChange}
         />
         <button type="submit" 
-        className="group relative flex justify-center py-2 px-4 border border-transparent text-xl font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+        className="group py-2.5 pr-7 pl-7 relative flex justify-center border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
             Add</button>
       </form>
       
