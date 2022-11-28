@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext, Children } from "react";
+import axios from "axios";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { createContext } from "react";
-import { useCallback } from "react";
 
 const url = "http://localhost:5000/api";
 
@@ -14,6 +14,21 @@ const AppProvider = ({ children }) => {
       ? JSON.parse(localStorage.getItem("user"))
       : null
   );
+  const [pendingData, setPendingData] = useState([]);
+  const [status, setStatus] = useState("pending");
+  const [action, setAction] = useState();
+  const fetchAttendance = useCallback(async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(`${url}/leave/status/${status}`);
+      setPendingData(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  }, [status]);
+
   return (
     <AppContext.Provider
       value={{
@@ -23,6 +38,9 @@ const AppProvider = ({ children }) => {
         setLoading,
         setUser,
         user,
+        setStatus,
+        fetchAttendance,
+        pendingData,
       }}
     >
       {children}

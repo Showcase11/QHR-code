@@ -28,9 +28,10 @@ import Checklists from "./pages/Checklist";
 import { useGlobalContext } from "./context/context";
 import Home from "./pages/Home";
 import Dashboad from "./pages/Dashboad";
-import Employees from './pages/Employees';
-
+import Employees from "./pages/Employees";
+import { Toaster } from "react-hot-toast";
 import AdminLeave from "./pages/AdminLeave";
+import EmployeeLeave from "./pages/EmployeeLeave";
 const App = () => {
   const { loading } = useGlobalContext();
   console.log(loading);
@@ -40,6 +41,7 @@ const App = () => {
 
   return (
     <div>
+      <Toaster />
       <Router>
         <Routes>
           <Route path="/" exact element={<Home />} />
@@ -89,6 +91,7 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboad />} />
           <Route path="/employees" element={<Employees />} />
           <Route path="/leaveAdmin" element={<AdminLeave />} />
+          <Route path="/leave" element={<EmployeeLeave />} />
 
           {/* <Route path="/changepassword" element={<Changepswd />} /> */}
 

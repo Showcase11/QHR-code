@@ -58,7 +58,7 @@ const Navbar = () => {
                 <>
                   <Link
                     className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
-                    to="/leaves"
+                    to="/leave"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
