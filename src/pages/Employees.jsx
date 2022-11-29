@@ -1,7 +1,10 @@
 import React, { useState, Fragment, useEffect } from "react";
 import { nanoid } from "nanoid";
-import ReadOnlyRow from "../components/ReadOnlyRow";
+import EmployeeData from "../components/EmployeeData";
+import EditEmployeeData from "../components/EditEmployeeData";
 import EditableRow from "../components/EditTableRow";
+import ReadOnlyRow from "../components/ReadOnlyRow";
+import Read from "../components/EditTableRow";
 import { Layout } from "../components";
 import { PhoneInput } from "react-contact-number-input";
 import { useNavigate } from "react-router-dom";

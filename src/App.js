@@ -32,6 +32,10 @@ import Employees from "./pages/Employees";
 import { Toaster } from "react-hot-toast";
 import AdminLeave from "./pages/AdminLeave";
 import EmployeeLeave from "./pages/EmployeeLeave";
+import Departments from "./pages/Departments";
+import TotalEmplData from "./components/TotalEmplData";
+import TotalDeptTable from "./components/TotalDeptTable";
+
 const App = () => {
   const { loading } = useGlobalContext();
   console.log(loading);
@@ -89,10 +93,12 @@ const App = () => {
           <Route path="/employee" element={<ManageEmployee />} />
           <Route path="/profile" element={<Empprofile />} />
           <Route path="/dashboard" element={<Dashboad />} />
+          <Route path="/departments" element={<Departments/>} />
           <Route path="/employees" element={<Employees />} />
           <Route path="/leaveAdmin" element={<AdminLeave />} />
           <Route path="/leave" element={<EmployeeLeave />} />
-
+          <Route path="/employee/:id" element={<TotalEmplData />} />
+          <Route path="/deptemployee/:id" element={<TotalDeptTable />} />
           {/* <Route path="/changepassword" element={<Changepswd />} /> */}
 
           {/* <Route path="/checklist" element={<Checklist />}>
