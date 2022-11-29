@@ -61,8 +61,8 @@
 
 import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
-import ReadOnlyRow from "../components/ReadOnlyRow";
-import EditableRow from "../components/EditTableRow";
+import EmployeeData from "../components/EmployeeData";
+import EditEmployeeData from "../components/EditEmployeeData";
 import { Layout } from "../components";
 import { PhoneInput } from "react-contact-number-input";
 
@@ -121,6 +121,8 @@ const Employees = () => {
     };
     const newContacts = [...contacts, newContact];
     setContacts(newContacts);
+    const emptyInput= {fullName:'', address:'', phoneNumber:'',email:'' }
+    setAddFormData(emptyInput)
     // const emptyInput= {fullName:'', address:'', phoneNumber:'', email:''}
     // setAddFormData(emptyInput);
     // console.log(setAddFormData);
@@ -234,13 +236,13 @@ const Employees = () => {
             {contacts.map((contact) => (
               <Fragment>
                 {editContactId === contact.id ? (
-                  <EditableRow
+                  <EditEmployeeData
                     editFormData={editFormData}
                     handleEditFormChange={handleEditFormChange}
                     handleCancelClick={handleCancelClick}
                   />
                 ) : (
-                  <ReadOnlyRow
+                  <EmployeeData
                     contact={contact}
                     handleEditClick={handleEditClick}
                     handleDeleteClick={handleDeleteClick}
