@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Layout } from "../components";
 import LeaveTable from "../components/LeaveTable";
-
+import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "../context/context";
 const AdminLeave = () => {
+  const navigate = useNavigate();
+  const { user } = useGlobalContext();
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
   return (
     <Layout>
       <div className="px-9">

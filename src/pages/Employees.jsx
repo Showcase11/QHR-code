@@ -1,86 +1,35 @@
-// import React, { useState } from "react";
-// import FormInput from "./FormInput";
-// import Table from "./Table";
-// import Layout from '../components/Layout';
-
-// const Employees = () => {
- 
-//  const [tableData, setTableData] = useState([])
-//  const [formInputData, setformInputData] = useState(
-//      {
-//      fullName:'',
-//      emailAddress:'',
-//      salary:''
-//     }
-//  );
- 
-//  const handleChange=(evnt)=>{  
-//      const newInput = (data)=>({...data, [evnt.target.name]:evnt.target.value})
-//     setformInputData(newInput)
-//  }
-
-//  const deleteTableRows = (index)=>{
-//     console.log(tableData)
-//     const rows = [...tableData]
-//     rows.splice(index, 1);
-//     setformInputData(rows);
-// }
-
-//  const handleSubmit= (evnt) =>{
-//      evnt.preventDefault();
-//      const checkEmptyInput = !Object.values(formInputData).every(res=>res==="")
-//      if(checkEmptyInput)
-//      {
-//       const newData = (data)=>([...data, formInputData])
-//       setTableData(newData);
-//       const emptyInput= {fullName:'', emailAddress:'', salary:''}
-//       setformInputData(emptyInput)
-//      }
-//  }  
-
-//  return(
-//     <Layout>
-//         <CrudData />
-//      <React.Fragment>
-//      <div className="container">
-//      <div className="row">
-//          <div className="col-sm-8">
-//          <FormInput handleChange={handleChange} formInputData={formInputData} handleSubmit={handleSubmit} />
-//          <Table tableData={tableData} deleteTableRows={deleteTableRows} />
-//          </div>
-//          <div className="col-sm-4">
-
-//          </div>
-//      </div>
-//     </div>
-//      </React.Fragment>
-//      </Layout>
-//  );
-// }
-// export default Employees;
-
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import { nanoid } from "nanoid";
 import ReadOnlyRow from "../components/ReadOnlyRow";
 import EditableRow from "../components/EditTableRow";
 import { Layout } from "../components";
 import { PhoneInput } from "react-contact-number-input";
-
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useGlobalContext } from "../context/context";
 const Employees = () => {
+  const navigate = useNavigate();
+  const { allusers, fetchUsers, loading, user } = useGlobalContext();
   const [contacts, setContacts] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [addFormData, setAddFormData] = useState({
     fullName: "",
-    address: "",
+    pincode: "",
     phoneNumber: "",
     email: "",
   });
-
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
   const [editFormData, setEditFormData] = useState({
     fullName: "",
-    address: "",
+    pincode: "",
     phoneNumber: "",
     email: "",
+    id: "",
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -109,53 +58,69 @@ const Employees = () => {
     setEditFormData(newFormData);
   };
 
-  const handleAddFormSubmit = (event) => {
+  const handleAddFormSubmit = async (event) => {
     event.preventDefault();
-
+    // console.log(addFormData);
     const newContact = {
-      id: nanoid(),
-      fullName: addFormData.fullName,
-      address: addFormData.address,
-      phoneNumber: inputValue.countryCode+ '' +inputValue.phoneNumber,
+      name: addFormData.name,
+      password: "hero@1234",
+      phoneNumber: inputValue.countryCode + "" + inputValue.phoneNumber,
       email: addFormData.email,
+      pincode: addFormData.pincode,
     };
-    const newContacts = [...contacts, newContact];
-    setContacts(newContacts);
+    // const newContacts = [...contacts, newContact];
+    // setContacts(newContacts);
     // const emptyInput= {fullName:'', address:'', phoneNumber:'', email:''}
     // setAddFormData(emptyInput);
-    // console.log(setAddFormData);
+    console.log(newContact);
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/employee/signup",
+
+        newContact
+      );
+      toast.success("User added successfully");
+      console.log(res.data);
+      fetchUsers();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const handleEditFormSubmit = (event) => {
+  const handleEditFormSubmit = async (event) => {
     event.preventDefault();
 
     const editedContact = {
-      id: editContactId,
-      fullName: editFormData.fullName,
-      address: editFormData.address,
+      name: editFormData.name,
+      pincode: editFormData.pincode,
       phoneNumber: editFormData.phoneNumber,
       email: editFormData.email,
     };
-
-    const newContacts = [...contacts];
-
-    const index = contacts.findIndex((contact) => contact.id === editContactId);
-
-    newContacts[index] = editedContact;
-
-    setContacts(newContacts);
+    console.log(editedContact);
+    try {
+      const res = await axios.put(
+        `http://localhost:5000/api/employee/${editFormData.id}`,
+        editedContact
+      );
+      console.log(res);
+      toast.success("Updated");
+      fetchUsers();
+    } catch (error) {
+      console.log(error);
+    }
     setEditContactId(null);
   };
 
   const handleEditClick = (event, contact) => {
     event.preventDefault();
-    setEditContactId(contact.id);
-
+    setEditContactId(contact._id);
+    console.log(contact._id);
     const formValues = {
-      fullName: contact.fullName,
-      address: contact.address,
+      name: contact.name,
+      pincode: contact.pincode,
       phoneNumber: contact.phoneNumber,
       email: contact.email,
+      id: contact._id,
     };
 
     setEditFormData(formValues);
@@ -165,95 +130,109 @@ const Employees = () => {
     setEditContactId(null);
   };
 
-  const handleDeleteClick = (contactId) => {
-    const newContacts = [...contacts];
-
-    const index = contacts.findIndex((contact) => contact.id === contactId);
-
-    newContacts.splice(index, 1);
-
-    setContacts(newContacts);
+  const handleDeleteClick = async (contactId) => {
+    try {
+      const res = await axios.delete(
+        `http://localhost:5000/api/employee/${contactId}`
+      );
+      toast.success(res.data.message);
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data);
+    }
+    fetchUsers();
   };
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   return (
     <Layout>
-    <div className="app-container">
-      <form onSubmit={handleAddFormSubmit} className='flex pb-8 pt-10'>
-        <input
-          className="block px-4 py-2 mt-2 mr-4 ml-8 bg-white border rounded-md focus:outline-none focus:ring focus:ring-opacity-40"
-          type="text"
-          name="fullName"
-          required="required"
-          placeholder="Enter a name..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          className="block px-4 py-2 mt-2 mr-4 bg-white border rounded-md focus:outline-none focus:ring focus:ring-opacity-40"
-          type="text"
-          name="address"
-          required="required"
-          placeholder="Enter an addres..."
-          onChange={handleAddFormChange}
-        />
-        <div className="mt-2 mr-4 bg-white rounded-md focus:outline-none focus:ring focus:ring-opacity-40">
-        <PhoneInput
-        name="phoneNumber"
-        required="required"
-        placeholder="Enter a phone number..."
-        value={inputValue}
-        onChange={setInputValue}
-      />
-      </div>
-        <input
-          type="email"
-          className="block px-4 py-2 mt-2 mr-4 bg-white border rounded-md focus:outline-none focus:ring focus:ring-opacity-40"
-          name="email"
-          required="required"
-          placeholder="Enter an email..."
-          onChange={handleAddFormChange}
-        />
-        <button type="submit" 
-        className="group py-2.5 pr-7 pl-7 relative flex justify-center border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
-            Add</button>
-      </form>
-      
-      <div className="my-1 mx-8">
-      <div className="overflow-x-auto">
-      <form onSubmit={handleEditFormSubmit}>
-        <table className="table table-zebra w-full">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Address</th>
-              <th>Phone Number</th>
-              <th>Email</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {contacts.map((contact) => (
-              <Fragment>
-                {editContactId === contact.id ? (
-                  <EditableRow
-                    editFormData={editFormData}
-                    handleEditFormChange={handleEditFormChange}
-                    handleCancelClick={handleCancelClick}
-                  />
-                ) : (
-                  <ReadOnlyRow
-                    contact={contact}
-                    handleEditClick={handleEditClick}
-                    handleDeleteClick={handleDeleteClick}
-                  />
-                )}
-              </Fragment>
-            ))}
-          </tbody>
-        </table>
-        </form>
+      {loading ? (
+        <h1>Loadding...</h1>
+      ) : (
+        <div className="app-container">
+          <form onSubmit={handleAddFormSubmit} className="flex pb-8 pt-10">
+            <input
+              className="block px-4 py-2 mt-2 mr-4 ml-8 bg-white border rounded-md focus:outline-none focus:ring focus:ring-opacity-40"
+              type="text"
+              name="name"
+              required="required"
+              placeholder="Enter a name..."
+              onChange={handleAddFormChange}
+            />
+            <input
+              className="block px-4 py-2 mt-2 mr-4 bg-white border rounded-md focus:outline-none focus:ring focus:ring-opacity-40"
+              type="text"
+              name="pincode"
+              required="required"
+              placeholder="Enter an pincode..."
+              onChange={handleAddFormChange}
+            />
+            <div className="mt-2 mr-4 bg-white rounded-md focus:outline-none focus:ring focus:ring-opacity-40">
+              <PhoneInput
+                name="phoneNumber"
+                required="required"
+                placeholder="Enter a phone number..."
+                value={inputValue}
+                onChange={setInputValue}
+              />
+            </div>
+            <input
+              type="email"
+              className="block px-4 py-2 mt-2 mr-4 bg-white border rounded-md focus:outline-none focus:ring focus:ring-opacity-40"
+              name="email"
+              required="required"
+              placeholder="Enter an email..."
+              onChange={handleAddFormChange}
+            />
+            <button
+              type="submit"
+              className="group py-2.5 pr-7 pl-7 relative flex justify-center border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+            >
+              Add
+            </button>
+          </form>
+
+          <div className="my-1 mx-8">
+            <div className="overflow-x-auto">
+              <form onSubmit={handleEditFormSubmit}>
+                <table className="table table-zebra w-full">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Pincode</th>
+                      <th>Phone Number</th>
+                      <th>Email</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {allusers?.map((contact) => (
+                      <Fragment key={contact._id}>
+                        {editContactId === contact._id ? (
+                          <EditableRow
+                            editFormData={editFormData}
+                            handleEditFormChange={handleEditFormChange}
+                            handleCancelClick={handleCancelClick}
+                          />
+                        ) : (
+                          <ReadOnlyRow
+                            key={contact._id}
+                            contact={contact}
+                            handleEditClick={handleEditClick}
+                            handleDeleteClick={handleDeleteClick}
+                          />
+                        )}
+                      </Fragment>
+                    ))}
+                  </tbody>
+                </table>
+              </form>
+            </div>
+          </div>
         </div>
-        </div>
-    </div>
+      )}
     </Layout>
   );
 };

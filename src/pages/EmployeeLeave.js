@@ -1,9 +1,10 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../context/context";
 import { Layout } from "../components";
 import EmployeeLeaveTable from "../components/EmloyeeLeaveTable";
 import toast, { Toaster } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 const initialData = {
   subject: "",
   leaveDate: "",
@@ -34,6 +35,13 @@ const EmployeeLeave = () => {
   const onChangeHandler = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
   return (
     <Layout>
       <Toaster />

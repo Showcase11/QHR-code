@@ -1,15 +1,22 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Offboarding from "../components/Offboarding/Offboarding";
 import Onboarding from "../components/Onboarding/Onboarding";
 import Todos from "./Todos";
 import { BiCheck } from "react-icons/bi";
 import Settings from "../components/Settings/Settings";
 import { Layout } from "../components";
+import { useGlobalContext } from "../context/context";
 
 export default function Checklist() {
   const [openTab, setOpenTab] = useState(1);
-
+  const navigate = useNavigate();
+  const { user } = useGlobalContext();
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
   return (
     <Layout>
       <div className="mx-auto">
