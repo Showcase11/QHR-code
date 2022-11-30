@@ -1,77 +1,42 @@
 import React from "react";
-
-const EmployeeTable = () => {
+import { getFullDate } from "../utils/index";
+const EmployeeTable = ({ users }) => {
   return (
     <div>
       <div className="overflow-x-auto h-full overflow-scroll">
         <table className="table table-compact w-full">
           <thead>
             <tr>
-              <th></th>
+              <th>S.n</th>
               <th>Name</th>
               <th>Department</th>
-              <th>Location</th>
-              <th>Status</th>
+              <th>Phone No.</th>
+              <th>Email</th>
+              <th>Pincode</th>
               <th>Joining Date</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>1</th>
-              <td>Rahul Pradhan</td>
-              <td>Web Development</td>
-              <td>Odisha,Cuttack</td>
-              <td>Working</td>
-              <td>12/8/2020</td>
-            </tr>
-            <tr>
-              <th>2</th>
-              <td>Rahul Pradhan</td>
-              <td>Web Development</td>
-              <td>Odisha,Cuttack</td>
-              <td>Working</td>
-              <td>12/8/2020</td>
-            </tr>
-            <tr>
-              <th>3</th>
-              <td>Rahul Pradhan</td>
-              <td>Web Development</td>
-              <td>Odisha,Cuttack</td>
-              <td>Working</td>
-              <td>12/8/2020</td>
-            </tr>
-            <tr>
-              <th>4</th>
-              <td>Rahul Pradhan</td>
-              <td>DevOps</td>
-              <td>Odisha,Cuttack</td>
-              <td>Working</td>
-              <td>12/8/2020</td>
-            </tr>
-            <tr>
-              <th>5</th>
-              <td>Rahul Pradhan</td>
-              <td>HR</td>
-              <td>Odisha,Cuttack</td>
-              <td>Working</td>
-              <td>12/8/2020</td>
-            </tr>
-            <tr>
-              <th>6</th>
-              <td>Rahul Pradhan</td>
-              <td>Mobile App</td>
-              <td>Odisha,Cuttack</td>
-              <td>Working</td>
-              <td>12/8/2020</td>
-            </tr>
+            {users.map((data, index) => (
+              <tr>
+                <th>{index + 1}</th>
+                <td>{data.name}</td>
+                <td>{data.department ? data.department : "not available"}</td>
+                <td>{data.phoneNumber}</td>
+                <td>{data.email}</td>
+                <td>{data.pincode}</td>
+                <td>{getFullDate(data.joined)}</td>
+              </tr>
+            ))}
           </tbody>
           <tfoot>
             <tr>
-              <th></th>
+              <th>s.n</th>
               <th>Name</th>
               <th>Department</th>
-              <th>Location</th>
-              <th>Status</th>
+              <th>Phone No.</th>
+              <th>Email</th>
+              <th>Pincode</th>
               <th>Joining Date</th>
             </tr>
           </tfoot>

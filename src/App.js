@@ -37,6 +37,7 @@ import TotalEmplData from "./components/TotalEmplData";
 import TotalDeptTable from "./components/TotalDeptTable";
 import Profile from "./pages/Profile";
 import ProfileData from "./pages/ProfileData";
+import News from "./pages/News";
 
 const App = () => {
   const { loading } = useGlobalContext();
@@ -95,7 +96,7 @@ const App = () => {
           <Route path="/employee" element={<ManageEmployee />} />
           <Route path="/profile" element={<Empprofile />} />
           <Route path="/dashboard" element={<Dashboad />} />
-          <Route path="/departments" element={<Departments/>} />
+          <Route path="/departments" element={<Departments />} />
           <Route path="/employees" element={<Employees />} />
           <Route path="/leaveAdmin" element={<AdminLeave />} />
           <Route path="/leave" element={<EmployeeLeave />} />
@@ -103,6 +104,7 @@ const App = () => {
           <Route path="/deptemployee/:id" element={<TotalDeptTable />} />
           <Route path="empprofile" element={<Profile />} />
           <Route path="/profiledata" element={<ProfileData/>} />
+          <Route path="/news" element={<News />} />
           {/* <Route path="/changepassword" element={<Changepswd />} /> */}
 
           {/* <Route path="/checklist" element={<Checklist />}>

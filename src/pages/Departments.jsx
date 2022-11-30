@@ -1,47 +1,65 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import DepartmentData from "../components/DepartmentData";
 import DepartmentDataTable from "../components/DepartmentDataTable";
 import { Layout } from "../components";
-
+import { useGlobalContext } from "../context/context";
+import axios from "axios";
+import toast from "react-hot-toast";
 const Departments = () => {
+  const { fetchDepartments, departments, loading } = useGlobalContext();
+  const [formInputData, setformInputData] = useState({
+    name: "",
+    department_code: "",
+  });
 
- const [tableData, setTableData] = useState([])
- const [formInputData, setformInputData] = useState(
-     {
-     name:'',
-     code:'',
-     noofemployees:''
+  const handleChange = (evnt) => {
+    const newInput = (data) => ({
+      ...data,
+      [evnt.target.name]: evnt.target.value,
+    });
+    setformInputData(newInput);
+  };
+
+  const handleSubmit = async (evnt) => {
+    evnt.preventDefault();
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/department",
+        formInputData
+      );
+      toast.success("Department Added Successfully");
+
+      fetchDepartments();
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response);
     }
- );
- 
- const handleChange=(evnt)=>{  
-     const newInput = (data)=>({...data, [evnt.target.name]:evnt.target.value})
-    setformInputData(newInput)
- }
-  
- const handleSubmit= (evnt) =>{
-     evnt.preventDefault();
-     const checkEmptyInput = !Object.values(formInputData).every(res=>res==="")
-     if(checkEmptyInput)
-     {
-      const newData = (data)=>([...data, formInputData])
-      setTableData(newData);
-      const emptyInput= {name:'', code:'', noofemployees:''}
-      setformInputData(emptyInput)
-     }
- }  
+  };
+  useEffect(() => {
+    fetchDepartments();
+  }, []);
 
- return(
-     <Layout>
-     <div className="container">
-     <div className="row">
-         <div className="pt-10">
-         <DepartmentData handleChange={handleChange} formInputData={formInputData} handleSubmit={handleSubmit}/>
-         <DepartmentDataTable tableData={tableData} />
-         </div>
-     </div>
-    </div>
-     </Layout>
- );
-}
+  return (
+    <Layout>
+      <div className="container">
+        <div className="row">
+          <div className="pt-10">
+            <DepartmentData
+              handleChange={handleChange}
+              formInputData={formInputData}
+              handleSubmit={handleSubmit}
+            />
+            {loading ? (
+              <h1>Loading....</h1>
+            ) : departments.length === 0 ? (
+              <h1>No records found</h1>
+            ) : (
+              <DepartmentDataTable tableData={departments} />
+            )}
+          </div>
+        </div>
+      </div>
+    </Layout>
+  );
+};
 export default Departments;
