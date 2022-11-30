@@ -44,7 +44,11 @@ const Signin = () => {
       setUser(res.data);
       localStorage.setItem("user", JSON.stringify(res.data));
       toast.success("Login SuccessFully");
-      navigate("/");
+      if (user.isVisited) {
+        navigate("/");
+      } else {
+        navigate("/dashboard");
+      }
     } catch (e) {
       console.log(e);
       // toast(e?.response?.data?.message, {
