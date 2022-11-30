@@ -6,7 +6,7 @@ export const setRegisterDocument = (newUser) => {
    
   return async (dispatch) => {
     
-  //   return axios.post('http://localhost:5000/login', newUser)
+  //   return axios.post('https://apiqhr.qurinomsolutions.com/login', newUser)
   //  .then(response => response.json())
   //           .then(json => dispatch(
   //               { type: "FetchData", newUser: json }))

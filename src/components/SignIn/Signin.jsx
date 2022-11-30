@@ -32,7 +32,7 @@ const Signin = () => {
     console.log(data);
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/employee/signin",
+        "https://apiqhr.qurinomsolutions.com/api/employee/signin",
         {
           email: data.email,
           password: data.password,

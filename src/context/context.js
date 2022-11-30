@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, Children } from "react";
 import { createContext } from "react";
 import { useCallback } from "react";
 
-const url = "http://localhost:5000/api";
+const url = "https://apiqhr.qurinomsolutions.com/api";
 
 const AppContext = createContext();
 

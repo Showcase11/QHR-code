@@ -36,7 +36,7 @@ const Attendance = () => {
     let currentDate = `${day}-${month}-${year}`;
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/employee/takeAttendance",
+        "https://apiqhr.qurinomsolutions.com/api/employee/takeAttendance",
         {
           inTime: formatTime(inTime),
           outTime: formatTime(inTime + timer),
@@ -54,7 +54,7 @@ const Attendance = () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        "http://localhost:5000/api/employee/selfAttendance"
+        "https://apiqhr.qurinomsolutions.com/api/employee/selfAttendance"
       );
       console.log(res);
       setSelfAttendance(res.data);

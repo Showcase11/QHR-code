@@ -36,7 +36,7 @@ const Register = () => {
     console.log(data);
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/employee/signup",
+        "https://apiqhr.qurinomsolutions.com/api/employee/signup",
         {
           name: data.name,
           email: data.email,
