@@ -35,6 +35,8 @@ import EmployeeLeave from "./pages/EmployeeLeave";
 import Departments from "./pages/Departments";
 import TotalEmplData from "./components/TotalEmplData";
 import TotalDeptTable from "./components/TotalDeptTable";
+import Profile from "./pages/Profile";
+import ProfileData from "./pages/ProfileData";
 
 const App = () => {
   const { loading } = useGlobalContext();
@@ -87,7 +89,7 @@ const App = () => {
           </Route>
 
           <Route path="/login" element={<Signin />} />
-          {/* <Route path="/" element={<Navigate to="/login" />} /> */}
+          <Route path="/changepassword" element={<Changepswd />} />
           <Route path="/register" element={<Signup />} />
           <Route path="/forgot" element={<Forgot />} />
           <Route path="/employee" element={<ManageEmployee />} />
@@ -99,6 +101,8 @@ const App = () => {
           <Route path="/leave" element={<EmployeeLeave />} />
           <Route path="/employee/:id" element={<TotalEmplData />} />
           <Route path="/deptemployee/:id" element={<TotalDeptTable />} />
+          <Route path="empprofile" element={<Profile />} />
+          <Route path="/profiledata" element={<ProfileData/>} />
           {/* <Route path="/changepassword" element={<Changepswd />} /> */}
 
           {/* <Route path="/checklist" element={<Checklist />}>

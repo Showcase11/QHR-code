@@ -17,7 +17,7 @@ const Employees = () => {
   const [contacts, setContacts] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [addFormData, setAddFormData] = useState({
-    fullName: "",
+    name: "",
     pincode: "",
     phoneNumber: "",
     email: "",
@@ -28,7 +28,7 @@ const Employees = () => {
     }
   }, [user]);
   const [editFormData, setEditFormData] = useState({
-    fullName: "",
+    name: "",
     pincode: "",
     phoneNumber: "",
     email: "",
@@ -71,10 +71,6 @@ const Employees = () => {
       email: addFormData.email,
       pincode: addFormData.pincode,
     };
-    // const newContacts = [...contacts, newContact];
-    // setContacts(newContacts);
-    // const emptyInput= {fullName:'', address:'', phoneNumber:'', email:''}
-    // setAddFormData(emptyInput);
     console.log(newContact);
     try {
       const res = await axios.post(
@@ -214,13 +210,13 @@ const Employees = () => {
                     {allusers?.map((contact) => (
                       <Fragment key={contact._id}>
                         {editContactId === contact._id ? (
-                          <EditableRow
+                          <EditEmployeeData
                             editFormData={editFormData}
                             handleEditFormChange={handleEditFormChange}
                             handleCancelClick={handleCancelClick}
                           />
                         ) : (
-                          <ReadOnlyRow
+                          <EmployeeData
                             key={contact._id}
                             contact={contact}
                             handleEditClick={handleEditClick}

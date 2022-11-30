@@ -15,6 +15,11 @@ const AppProvider = ({ children }) => {
       ? JSON.parse(localStorage.getItem("user"))
       : null
   );
+  const [password, setPassword] = useState(
+    localStorage.getItem("password")
+      ? JSON.parse(localStorage.getItem("password"))
+      : null
+  );
   const [pendingData, setPendingData] = useState([]);
   const [status, setStatus] = useState("pending");
   const [action, setAction] = useState();
@@ -50,6 +55,8 @@ const AppProvider = ({ children }) => {
         setLoading,
         setUser,
         user,
+        setPassword,
+        password,
         setStatus,
         fetchAttendance,
         pendingData,

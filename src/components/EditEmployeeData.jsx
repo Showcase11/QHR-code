@@ -7,6 +7,7 @@ const EditEmployeeData = ({
   handleEditFormChange,
   handleCancelClick,
 }) => {
+  console.log(editFormData);
   return (
     <tr>
       <td>
@@ -14,8 +15,8 @@ const EditEmployeeData = ({
           type="text"
           required="required"
           placeholder="Enter a name..."
-          name="fullName"
-          value={editFormData.fullName}
+          name="name"
+          value={editFormData.name}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -23,9 +24,9 @@ const EditEmployeeData = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter an address..."
-          name="address"
-          value={editFormData.address}
+          placeholder="Enter an pincode..."
+          name="pincode"
+          value={editFormData.pincode}
           onChange={handleEditFormChange}
         ></input>
       </td>
@@ -50,7 +51,9 @@ const EditEmployeeData = ({
         ></input>
       </td>
       <td>
-        <button type="submit" className="mr-5"><IoMdCheckmark /></button>
+        <button type="submit" className="mr-5">
+          <IoMdCheckmark />
+        </button>
         <button type="button" onClick={handleCancelClick}>
           <IoMdClose />
         </button>

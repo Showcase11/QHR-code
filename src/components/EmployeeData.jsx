@@ -3,13 +3,13 @@ import { IoMdCreate } from "react-icons/io";
 import { IoTrashOutline } from "react-icons/io5";
 import { IoEye } from "react-icons/io5";
 import { Link } from 'react-router-dom';
-import TotalEmplData from "./TotalEmplData";
 
 const EmployeeData = ({ contact, handleEditClick, handleDeleteClick, handleEmpdataClick }) => {
+  console.log(contact);
   return (
     <tr>
-      <td>{contact.fullName}</td>
-      <td>{contact.address}</td>
+      <td>{contact.name}</td>
+      <td>{contact.pincode}</td>
       <td>{contact.phoneNumber}</td>
       <td>{contact.email}</td>
       <td className="flex">
