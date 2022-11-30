@@ -1,9 +1,9 @@
 import React from "react";
 import { BiTimeFive } from "react-icons/bi";
 import { Link } from "react-router-dom";
+import { useGlobalContext } from "../../context/context";
 const AttendanceLayout = ({ select, children }) => {
-  const isAdmin = false;
-
+  const { user } = useGlobalContext();
   return (
     <div>
       <div className=" bg-white shadow-lg flex justify-between items-center px-5 py-3">
@@ -22,16 +22,19 @@ const AttendanceLayout = ({ select, children }) => {
               My attendance
             </p>
           </Link>
-          <Link to="/attendance/team">
-            <p
-              className={`uppercase text-sm font-semibold   ${
-                select === "team" ? "text-green-600" : "text-gray-600"
-              }  `}
-            >
-              team attendance
-            </p>
-          </Link>
-          {isAdmin && (
+          {user?.isAdmin && (
+            <Link to="/attendance/team">
+              <p
+                className={`uppercase text-sm font-semibold   ${
+                  select === "team" ? "text-green-600" : "text-gray-600"
+                }  `}
+              >
+                team attendance
+              </p>
+            </Link>
+          )}
+
+          {user?.isAdmin && (
             <Link to="/attendance/employee">
               <p
                 className={`uppercase text-sm font-semibold   ${
@@ -42,16 +45,17 @@ const AttendanceLayout = ({ select, children }) => {
               </p>
             </Link>
           )}
-
-          <Link to="/attendance/settings/general">
-            <p
-              className={`uppercase text-sm font-semibold   ${
-                select === "settings" ? "text-green-600" : "text-gray-600"
-              }  `}
-            >
-              settings
-            </p>
-          </Link>
+          {user?.isAdmin && (
+            <Link to="/attendance/settings/general">
+              <p
+                className={`uppercase text-sm font-semibold   ${
+                  select === "settings" ? "text-green-600" : "text-gray-600"
+                }  `}
+              >
+                settings
+              </p>
+            </Link>
+          )}
         </div>
         {/* Upgrade */}
         <button className="btn bg-pink-600 font-semibold rounded-lg px-6 btn-sm text-white">

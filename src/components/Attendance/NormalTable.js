@@ -1,5 +1,6 @@
 import React from "react";
 import { useGlobalContext } from "../../context/context";
+import { getFullDate, getExactTime } from "../../utils";
 const NormalTable = () => {
   const { selfAttendance } = useGlobalContext();
   console.log(selfAttendance);
@@ -21,9 +22,9 @@ const NormalTable = () => {
             {selfAttendance?.map((item, index) => (
               <tr key={index}>
                 <th>{index + 1}</th>
-                <td>{item.date}</td>
-                <td>{item.inTime}</td>
-                <td>{item.outTime}</td>
+                <td>{getFullDate(item.date)}</td>
+                <td>{getExactTime(item.inTime)}</td>
+                <td>{getExactTime(item.outTime)}</td>
               </tr>
             ))}
           </tbody>

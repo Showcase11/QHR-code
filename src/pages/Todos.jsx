@@ -1,10 +1,20 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import Progresstable from "./Progresstable";
-import Completedtable from "./Completedtable";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Progresstable from "../components/Todos/Progresstable";
+
+import Completedtable from "../components/Todos/Completedtable";
 import Select from "react-select";
+import { Layout } from "../components";
+import { useGlobalContext } from "../context/context";
 
 const Todos = () => {
+  const navigate = useNavigate();
+  const { user } = useGlobalContext();
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
   const [selectedOption, setSelectedOption] = useState({
     value: 1,
     label: "In Progress",
@@ -38,7 +48,7 @@ const Todos = () => {
   // border-radius: 25px;
 
   return (
-    <div>
+    <Layout>
       <div className="flex mt-5 gap-5">
         <Select
           placeholder="Select Option"
@@ -82,7 +92,7 @@ const Todos = () => {
           <Completedtable />
         </div>
       )}
-    </div>
+    </Layout>
   );
 };
 

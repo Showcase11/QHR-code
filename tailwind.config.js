@@ -1,25 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx,html,js}"],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
-    fontFamily: {
-      roboto: ["Roboto", "sans-serif"],
-      sans: ["Open Sans", "sans-serif"],
+    extend: {
+      fontFamily: {
+        rubik: ["Rubik Microbe", "cursive"],
+        rubikD: ["Rubik Distressed", "cursive"],
+        roboto: ["Roboto", "sans-serif"],
+      },
     },
   },
-  variants: {
-    extend: {},
+  plugins: [],
+  daisyui: {
+    themes: false,
   },
   plugins: [require("daisyui")],
-  daisyui: {
-    styled: true,
-    themes: true,
-    base: true,
-    utils: true,
-    logs: true,
-    rtl: false,
-    prefix: "",
-    darkTheme: "dark",
-  },
 };

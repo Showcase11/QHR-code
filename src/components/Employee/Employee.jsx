@@ -1,22 +1,21 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import Offboarding from "../Checklist/Offboarding/Offboarding";
-import Onboarding from "../Checklist/Onboarding/Onboarding";
-import Todos from "../../pages/Todos";
-import { BiCheck } from "react-icons/bi";
-import Settings from "./Settings/Settings";
-
-export default function Checklist() {
-  const [openTab, setOpenTab] = useState(1);
+import React, {useState} from 'react'
+import { Link } from 'react-router-dom';
+import Manageemployee from './Manageemployee';
+import Directory from './Directory';
+import Orgchart from './Orgchart';
+const Employee = () =>{
+    const [openTab, setOpenTab] = useState(1);
 
   return (
-    <div className=" mx-auto">
+    <div>
+
+<div className=" mx-auto">
       <div className="flex flex-col justify-center">
         <div className="bg-white w-full shadow-lg">
           <div className="px-8 py-3 gap-1 font-sans flex items-center shadow-lg justify-between font-bold relative text-sm">
             <div className="flex justify-start items-center text-lg">
-              <BiCheck />
-              <h1>Checklist</h1>
+              {/* <BiCheck /> */}
+              <h1>Employee</h1>
             </div>
             <ul className="flex space-x-2 justify-center uppercase">
               <li>
@@ -25,7 +24,7 @@ export default function Checklist() {
                   onClick={() => setOpenTab(1)}
                   className="inline-block px-4 py-2 text-gray-600 rounded bordered active underline underline-offset-8"
                 >
-                  To-Dos
+                 Manage Employee
                 </Link>
               </li>
               <li>
@@ -34,7 +33,7 @@ export default function Checklist() {
                   onClick={() => setOpenTab(2)}
                   className="inline-block px-4 py-2 text-gray-600 rounded underline underline-offset-8"
                 >
-                  Onboarding
+                Directory
                 </Link>
               </li>
               <li>
@@ -43,7 +42,7 @@ export default function Checklist() {
                   onClick={() => setOpenTab(3)}
                   className="inline-block px-4 py-2 text-gray-600 rounded underline underline-offset-8"
                 >
-                  Offboarding
+                  Orgchart
                 </Link>
               </li>
               <li>
@@ -52,7 +51,7 @@ export default function Checklist() {
                   onClick={() => setOpenTab(4)}
                   className="inline-block px-4 py-2 text-gray-600 rounded underline underline-offset-8"
                 >
-                  Settings
+                  
                 </Link>
               </li>
             </ul>
@@ -64,19 +63,30 @@ export default function Checklist() {
         <div className="p-3 bg-zinc-100 h-screen">
           <div className={openTab === 1 ? "block" : "hidden"}>
             {" "}
-            <Todos />
+            <Manageemployee /> 
           </div>
           <div className={openTab === 2 ? "block" : "hidden"}>
-            <Onboarding />
+            <Directory /> 
           </div>
           <div className={openTab === 3 ? "block" : "hidden"}>
-            <Offboarding />
+            <Orgchart /> 
           </div>
           <div className={openTab === 4 ? "block" : "hidden"}>
-            <Settings />
+            {/* <Settings /> */}
           </div>
         </div>
       </div>
     </div>
-  );
+
+
+      
+
+
+
+
+
+    </div>
+  )
 }
+
+export default Employee;
