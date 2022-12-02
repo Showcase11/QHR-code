@@ -3,9 +3,12 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useGlobalContext } from "../../context/context";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const Forgot = () => {
+  const { setLoading, setForgot, user } = useGlobalContext();
   const schema = Yup.object().shape({
     email: Yup.string()
       .required("Email is required")
@@ -24,9 +27,21 @@ const Forgot = () => {
 
   const onSubmit = async (data) => {
     console.log(data);
-
-    navigate("/");
-  };
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/employee/forgetpassword",
+        {
+          email: data.email
+        }
+      );
+      toast.success("Email will be send to you with a link");
+      console.log(res.data);
+      setForgot(res.data);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div className="bg-zinc-100">
       <div className="relative flex flex-col justify-center h-screen overflow-hidden">

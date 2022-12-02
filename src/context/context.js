@@ -11,6 +11,8 @@ const AppProvider = ({ children }) => {
   const [selfAttendance, setSelfAttendance] = useState([]);
   const [allusers, setAllusers] = useState([]);
   const [departments, setDepartments] = useState([]);
+  const [profile, setProfile] = useState([]);
+  const [forgot, setForgot] = useState([]);
   const [user, setUser] = useState(
     localStorage.getItem("user")
       ? JSON.parse(localStorage.getItem("user"))
@@ -70,6 +72,10 @@ const AppProvider = ({ children }) => {
         setPassword,
         password,
         setStatus,
+        profile,
+        setProfile,
+        forgot,
+        setForgot,
         fetchAttendance,
         pendingData,
         allusers,

@@ -1,15 +1,17 @@
 import React, {useState} from 'react';
 import { Layout } from "../components";
-// import { useGlobalContext } from "../context/context";
 import { useForm } from "react-hook-form";
 import {useNavigate} from 'react-router-dom';
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+import { useGlobalContext } from "../context/context";
+import ProfileData from './ProfileData';
 
 const Profile = () => {
-
+    const { setLoading, setProfile, user } = useGlobalContext();
     const [picture, setPicture] = useState('');
 
     const onChangePicture = e => {
-      console.log(e.target.files[0]);
       setPicture(URL.createObjectURL(e.target.files[0]));
     };   
     const navigate = useNavigate();
@@ -17,10 +19,49 @@ const Profile = () => {
     const { register, handleSubmit } = useForm();
     const [data, setData] = useState("");
   
-    const onSubmit = (data) => {
+const onSubmit = async(data) => {
       console.log(data);
-      setData(data);
-      navigate("/ProfileData");
+    const formData = new FormData();
+	formData.append('file', picture);
+      try {
+        setLoading(true);
+        const res = await axios.put(
+          `http://localhost:5000/api/employee/${user._id}`,
+          {
+            age: data.age,
+            address: data.address,
+            gender: data.gender,
+            // profilepic: data.profilepic,
+            accountNumber: data.accountNumber,
+            ifscCode: data.ifscCode,
+            country: data.country,
+            emergencyNumber: data.emergencyNumber,
+            isVisited: true
+          }
+        );
+        console.log(res.data);
+        setProfile(res.data);
+        setLoading(false);
+        localStorage.setItem("data", JSON.stringify(res.data));
+        toast.success("profile data submited SuccessFully");
+        navigate("/ProfileData",
+        {
+            state:{ age: data.age,
+                address: data.address,
+                gender: data.gender,
+                // profilepic: data.profilepic,
+                accountNumber: data.accountNumber,
+                ifscCode: data.ifscCode,
+                country: data.country,
+                emergencyNumber: data.emergencyNumber,
+                isVisited: true
+            }
+        });
+      } catch (e) {
+        console.log(e);
+        toast.error(e?.response?.data?.message);
+        setLoading(false);
+      }
     }   
     return (
         <Layout>
@@ -30,7 +71,7 @@ const Profile = () => {
   <div className='float-left w-[49%]'>
   <div className="mb-2">
                         <label
-                            for="employeeid"
+                            for="age"
                             className="block text-sm font-semibold text-gray-800"
                         >
                            Age
@@ -45,7 +86,7 @@ const Profile = () => {
                     </div>
                     <div className="mb-2">
                         <label
-                            for="date"
+                            for="Address"
                             className="block text-sm font-semibold text-gray-800"
                         >
                             Address
@@ -60,7 +101,7 @@ const Profile = () => {
                     </div>
                     <div className="mb-2">
                         <label
-                            for="enddate"
+                            for="gender"
                             className="block text-sm font-semibold text-gray-800"
                         >
                            Gender
@@ -74,9 +115,9 @@ const Profile = () => {
                                 <option value="Female">Female</option>
                         </select>
                     </div>
-                    <div className="mb-2">
+                    {/* <div className="mb-2">
                         <label
-                            for="enddate"
+                            for="profilepic"
                             className="block text-sm font-semibold text-gray-800"
                         >
                            Profile Image
@@ -88,14 +129,14 @@ const Profile = () => {
                         {...register("profilepic", { required: true })}
                         onChange={onChangePicture}/>
                         <div className="pt-5" >
-                <img className="w-40 h-30"  src={picture} />
-              </div>
-                    </div>
+                            <img className="w-40 h-30"  src={picture} alt='img' />
+                        </div>
+                    </div> */}
   </div>
   <div className='float-right w-[49%]'>
                     <div className="mb-2">
                         <label
-                            for="joindate"
+                            for="accountNumber"
                             className="block text-sm font-semibold text-gray-800"
                         >
                             Account Number
@@ -110,7 +151,7 @@ const Profile = () => {
                     </div>
                     <div className="mb-2">
                         <label
-                            for="joindate"
+                            for="ifscCode"
                             className="block text-sm font-semibold text-gray-800"
                         >
                            IFSC Code
@@ -125,7 +166,7 @@ const Profile = () => {
                     </div>
                     <div className="mb-2">
                         <label
-                            for="joindate"
+                            for="country"
                             className="block text-sm font-semibold text-gray-800"
                         >
                             Country
@@ -140,7 +181,7 @@ const Profile = () => {
                     </div>
                     <div className="mb-2">
                         <label
-                            for="probation date"
+                            for="emergencyNumber"
                             className="block text-sm font-semibold text-gray-800"
                         >
                             Emergency

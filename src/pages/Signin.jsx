@@ -47,7 +47,7 @@ const Signin = () => {
       if (user.isVisited) {
         navigate("/");
       } else {
-        navigate("/dashboard");
+        navigate("/empprofile");
       }
     } catch (e) {
       console.log(e);

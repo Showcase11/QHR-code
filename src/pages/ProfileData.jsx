@@ -1,8 +1,10 @@
-import {React} from 'react';
+import React from 'react';
 import { useGlobalContext } from "../context/context";
+import {useLocation} from 'react-router-dom';
 
 const ProfileData = () => {
-    const { user, setPassword } = useGlobalContext();
+  const { setProfile } = useGlobalContext();
+    // console.log(data);
 return(
 <div className='flex shadow bg-base-100 rounded-box w-3/4 p-7 mt-10 m-auto content-center'>
 <div className="grid flex-grow bg-base-100 place-items-left">
@@ -14,10 +16,10 @@ return(
 <p className='pb-3 text-zinc-400'>Profile Image</p>
   </div>
   <div className=''>
- <p className='pb-3'>Angeline Beier</p>
- <p className='pb-3'>31 Aug 1991</p>
- <p className='pb-3'>Costa Rican</p>
- <p className='pb-3'>angeline.beier@grovehr.com</p>
+ <p className='pb-3'>{setProfile.age}</p>
+ {/* <p className='pb-3'>{props.address}</p>
+ <p className='pb-3'>{props.gender}</p>
+ <p className='pb-3'>{props.profileimg}</p> */}
   </div>
   </div>
   </div>
