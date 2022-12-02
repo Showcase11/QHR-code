@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { createContext } from "react";
 
-const url = "http://localhost:5000/api";
+const url = "https://apiqhr.qurinomsolutions.com/api";
 
 const AppContext = createContext();
 
