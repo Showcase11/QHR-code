@@ -10,7 +10,7 @@ import { Layout } from "../components";
 import Lottie from "react-lottie";
 import toast, { Toaster } from "react-hot-toast";
 const Signin = () => {
-  const { setUser, user } = useGlobalContext();
+  const { saveUser, user } = useGlobalContext();
   const schema = Yup.object().shape({
     email: Yup.string()
       .required("Email is required")
@@ -41,14 +41,13 @@ const Signin = () => {
         }
       );
       console.log(res);
-      setUser(res.data);
-      localStorage.setItem("user", JSON.stringify(res.data));
-      toast.success("Login SuccessFully");
-      if (user.isVisited) {
-        navigate("/");
-      } else {
-        navigate("/empprofile");
-      }
+      saveUser(res.data);
+      // setUser(res.data);
+      // localStorage.setItem("user", JSON.stringify(res.data));
+      // toast.success("Login SuccessFully");
+      console.log(user);
+
+      navigate("/");
     } catch (e) {
       console.log(e);
       // toast(e?.response?.data?.message, {

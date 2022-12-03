@@ -7,11 +7,10 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { useGlobalContext } from "../context/context";
 const Navbar = () => {
-  const { user, setUser } = useGlobalContext();
+  const { user, removeUser } = useGlobalContext();
   const navigate = useNavigate();
   const onSubmit = () => {
-    setUser(null);
-    localStorage.removeItem("user");
+    removeUser();
     navigate("/");
   };
   // console.log(user);

@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Layout } from "../components";
+import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/context";
 const Home = () => {
+  const navigate = useNavigate();
   const { user } = useGlobalContext();
+  useEffect(() => {
+    console.log(!user.isVisited && !user.isAdmin);
+    if (!user.isAdmin && !user.isVisited) {
+      navigate("/empprofile");
+    }
+  }, []);
+
   return (
     <Layout>
       <div className="flex items-center justify-center flex-col">

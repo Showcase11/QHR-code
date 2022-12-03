@@ -60,6 +60,14 @@ const AppProvider = ({ children }) => {
       setLoading(false);
     }
   });
+  const saveUser = (user) => {
+    setUser(user);
+    localStorage.setItem("user", JSON.stringify(user));
+  };
+  const removeUser = () => {
+    setUser(null);
+    localStorage.removeItem("user");
+  };
   return (
     <AppContext.Provider
       value={{
@@ -67,7 +75,8 @@ const AppProvider = ({ children }) => {
         selfAttendance,
         setSelfAttendance,
         setLoading,
-        setUser,
+        saveUser,
+        removeUser,
         user,
         setPassword,
         password,
