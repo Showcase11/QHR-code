@@ -9,7 +9,7 @@ import ProfileData from "./ProfileData";
 
 const Profile = () => {
   const navigate = useNavigate();
-  const { setLoading, saveUser, user } = useGlobalContext();
+  const { setLoading, saveUser, user, url } = useGlobalContext();
   const [picture, setPicture] = useState("");
   useEffect(() => {
     if (!user) {
@@ -29,20 +29,17 @@ const Profile = () => {
     formData.append("file", picture);
     try {
       setLoading(true);
-      const res = await axios.put(
-        `http://localhost:5000/api/employee/${user._id}`,
-        {
-          age: data.age,
-          address: data.address,
-          gender: data.gender,
-          // profilepic: data.profilepic,
-          accountNumber: data.accountNumber,
-          ifscCode: data.ifscCode,
-          country: data.country,
-          emergencyNumber: data.emergencyNumber,
-          isVisited: true,
-        }
-      );
+      const res = await axios.put(`${url}/${user._id}`, {
+        age: data.age,
+        address: data.address,
+        gender: data.gender,
+        // profilepic: data.profilepic,
+        accountNumber: data.accountNumber,
+        ifscCode: data.ifscCode,
+        country: data.country,
+        emergencyNumber: data.emergencyNumber,
+        isVisited: true,
+      });
 
       setLoading(false);
 

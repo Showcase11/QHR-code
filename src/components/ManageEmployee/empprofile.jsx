@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Img1 from "../../Images/portrait-cheerful-attractive-young-woman-longsleeve-standing-with-arms-crossed-smiling.jpg";
 import { IoChevronDownSharp } from "react-icons/io5";
 import { IoMailOutline } from "react-icons/io5";
@@ -13,11 +13,15 @@ import Documents from "./Documents";
 import Dependends from "./Dependends";
 import Job from "./Job";
 import Layout from "../Layout";
+import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "../../context/context";
 const Empprofile = () => {
+  const navigate = useNavigate();
+  const { user } = useGlobalContext();
   const [openTab, setOpenTab] = useState(1);
-  // useEffect(() => {
-
-  // })
+  useEffect(() => {
+    navigate("/login");
+  }, [user]);
 
   return (
     <Layout>

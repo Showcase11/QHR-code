@@ -2,10 +2,10 @@ import React from "react";
 import { IoMdCreate } from "react-icons/io";
 import { IoTrashOutline } from "react-icons/io5";
 import { IoEye } from "react-icons/io5";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 
-const EmployeeData = ({ contact, handleEditClick, handleDeleteClick, handleEmpdataClick }) => {
-  console.log(contact);
+const EmployeeData = ({ contact, handleEditClick, handleDeleteClick }) => {
+  const navigate = useNavigate();
   return (
     <tr>
       <td>{contact.name}</td>
@@ -18,17 +18,22 @@ const EmployeeData = ({ contact, handleEditClick, handleDeleteClick, handleEmpda
           className="mr-5"
           onClick={(event) => handleEditClick(event, contact)}
         >
-         <IoMdCreate />
+          <IoMdCreate />
         </button>
-        <button type="button" className="mr-5" onClick={() => handleDeleteClick(contact.id)}>
+        <button
+          type="button"
+          className="mr-5"
+          onClick={() => handleDeleteClick(contact._id)}
+        >
           <IoTrashOutline />
         </button>
-        <Link to="/employee/:id" onClick={() => handleEmpdataClick(contact.id)}>
-          <IoEye />
-        </Link>
+
+        <IoEye
+          className="cursor-pointer"
+          onClick={() => navigate(`/employee/${contact._id}`)}
+        />
       </td>
     </tr>
-    
   );
 };
 

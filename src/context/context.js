@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { createContext } from "react";
 
-const url = "https://apiqhr.qurinomsolutions.com/api";
+// const url = "https://apiqhr.qurinomsolutions.com/api";
+const url = "http://localhost:5000/api";
 
 const AppContext = createContext();
 
@@ -91,6 +92,7 @@ const AppProvider = ({ children }) => {
         fetchUsers,
         departments,
         fetchDepartments,
+        url,
       }}
     >
       {children}

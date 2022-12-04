@@ -3,14 +3,12 @@ import axios from "axios";
 import { useGlobalContext } from "../context/context";
 import { getFullDate } from "../utils";
 const EmloyeeLeave = ({ isClick }) => {
-  const { user, loading, setLoading } = useGlobalContext();
+  const { user, loading, setLoading, url } = useGlobalContext();
   const [leaveData, setLeaveData] = useState([]);
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/api/leave/user/${user._id}`
-        );
+        const res = await axios.get(`${url}/leave/user/${user._id}`);
         setLoading(true);
         setLeaveData(res.data);
         setLoading(false);

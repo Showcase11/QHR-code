@@ -5,13 +5,20 @@ import { Layout } from "../components";
 import { useGlobalContext } from "../context/context";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 const Departments = () => {
   const { fetchDepartments, departments, loading } = useGlobalContext();
   const [formInputData, setformInputData] = useState({
     name: "",
     department_code: "",
   });
-
+  const navigate = useNavigate();
+  const { user } = useGlobalContext();
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
   const handleChange = (evnt) => {
     const newInput = (data) => ({
       ...data,

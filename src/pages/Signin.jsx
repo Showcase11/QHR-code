@@ -10,7 +10,7 @@ import { Layout } from "../components";
 import Lottie from "react-lottie";
 import toast, { Toaster } from "react-hot-toast";
 const Signin = () => {
-  const { saveUser, user } = useGlobalContext();
+  const { saveUser, user, url } = useGlobalContext();
   const schema = Yup.object().shape({
     email: Yup.string()
       .required("Email is required")
@@ -33,13 +33,10 @@ const Signin = () => {
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/employee/signin",
-        {
-          email: data.email,
-          password: data.password,
-        }
-      );
+      const res = await axios.post(`${url}/employee/signin`, {
+        email: data.email,
+        password: data.password,
+      });
       console.log(res);
       saveUser(res.data);
       // setUser(res.data);

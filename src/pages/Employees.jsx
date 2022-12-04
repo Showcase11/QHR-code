@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 import { useGlobalContext } from "../context/context";
 const Employees = () => {
   const navigate = useNavigate();
-  const { allusers, fetchUsers, loading, user } = useGlobalContext();
+  const { allusers, fetchUsers, loading, user, url } = useGlobalContext();
   const [contacts, setContacts] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [addFormData, setAddFormData] = useState({
@@ -71,7 +71,7 @@ const Employees = () => {
     console.log(newContact);
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/employee/signup",
+        `${url}/employee/signup`,
 
         newContact
       );
@@ -79,6 +79,7 @@ const Employees = () => {
       console.log(res.data);
       fetchUsers();
     } catch (error) {
+      toast.error(error.response.data?.message);
       console.log(error);
     }
   };
@@ -95,13 +96,14 @@ const Employees = () => {
     console.log(editedContact);
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/employee/${editFormData.id}`,
+        `${url}/employee/${editFormData.id}`,
         editedContact
       );
       console.log(res);
       toast.success("Updated");
       fetchUsers();
     } catch (error) {
+      toast.error("Something went wrong");
       console.log(error);
     }
     setEditContactId(null);
@@ -127,10 +129,9 @@ const Employees = () => {
   };
 
   const handleDeleteClick = async (contactId) => {
+    console.log(contactId);
     try {
-      const res = await axios.delete(
-        `http://localhost:5000/api/employee/${contactId}`
-      );
+      const res = await axios.delete(`${url}/employee/${contactId}`);
       toast.success(res.data.message);
     } catch (error) {
       console.log(error);

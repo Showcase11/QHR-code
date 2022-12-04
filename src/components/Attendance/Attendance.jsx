@@ -25,7 +25,7 @@ const Attendance = () => {
     outTime,
     inTime,
   } = useTimer();
-  const { setSelfAttendance, setLoading, user } = useGlobalContext();
+  const { setSelfAttendance, setLoading, user, url } = useGlobalContext();
   // console.log(localStorage.getItem("timer");
   const [takeData, setTakeData] = useState();
 
@@ -38,16 +38,13 @@ const Attendance = () => {
     // let year = date.getFullYear();
     // let currentDate = `${day}-${month}-${year}`;
     try {
-      const res = await axios.post(
-        "https://apiqhr.qurinomsolutions.com/api/employee/takeAttendance",
-        {
-          inTime: inTime,
-          outTime: date,
-          duration: timer,
-          date: date,
-          userId: user._id,
-        }
-      );
+      const res = await axios.post(`${url}/employee/takeAttendance`, {
+        inTime: inTime,
+        outTime: date,
+        duration: timer,
+        date: date,
+        userId: user._id,
+      });
       setOutTime(date);
       console.log(res);
       console.log(new Date().getDate().toString());
@@ -59,9 +56,9 @@ const Attendance = () => {
   const fetchDailyAttendance = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(
-        "https://apiqhr.qurinomsolutions.com/api/employee/selfAttendance"
-      );
+      const res = await axios.post(`${url}/employee/selfAttendance`, {
+        userId: user._id,
+      });
       console.log(res);
       setSelfAttendance(res.data);
       setLoading(false);

@@ -91,7 +91,7 @@ const App = () => {
 
           <Route path="/login" element={<Signin />} />
           <Route path="/changepassword" element={<Changepswd />} />
-          <Route path="/register" element={<Signup />} />
+          {/* <Route path="/register" element={<Signup />} /> */}
           <Route path="/forgot" element={<Forgot />} />
           <Route path="/employee" element={<ManageEmployee />} />
           <Route path="/profile" element={<Empprofile />} />
@@ -102,8 +102,8 @@ const App = () => {
           <Route path="/leave" element={<EmployeeLeave />} />
           <Route path="/employee/:id" element={<TotalEmplData />} />
           <Route path="/deptemployee/:id" element={<TotalDeptTable />} />
-          <Route path="empprofile" element={<Profile />} />
-          <Route path="/profiledata" element={<ProfileData/>} />
+          <Route path="/empprofile" element={<Profile />} />
+          <Route path="/profiledata" element={<ProfileData />} />
           <Route path="/news" element={<News />} />
           {/* <Route path="/changepassword" element={<Changepswd />} /> */}
 

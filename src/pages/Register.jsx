@@ -3,27 +3,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
-
+import { useGlobalContext } from "../context/context";
 import axios from "axios";
 import { Layout } from "../components";
 
 const Register = () => {
+  const { url } = useGlobalContext();
   const [data, setData] = useState([]);
-  // const schema = Yup.object().shape({
-  //     name: Yup.string()
-  //       .required("username is required")
-  //       .maxLength(20, "Value must be maximum 20")
-  //       .minLength(2, "Value must be minimum 2"),
-  //     email: Yup.string()
-  //       .required("Email is required")
-  //       .email("Please enter a valid email"),
-  //     password: Yup.string()
-  //       .required("Password is required")
-  //       .min(6, "Password must be at least 6 characters"),
-  //     confirmpassword: Yup.string()
-  //       .required("Password is required")
-  //       .min(6, "Password must be at least 6 characters"),
-  //   });
   const {
     register,
     handleSubmit,
@@ -35,14 +21,11 @@ const Register = () => {
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/employee/signup",
-        {
-          name: data.name,
-          email: data.email,
-          password: data.password,
-        }
-      );
+      const res = await axios.post(`${url}/employee/signup`, {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+      });
       console.log(res);
       window.alert("Register SuccessFully");
     } catch (e) {

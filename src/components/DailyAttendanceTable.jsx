@@ -5,12 +5,10 @@ import { useGlobalContext } from "../context/context";
 import Row from "./Row";
 const DailyAttendanceTable = () => {
   const [attendances, setAttendances] = useState([]);
-  const { loading, setLoading } = useGlobalContext();
+  const { loading, setLoading, url } = useGlobalContext();
 
   const getDailyAttendance = async () => {
-    const res = await axios.get(
-      "http://localhost:5000/api/employee/getPerDayAttendance"
-    );
+    const res = await axios.get(`${url}/employee/getPerDayAttendance`);
     console.log(res.data);
     setAttendances(res.data);
   };

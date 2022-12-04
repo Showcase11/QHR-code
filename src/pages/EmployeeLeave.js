@@ -13,13 +13,13 @@ const initialData = {
 };
 const EmployeeLeave = () => {
   const [formData, setFormData] = useState(initialData);
-  const { user } = useGlobalContext();
+  const { user, url } = useGlobalContext();
   const [isClick, setIsClick] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/leave/apply", {
+      const res = await axios.post(`${url}/leave/apply`, {
         userId: user._id,
         ...formData,
       });
