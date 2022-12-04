@@ -6,8 +6,12 @@ const Home = () => {
   const navigate = useNavigate();
   const { user } = useGlobalContext();
   useEffect(() => {
-    console.log(!user.isVisited && !user.isAdmin);
-    if (!user.isAdmin && !user.isVisited) {
+    if (!user) {
+      navigate("/login");
+    }
+  }, []);
+  useEffect(() => {
+    if (user && !user.isAdmin && !user.isVisited) {
       navigate("/empprofile");
     }
   }, []);
