@@ -4,13 +4,11 @@ import { getExactTime, getFullDate } from "../utils";
 import { useGlobalContext } from "../context/context";
 const Row = ({ item, index }) => {
   const [userInfo, setUserInfo] = useState();
-  const { loading, setLoading } = useGlobalContext();
+  const { loading, setLoading, url } = useGlobalContext();
   useEffect(() => {
     const fetUser = async () => {
       setLoading(true);
-      const res = await axios.get(
-        `http://localhost:5000/api/employee/${item.user}`
-      );
+      const res = await axios.get(`${url}/employee/${item.user}`);
 
       setUserInfo(res.data);
       // console.log(res.data);
@@ -20,7 +18,7 @@ const Row = ({ item, index }) => {
   }, [item._id]);
 
   if (loading || !userInfo) return <tr>Loading...</tr>;
-  console.log(userInfo);
+  // console.log(userInfo);
   return (
     <tr key={item._id}>
       <th>{index + 1}</th>

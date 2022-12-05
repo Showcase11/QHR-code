@@ -11,7 +11,7 @@ const Dashboad = () => {
   const {
     user,
     pendingData,
-    fetchAttendance,
+    fetchLeaveApplications,
     fetchDepartments,
     departments,
     loading,
@@ -26,7 +26,7 @@ const Dashboad = () => {
     }
   }, [user]);
   useEffect(() => {
-    fetchAttendance();
+    fetchLeaveApplications();
     fetchDepartments();
     fetchUsers();
   }, []);

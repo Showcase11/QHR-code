@@ -6,14 +6,12 @@ import toast from "react-hot-toast";
 
 const LeaveTableRow = ({ item, setAction }) => {
   const [userInfo, setUserInfo] = useState();
-  const { loading, setLoading } = useGlobalContext();
+  const { loading, setLoading, url } = useGlobalContext();
 
   useEffect(() => {
     const fetUser = async () => {
       setLoading(true);
-      const res = await axios.get(
-        `http://localhost:5000/api/employee/${item.user}`
-      );
+      const res = await axios.get(`${url}/employee/${item.user}`);
 
       setUserInfo(res.data);
       // console.log(res.data);
@@ -24,7 +22,7 @@ const LeaveTableRow = ({ item, setAction }) => {
 
   const actions = async (id, status) => {
     try {
-      const res = await axios.put(`http://localhost:5000/api/leave/${id}`, {
+      const res = await axios.put(`${url}/leave/${id}`, {
         status,
       });
       toast.success(status);

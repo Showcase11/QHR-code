@@ -27,7 +27,7 @@ const AppProvider = ({ children }) => {
   const [pendingData, setPendingData] = useState([]);
   const [status, setStatus] = useState("pending");
   const [action, setAction] = useState();
-  const fetchAttendance = useCallback(async () => {
+  const fetchLeaveApplications = useCallback(async () => {
     setLoading(true);
     try {
       const response = await axios.get(`${url}/leave/status/${status}`);
@@ -86,7 +86,7 @@ const AppProvider = ({ children }) => {
         setProfile,
         forgot,
         setForgot,
-        fetchAttendance,
+        fetchLeaveApplications,
         pendingData,
         allusers,
         fetchUsers,
