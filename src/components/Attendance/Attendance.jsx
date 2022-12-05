@@ -99,7 +99,7 @@ const Attendance = () => {
           <div className="mt-5 px-5 py-3 shadow-sm rounded-sm bg-white flex gap-2 justify-start items-center">
             <ImBell className="text-yellow-400 text-xl" />
             <h2 className="text-md text-gray-700">
-              You can only update the attendance record within the last 31 days.
+              Alert- Don't Change the page while you are Clock in.
             </h2>
           </div>
           {/* First part */}
@@ -173,7 +173,7 @@ const Attendance = () => {
               </div>
             </div>
             {/* body */}
-            <div className="flex justify-between my-3  px-5">
+            {/* <div className="flex justify-between my-3  px-5">
               <div className="flex gap-2  items-center">
                 <select className="select select-bordered  backdrop: max-w-xs">
                   <option disabled selected>
@@ -221,9 +221,9 @@ const Attendance = () => {
                 <FaDotCircle className="text-orange-600" />
                 <p className="text-sm font-semibold text-gray-400">1 Pending</p>
               </div>
-            </div>
+            </div> */}
             {/* Cards */}
-            <div className="flex items-center flex-wrap gap-3 justify-start mx-6 my-4">
+            {/* <div className="flex items-center flex-wrap gap-3 justify-start mx-6 my-4">
               {cardData.map((data, i) => (
                 <div
                   key={i}
@@ -237,9 +237,12 @@ const Attendance = () => {
                   </p>
                 </div>
               ))}
-            </div>
+            </div> */}
             {/* Data Table */}
             <div className="w-full mt-8">
+              <h1 className="text-lg  text-center mb-5 font-roboto capitalize">
+                See your daily Attendance
+              </h1>
               <NormalTable />
             </div>
           </div>

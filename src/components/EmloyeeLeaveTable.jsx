@@ -25,8 +25,14 @@ const EmloyeeLeave = ({ isClick }) => {
   const pending = `bg-yellow-200  text-yellow-700`;
   const approved = `bg-green-200  text-green-700`;
   const rejected = `bg-red-200 text-red-700`;
+  if (leaveData.length === 0) {
+    return <h1 className="mt-5 text-lg font-roboto">No record found !</h1>;
+  }
   return (
     <div className="overflow-x-auto">
+      <h1 className="my-8 text-center text-lg font-semibold">
+        Your All Previous Leave Applications
+      </h1>
       <table className="table table-zebra w-full">
         {/* <!-- head --> */}
         <thead>

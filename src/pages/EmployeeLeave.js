@@ -136,10 +136,10 @@ const EmployeeLeave = () => {
             </div>
           </div>
         </div>
-        <h1 className="my-8 text-center text-lg font-semibold">
-          Your All Previous Leave Applications
-        </h1>
-        <EmployeeLeaveTable isClick={isClick} />
+        {}
+        <div className="">
+          <EmployeeLeaveTable isClick={isClick} />
+        </div>
       </div>
     </Layout>
   );

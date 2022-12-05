@@ -11,7 +11,11 @@ const useTimer = () => {
   const [isPaused, setIsPaused] = useState(
     localStorage.getItem("isPause") ? localStorage.getItem("isPause") : false
   );
-  const [inTime, setInTime] = useState();
+  const [inTime, setInTime] = useState(
+    localStorage.getItem("inTime")
+      ? new Date(localStorage.getItem("inTime"))
+      : null
+  );
   const [outTime, setOutTime] = useState();
   const countRef = useRef(null);
 
@@ -23,11 +27,9 @@ const useTimer = () => {
     countRef.current = setInterval(() => {
       setTimer((timer) => timer + 1);
     }, 1000);
-    // let today = new Date();
-    // setInTime(
-    //   today.getHours() * 3600 + today.getMinutes() * 60 + today.getSeconds()
-    // );
+
     setInTime(new Date());
+    localStorage.setItem("inTime", new Date());
     setOutTime(null);
   };
 
