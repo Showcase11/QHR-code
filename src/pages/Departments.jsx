@@ -13,7 +13,7 @@ const Departments = () => {
     department_code: "",
   });
   const navigate = useNavigate();
-  const { user } = useGlobalContext();
+  const { user, url } = useGlobalContext();
   useEffect(() => {
     if (!user) {
       navigate("/login");
@@ -30,10 +30,7 @@ const Departments = () => {
   const handleSubmit = async (evnt) => {
     evnt.preventDefault();
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/department",
-        formInputData
-      );
+      const res = await axios.post(`${url}/department`, formInputData);
       toast.success("Department Added Successfully");
 
       fetchDepartments();
