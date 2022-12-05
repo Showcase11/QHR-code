@@ -45,7 +45,7 @@ const EmloyeeLeave = ({ isClick }) => {
           {leaveData.map((item, index) => (
             <tr key={item._id}>
               <th>{index + 1}</th>
-              <td>{user.name}</td>
+              <td>{user?.name}</td>
               <td>{item.subject}</td>
               <td>{getFullDate(item.createdAt)}</td>
               <td>{getFullDate(item.leaveDate)}</td>

@@ -9,7 +9,7 @@ const EmployeeData = ({ contact, handleEditClick, handleDeleteClick }) => {
   return (
     <tr>
       <td>{contact.name}</td>
-      <td>{contact.pincode}</td>
+      <td>{contact.department}</td>
       <td>{contact.phoneNumber}</td>
       <td>{contact.email}</td>
       <td className="flex">

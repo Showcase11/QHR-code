@@ -38,7 +38,7 @@ const Signin = () => {
         password: data.password,
       });
       console.log(res);
-      saveUser(res.data);
+      saveUser(res.data.user);
       // setUser(res.data);
       // localStorage.setItem("user", JSON.stringify(res.data));
       // toast.success("Login SuccessFully");

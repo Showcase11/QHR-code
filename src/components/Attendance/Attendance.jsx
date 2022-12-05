@@ -28,7 +28,7 @@ const Attendance = () => {
   const { setSelfAttendance, setLoading, user, url } = useGlobalContext();
   // console.log(localStorage.getItem("timer");
   const [takeData, setTakeData] = useState();
-
+  console.log(user);
   const navigate = useNavigate();
   const handleAttendance = async () => {
     handleReset();
@@ -79,15 +79,7 @@ const Attendance = () => {
   }, [takeData]);
   const cardData = [
     {
-      name: "Work Schedule",
-      value: "8h",
-    },
-    {
-      name: "Logged Time",
-      value: "0h",
-    },
-    {
-      name: "Paid Time",
+      name: "Total Work Time",
       value: "8h",
     },
     {

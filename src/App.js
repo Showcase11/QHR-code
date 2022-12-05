@@ -38,10 +38,11 @@ import TotalDeptTable from "./components/TotalDeptTable";
 import Profile from "./pages/Profile";
 import ProfileData from "./pages/ProfileData";
 import News from "./pages/News";
+import PasswordReset from "./pages/PasswordReset";
 
 const App = () => {
   const { loading } = useGlobalContext();
-  console.log(loading);
+  // console.log(loading);
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("something went wrong");
   const { user } = useGlobalContext();
@@ -105,6 +106,7 @@ const App = () => {
           <Route path="/empprofile" element={<Profile />} />
           <Route path="/profiledata" element={<ProfileData />} />
           <Route path="/news" element={<News />} />
+          <Route path="/passwordreset/:resetId" element={<PasswordReset />} />
           {/* <Route path="/changepassword" element={<Changepswd />} /> */}
 
           {/* <Route path="/checklist" element={<Checklist />}>

@@ -15,7 +15,7 @@ const Employees = () => {
   const [inputValue, setInputValue] = useState("");
   const [addFormData, setAddFormData] = useState({
     name: "",
-    pincode: "",
+    department: "",
     phoneNumber: "",
     email: "",
   });
@@ -26,7 +26,7 @@ const Employees = () => {
   }, [user]);
   const [editFormData, setEditFormData] = useState({
     name: "",
-    pincode: "",
+    department: "",
     phoneNumber: "",
     email: "",
     id: "",
@@ -66,7 +66,7 @@ const Employees = () => {
       password: "hero@1234",
       phoneNumber: inputValue.countryCode + "" + inputValue.phoneNumber,
       email: addFormData.email,
-      pincode: addFormData.pincode,
+      department: addFormData.department,
     };
     console.log(newContact);
     try {
@@ -89,11 +89,11 @@ const Employees = () => {
 
     const editedContact = {
       name: editFormData.name,
-      pincode: editFormData.pincode,
+      department: editFormData.department,
       phoneNumber: editFormData.phoneNumber,
       email: editFormData.email,
     };
-    console.log(editedContact);
+    // console.log(editedContact);
     try {
       const res = await axios.put(
         `${url}/employee/${editFormData.id}`,
@@ -115,7 +115,7 @@ const Employees = () => {
     console.log(contact._id);
     const formValues = {
       name: contact.name,
-      pincode: contact.pincode,
+      department: contact.department,
       phoneNumber: contact.phoneNumber,
       email: contact.email,
       id: contact._id,
@@ -161,9 +161,9 @@ const Employees = () => {
             <input
               className="block px-4 py-2 mt-2 mr-4 bg-white border rounded-md focus:outline-none focus:ring focus:ring-opacity-40"
               type="text"
-              name="pincode"
+              name="department"
               required="required"
-              placeholder="Enter an pincode..."
+              placeholder="Department Name"
               onChange={handleAddFormChange}
             />
             <div className="mt-2 mr-4 bg-white rounded-md focus:outline-none focus:ring focus:ring-opacity-40">
@@ -198,7 +198,7 @@ const Employees = () => {
                   <thead>
                     <tr>
                       <th>Name</th>
-                      <th>Pincode</th>
+                      <th>Department</th>
                       <th>Phone Number</th>
                       <th>Email</th>
                       <th>Actions</th>

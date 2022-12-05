@@ -20,7 +20,9 @@ const Empprofile = () => {
   const { user } = useGlobalContext();
   const [openTab, setOpenTab] = useState(1);
   useEffect(() => {
-    navigate("/login");
+    if (!user) {
+      navigate("/login");
+    }
   }, [user]);
 
   return (

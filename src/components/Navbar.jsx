@@ -113,7 +113,10 @@ const Navbar = () => {
                 >
                   <div className="card-body items-center text-center">
                     <div className="avatar">
-                      <div className="w-24 rounded-full">
+                      <div
+                        className="w-24 rounded-full cursor-pointer"
+                        onClick={() => navigate("/profile")}
+                      >
                         <img src="https://placeimg.com/192/192/people" />
                       </div>
                     </div>

@@ -29,7 +29,7 @@ const Profile = () => {
     formData.append("file", picture);
     try {
       setLoading(true);
-      const res = await axios.put(`${url}/${user._id}`, {
+      const res = await axios.put(`${url}/employee/${user._id}`, {
         age: data.age,
         address: data.address,
         gender: data.gender,
@@ -56,6 +56,7 @@ const Profile = () => {
   return (
     <Layout>
       <div className="shadow bg-base-100 rounded-box w-2/4 p-7 mt-10 m-auto content-center">
+        <h1 className="text-xl font-roboto mb-5">Let us know about you !</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flow-root">
             <div className="float-left w-[49%]">
@@ -81,7 +82,7 @@ const Profile = () => {
                 >
                   Address
                 </label>
-                <input
+                <textarea
                   type="text"
                   name="address"
                   {...register("address", { required: true })}
@@ -189,7 +190,7 @@ const Profile = () => {
           </div>
           <button
             type="submit"
-            className="justify-center flex justify-center py-2 px-4 border border-transparent m-auto text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 mt-10"
+            className="flex justify-center py-2 px-4 border border-transparent m-auto text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 mt-10"
           >
             Submit
           </button>

@@ -7,7 +7,7 @@ const EditEmployeeData = ({
   handleEditFormChange,
   handleCancelClick,
 }) => {
-  console.log(editFormData);
+  // console.log(editFormData);
   return (
     <tr>
       <td>
@@ -24,9 +24,9 @@ const EditEmployeeData = ({
         <input
           type="text"
           required="required"
-          placeholder="Enter an pincode..."
-          name="pincode"
-          value={editFormData.pincode}
+          placeholder="Department name"
+          name="department"
+          value={editFormData.department}
           onChange={handleEditFormChange}
         ></input>
       </td>

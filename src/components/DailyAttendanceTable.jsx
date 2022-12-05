@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { getExactTime } from "../utils";
+
 import { useGlobalContext } from "../context/context";
 import Row from "./Row";
 const DailyAttendanceTable = () => {
   const [attendances, setAttendances] = useState([]);
-  const { loading, setLoading, url } = useGlobalContext();
+  const { url } = useGlobalContext();
 
   const getDailyAttendance = async () => {
     const res = await axios.get(`${url}/employee/getPerDayAttendance`);
-    console.log(res.data);
+    // console.log(res.data);
     setAttendances(res.data);
   };
 

@@ -18,7 +18,7 @@ const EmployeeTable = ({ users }) => {
           </thead>
           <tbody>
             {users.map((data, index) => (
-              <tr>
+              <tr key={index}>
                 <th>{index + 1}</th>
                 <td>{data.name}</td>
                 <td>{data.department ? data.department : "not available"}</td>
