@@ -9,6 +9,7 @@ import Lottie from "react-lottie";
 import animationData from "../../assets/change.json";
 import { useGlobalContext } from "../../context/context";
 import axios from "axios";
+import { useEffect } from "react";
 
 const Changepswd = () => {
   const { password, user, setPassword, url } = useGlobalContext();
@@ -54,7 +55,11 @@ const Changepswd = () => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
-
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
   return (
     <Layout>
       <Toaster
