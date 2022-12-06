@@ -18,6 +18,7 @@ const Employees = () => {
     department: "",
     phoneNumber: "",
     email: "",
+    isAdmin: false,
   });
   useEffect(() => {
     if (!user) {
@@ -30,6 +31,7 @@ const Employees = () => {
     phoneNumber: "",
     email: "",
     id: "",
+    isAdmin: false,
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -67,6 +69,7 @@ const Employees = () => {
       phoneNumber: inputValue.countryCode + "" + inputValue.phoneNumber,
       email: addFormData.email,
       department: addFormData.department,
+      isAdmin: addFormData.isAdmin,
     };
     console.log(newContact);
     try {
@@ -92,6 +95,7 @@ const Employees = () => {
       department: editFormData.department,
       phoneNumber: editFormData.phoneNumber,
       email: editFormData.email,
+      isAdmin: editFormData.isAdmin,
     };
     // console.log(editedContact);
     try {
@@ -119,6 +123,7 @@ const Employees = () => {
       phoneNumber: contact.phoneNumber,
       email: contact.email,
       id: contact._id,
+      isAdmin: contact.isAdmin,
     };
 
     setEditFormData(formValues);
@@ -183,6 +188,17 @@ const Employees = () => {
               placeholder="Enter an email..."
               onChange={handleAddFormChange}
             />
+            <select
+              name="isAdmin"
+              onChange={handleAddFormChange}
+              className="select select-bordered select-md mx-2 max-w-xs"
+            >
+              <option disabled selected>
+                Is Admin?
+              </option>
+              <option value={true}>Yes</option>
+              <option value={false}>No</option>
+            </select>
             <button
               type="submit"
               className="group py-2.5 pr-7 pl-7 relative flex justify-center border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
@@ -201,6 +217,7 @@ const Employees = () => {
                       <th>Department</th>
                       <th>Phone Number</th>
                       <th>Email</th>
+                      <th>Is Admin</th>
                       <th>Actions</th>
                     </tr>
                   </thead>

@@ -6,12 +6,14 @@ import { Link, useNavigate } from "react-router-dom";
 
 const EmployeeData = ({ contact, handleEditClick, handleDeleteClick }) => {
   const navigate = useNavigate();
+  console.log(contact);
   return (
     <tr>
       <td>{contact.name}</td>
       <td>{contact.department}</td>
       <td>{contact.phoneNumber}</td>
       <td>{contact.email}</td>
+      <td>{contact.isAdmin === true ? "Yes" : "No"}</td>
       <td className="flex">
         <button
           type="button"
