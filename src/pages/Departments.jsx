@@ -1,4 +1,3 @@
-
 import React, { useState, Fragment, useEffect } from "react";
 import { useGlobalContext } from "../context/context";
 import { Layout } from "../components";
@@ -9,7 +8,7 @@ import EditDepartmentTable from "../components/EditDepartmentTable";
 
 const Departments = () => {
   const { departments, fetchDepartments, loading, url } = useGlobalContext();
-  
+
   const [addFormData, setAddFormData] = useState({
     name: "",
     department_code: "",
@@ -47,26 +46,26 @@ const Departments = () => {
   };
 
   const handleAddFormSubmit = async (evnt) => {
-         evnt.preventDefault();
-         const newContact = {
-                 name: addFormData.name,
-                 department_code: addFormData.department_code,
-               };
-         try {
-           const res = await axios.post(`${url}/department`, newContact);
-           toast.success("Department Added Successfully");
-           console.log(res);
-           fetchDepartments();
-         } catch (error) {
-           console.log(error);
-           toast.error(error?.response);
-         }
-       };
-       useEffect(() => {
-        fetchDepartments();
-       }, []);
+    evnt.preventDefault();
+    const newContact = {
+      name: addFormData.name,
+      department_code: addFormData.department_code,
+    };
+    try {
+      const res = await axios.post(`${url}/department`, newContact);
+      toast.success("Department Added Successfully");
+      console.log(res);
+      fetchDepartments();
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response);
+    }
+  };
+  useEffect(() => {
+    fetchDepartments();
+  }, []);
 
-  const handleEditFormSubmit = async(event) => {
+  const handleEditFormSubmit = async (event) => {
     event.preventDefault();
 
     const editedDepartment = {
@@ -89,7 +88,7 @@ const Departments = () => {
 
   const handleEditClick = (event, department) => {
     event.preventDefault();
-    setEditDepartmentId(department.id);
+    setEditDepartmentId(department._id);
 
     const formValues = {
       name: department.name,
@@ -122,64 +121,66 @@ const Departments = () => {
       {loading ? (
         <h1>Loadding...</h1>
       ) : (
-    <div className="app-container">
-       <form onSubmit={handleAddFormSubmit} className="flex pb-8 pt-10">
-        <input
-          type="text"
-          name="name"
-          className="block px-4 py-2 mt-2 ml-8 bg-white border rounded-md focus:outline-none focus:ring focus:ring-opacity-40"
-          required="required"
-          placeholder="Enter a name..."
-          onChange={handleAddFormChange}
-        />
-        <input
-          type="text"
-          name="department_code"
-          className="block px-4 py-2 mt-2 mr-3 ml-8 bg-white border rounded-md focus:outline-none focus:ring focus:ring-opacity-40"
-          required="required"
-          placeholder="Enter a code..."
-          onChange={handleAddFormChange}
-        />
-        <button 
-        type="submit"
-        className="group py-2.5 pr-7 pl-7 relative flex justify-center border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
-        >Submit</button>
-      </form>
-      <div className="my-1 mx-8 mt-10">
-      <div className="overflow-x-auto">
-      <form onSubmit={handleEditFormSubmit}>
-        <table className="table table-zebra w-2/4">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Code</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {departments.map((department) => (
-              <Fragment>
-                {editDepartmentId === department.id ? (
-                  <EditDepartmentTable
-                    editDeptData={editDeptData}
-                    handleEditFormChange={handleEditFormChange}
-                    handleCancelClick={handleCancelClick}
-                  />
-                ) : (
-                  <DepartmentData
-                  department={department}
-                    handleEditClick={handleEditClick}
-                    handleDeleteClick={handleDeleteClick}
-                  />
-                )}
-              </Fragment>
-            ))}
-          </tbody>
-        </table>
-      </form>
-      </div>
-      </div>
-    </div>
+        <div className="app-container">
+          <form onSubmit={handleAddFormSubmit} className="flex pb-8 pt-10">
+            <input
+              type="text"
+              name="name"
+              className="block px-4 py-2 mt-2 ml-8 bg-white border rounded-md focus:outline-none focus:ring focus:ring-opacity-40"
+              required="required"
+              placeholder="Enter a name..."
+              onChange={handleAddFormChange}
+            />
+            <input
+              type="text"
+              name="department_code"
+              className="block px-4 py-2 mt-2 mr-3 ml-8 bg-white border rounded-md focus:outline-none focus:ring focus:ring-opacity-40"
+              required="required"
+              placeholder="Enter a code..."
+              onChange={handleAddFormChange}
+            />
+            <button
+              type="submit"
+              className="group py-2.5 pr-7 pl-7 relative flex justify-center border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+            >
+              Submit
+            </button>
+          </form>
+          <div className="my-1 mx-8 mt-10">
+            <div className="overflow-x-auto">
+              <form onSubmit={handleEditFormSubmit}>
+                <table className="table table-zebra w-2/4">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Code</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {departments.map((department) => (
+                      <Fragment key={department._id}>
+                        {editDepartmentId === department._id ? (
+                          <EditDepartmentTable
+                            editDeptData={editDeptData}
+                            handleEditFormChange={handleEditFormChange}
+                            handleCancelClick={handleCancelClick}
+                          />
+                        ) : (
+                          <DepartmentData
+                            department={department}
+                            handleEditClick={handleEditClick}
+                            handleDeleteClick={handleDeleteClick}
+                          />
+                        )}
+                      </Fragment>
+                    ))}
+                  </tbody>
+                </table>
+              </form>
+            </div>
+          </div>
+        </div>
       )}
     </Layout>
   );

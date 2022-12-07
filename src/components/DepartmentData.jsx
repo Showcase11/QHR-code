@@ -2,7 +2,7 @@ import React from "react";
 import { IoMdCreate } from "react-icons/io";
 import { IoTrashOutline } from "react-icons/io5";
 
-const DepartmentData = ({  department, handleEditClick, handleDeleteClick }) => {
+const DepartmentData = ({ department, handleEditClick, handleDeleteClick }) => {
   return (
     <tr>
       <td>{department.name}</td>
@@ -16,7 +16,7 @@ const DepartmentData = ({  department, handleEditClick, handleDeleteClick }) => 
           <IoMdCreate />
         </button>
         <button type="button" onClick={() => handleDeleteClick(department.id)}>
-        <IoTrashOutline />
+          <IoTrashOutline />
         </button>
       </td>
     </tr>
