@@ -8,7 +8,7 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 
 const Forgot = () => {
-  const { setLoading, setForgot, user } = useGlobalContext();
+  const { setLoading, setForgot, user, url } = useGlobalContext();
   const schema = Yup.object().shape({
     email: Yup.string()
       .required("Email is required")
@@ -28,12 +28,9 @@ const Forgot = () => {
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/employee/forgetpassword",
-        {
-          email: data.email
-        }
-      );
+      const res = await axios.post(`${url}/employee/forgetpassword`, {
+        email: data.email,
+      });
       toast.success("Email will be send to you with a link");
       console.log(res.data);
       setForgot(res.data);
@@ -41,7 +38,7 @@ const Forgot = () => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   return (
     <div className="bg-zinc-100">
       <div className="relative flex flex-col justify-center h-screen overflow-hidden">
