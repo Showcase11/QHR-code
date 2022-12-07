@@ -67,7 +67,7 @@ const Dashboad = () => {
             onClick={() => navigate("/leaveAdmin")}
           >
             <h1 className="text-2xl font-semibold text-cyan-600 font-rubik ">
-              LEAVE APPPLICATION
+              LEAVE APPLICATION
             </h1>
             <p className="text-center font-semibold text-cyan-600 text-xl font-roboto">
               {pendingData.length}

@@ -23,7 +23,7 @@ const Row = ({ item, index }) => {
     <tr key={item._id}>
       <th>{index + 1}</th>
       <td>{userInfo.name}</td>
-      <td>{userInfo.designation ? userInfo.designation : "Not yet"}</td>
+      <td>{userInfo.department ? userInfo.department : "Not yet"}</td>
       <td>{getFullDate(item.date)}</td>
       <td>{getExactTime(item.inTime)}</td>
       <td>{getExactTime(item.outTime)}</td>

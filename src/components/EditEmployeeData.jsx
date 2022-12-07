@@ -51,6 +51,18 @@ const EditEmployeeData = ({
         ></input>
       </td>
       <td>
+        <select
+          name="isAdmin"
+          onChange={handleEditFormChange}
+          value={editFormData.isAdmin}
+          className="select select-bordered select-md mx-2 max-w-xs"
+        >
+          <option disabled>Is Admin?</option>
+          <option value={true}>Yes</option>
+          <option value={false}>No</option>
+        </select>
+      </td>
+      <td>
         <button type="submit" className="mr-5">
           <IoMdCheckmark />
         </button>
