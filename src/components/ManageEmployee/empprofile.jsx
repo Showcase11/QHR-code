@@ -13,17 +13,13 @@ import Documents from "./Documents";
 import Dependends from "./Dependends";
 import Job from "./Job";
 import Layout from "../Layout";
-import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../context/context";
+
+
 const Empprofile = () => {
-  const navigate = useNavigate();
+
   const { user } = useGlobalContext();
   const [openTab, setOpenTab] = useState(1);
-  useEffect(() => {
-    if (!user) {
-      navigate("/login");
-    }
-  }, [user]);
 
   return (
     <Layout>
@@ -35,7 +31,7 @@ const Empprofile = () => {
               alt="profile"
               className="mask rounded-full w-28 h-28 mb-4"
             />
-            <h1 className="font-bold mb-2">Aoi Nakanishi</h1>
+            <h1 className="font-bold mb-2">{user.name}</h1>
             <select className="w-100 p-2 text-gray-500 border rounded-md mx-2 mb-5">
               <option>Active</option>
               <option>Onboarding</option>
@@ -48,11 +44,11 @@ const Empprofile = () => {
             <hr className="pb-5" />
             <div className="flex">
               <IoMailOutline className="text-lg mr-2.5 mt-1 text-slate-500" />
-              nakanishiaoi@grove.com
+             {user.email}
             </div>
             <div className="flex">
               <IoCallOutline className="text-lg mr-2.5 mt-1 text-slate-500" />
-              0817055547849
+              {user.emergencyNumber}
             </div>
             <div className="pb-2 flex">
               <IoGlobeOutline className="text-lg mr-2.5 mt-1 text-slate-500" />

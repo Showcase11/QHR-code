@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useGlobalContext } from "../context/context";
-import ProfileData from "./ProfileData";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -30,6 +29,8 @@ const Profile = () => {
     try {
       setLoading(true);
       const res = await axios.put(`${url}/employee/${user._id}`, {
+        fullName: data.fullName,
+        email: data.email,
         age: data.age,
         address: data.address,
         gender: data.gender,
@@ -39,14 +40,11 @@ const Profile = () => {
         country: data.country,
         emergencyNumber: data.emergencyNumber,
         isVisited: true,
-      });
-
+      }, 1700);
       setLoading(false);
-
       saveUser(res.data.data);
-
       toast.success("Data Saved successfully");
-      navigate("/");
+      navigate("/profile");
     } catch (e) {
       console.log(e);
       toast.error(e?.response?.data?.message);
@@ -60,6 +58,36 @@ const Profile = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flow-root">
             <div className="float-left w-[49%]">
+            <div className="mb-2">
+                <label
+                  for="fullName"
+                  className="block text-sm font-semibold text-gray-800"
+                >
+                  FullName
+                </label>
+                <input
+                  type="text"
+                  name="fullName"
+                  {...register("fullName", { required: true })}
+                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md "
+                  placeholder="Enter your fullName..."
+                />
+              </div>
+              <div className="mb-2">
+                <label
+                  for="email"
+                  className="block text-sm font-semibold text-gray-800"
+                >
+                  Email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  {...register("email", { required: true })}
+                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md "
+                  placeholder="Enter your email..."
+                />
+              </div>
               <div className="mb-2">
                 <label
                   for="age"
@@ -71,7 +99,7 @@ const Profile = () => {
                   type="text"
                   name="age"
                   {...register("age", { required: true })}
-                  className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400"
+                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md "
                   placeholder="Enter your age..."
                 />
               </div>
@@ -86,7 +114,7 @@ const Profile = () => {
                   type="text"
                   name="address"
                   {...register("address", { required: true })}
-                  className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400"
+                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                   placeholder="Enter your Address..."
                 />
               </div>
@@ -99,6 +127,7 @@ const Profile = () => {
                 </label>
                 <select
                   name="gender"
+                  required="required"
                   className="block w-full px-4 py-2 mt-2 text-grey-700 bg-white border rounded-md"
                   {...register("gender", { required: true })}
                 >
@@ -137,7 +166,7 @@ const Profile = () => {
                   type="text"
                   name="accountNumber"
                   {...register("accountNumber", { required: true })}
-                  className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400"
+                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                   placeholder="Enter your Account Number..."
                 />
               </div>
@@ -152,7 +181,7 @@ const Profile = () => {
                   type="text"
                   name="ifscCode"
                   {...register("ifscCode", { required: true })}
-                  className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400"
+                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                   placeholder="Enter your IFSC Code..."
                 />
               </div>
@@ -161,13 +190,13 @@ const Profile = () => {
                   for="country"
                   className="block text-sm font-semibold text-gray-800"
                 >
-                  Country
+                  Nationality
                 </label>
                 <input
                   type="text"
                   name="country"
                   {...register("country", { required: true })}
-                  className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400"
+                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                   placeholder="Enter your Country..."
                 />
               </div>
@@ -182,7 +211,7 @@ const Profile = () => {
                   type="text"
                   name="emergencyNumber"
                   {...register("emergencyNumber", { required: true })}
-                  className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400"
+                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                   placeholder="Enter your Emergency Number..."
                 />
               </div>

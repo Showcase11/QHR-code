@@ -3,12 +3,14 @@ import Personalinfo from './Personalinfo';
 import Address from './Address';
 import Contact from './Contact';
 import Bankinfo from './Bankinfo';
+import { useGlobalContext } from "../../context/context";
 
 const General = () => {
   const [info, setInfo] = useState(false);
   const [address, setAddress] = useState(false);
   const [contact, setContact] = useState(false);
   const [bankinfo, setBankinfo] = useState(false);
+  const { user } = useGlobalContext();
   const Oninfo = () => {
     setInfo(true);
   }
@@ -47,10 +49,10 @@ const General = () => {
 <p className='pb-3 text-zinc-400'>Health Insurance</p>
   </div>
   <div className=''>
- <p className='pb-3'>Angeline Beier</p>
- <p className='pb-3'>31 Aug 1991</p>
- <p className='pb-3'>Costa Rican</p>
- <p className='pb-3'>angeline.beier@grovehr.com</p>
+ <p className='pb-3'>{user.name}</p>
+ <p className='pb-3'>{user.age}</p>
+ <p className='pb-3'>{user.country}</p>
+ <p className='pb-3'>{user.email}</p>
  <p className='pb-3'>-</p>
   </div>
   </div>
@@ -65,11 +67,11 @@ const General = () => {
 <p className='pb-3 text-zinc-400'>Phone Number</p>
   </div>
   <div className=''>
- <p className='pb-3'>Other</p>
+ <p className='pb-3'>{user.gender}</p>
  <p className='pb-3'>-</p>
  <p className='pb-3'>-</p>
  <p className='pb-3'>-</p>
- <p className='pb-3'>0978412176</p>
+ <p className='pb-3'>{user.emergencyNumber}</p>
   </div>
   </div>
   </div>
@@ -93,8 +95,8 @@ const General = () => {
 <p className='pb-3 text-zinc-400'>State/Province</p>
   </div>
   <div className=''>
- <p className='pb-3'>7 Chome-3-1 Hongo, Bunkyo City, Tokyo</p>
- <p className='pb-3'>Japan</p>
+ <p className='pb-3'>{user.address}</p>
+ <p className='pb-3'>{user.country}</p>
  <p className='pb-3'>Tokyo</p>
   </div>
   </div>
@@ -132,7 +134,7 @@ const General = () => {
   </div>
   <div className=''>
  <p className='pb-3'>Murakami Rei</p>
- <p className='pb-3'>081705553798</p>
+ <p className='pb-3'>{user.emergencyNumber}</p>
   </div>
   </div>
   </div>
@@ -182,8 +184,8 @@ const General = () => {
   </div>
   <div className=''>
  <p className='pb-3'>-</p>
- <p className='pb-3'>-</p>
- <p className='pb-3'>-</p>
+ <p className='pb-3'>{user.accountNumber}</p>
+ <p className='pb-3'>{user.ifscCode}</p>
   </div>
   </div>
   </div>

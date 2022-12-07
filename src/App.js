@@ -36,7 +36,6 @@ import Departments from "./pages/Departments";
 import TotalEmplData from "./components/TotalEmplData";
 import TotalDeptTable from "./components/TotalDeptTable";
 import Profile from "./pages/Profile";
-import ProfileData from "./pages/ProfileData";
 import News from "./pages/News";
 import PasswordReset from "./pages/PasswordReset";
 
@@ -104,7 +103,6 @@ const App = () => {
           <Route path="/employee/:id" element={<TotalEmplData />} />
           <Route path="/deptemployee/:id" element={<TotalDeptTable />} />
           <Route path="/empprofile" element={<Profile />} />
-          <Route path="/profiledata" element={<ProfileData />} />
           <Route path="/news" element={<News />} />
           <Route path="/passwordreset/:resetId" element={<PasswordReset />} />
           {/* <Route path="/changepassword" element={<Changepswd />} /> */}

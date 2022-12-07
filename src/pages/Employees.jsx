@@ -1,5 +1,4 @@
 import React, { useState, Fragment, useEffect } from "react";
-import { nanoid } from "nanoid";
 import EmployeeData from "../components/EmployeeData";
 import EditEmployeeData from "../components/EditEmployeeData";
 import { Layout } from "../components";
