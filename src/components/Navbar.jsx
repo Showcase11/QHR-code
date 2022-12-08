@@ -51,6 +51,12 @@ const Navbar = () => {
                   >
                     Leaves
                   </Link>
+                  <Link
+                    to="/attendanceAdmin"
+                    className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
+                  >
+                    Attendances
+                  </Link>
                 </>
               )}
               {!user?.isAdmin && (

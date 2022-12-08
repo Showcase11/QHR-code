@@ -13,7 +13,6 @@ const DepartmentTable = ({ departments }) => {
             <th></th>
             <th>Name</th>
             <th>CODE</th>
-            <th>NO. OF EMPLOYEE</th>
           </tr>
         </thead>
         <tbody>
@@ -23,7 +22,6 @@ const DepartmentTable = ({ departments }) => {
               <th>{index + 1}</th>
               <td>{data.name}</td>
               <td>{data.department_code}</td>
-              <td>0</td>
             </tr>
           ))}
         </tbody>
