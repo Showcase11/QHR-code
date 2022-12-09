@@ -28,19 +28,25 @@ const Profile = () => {
     formData.append("file", picture);
     try {
       setLoading(true);
-      const res = await axios.put(`${url}/employee/${user._id}`, {
-        fullName: data.fullName,
-        email: data.email,
-        age: data.age,
-        address: data.address,
-        gender: data.gender,
-        // profilepic: data.profilepic,
-        accountNumber: data.accountNumber,
-        ifscCode: data.ifscCode,
-        country: data.country,
-        emergencyNumber: data.emergencyNumber,
-        isVisited: true,
-      }, 1700);
+      const res = await axios.put(
+        `${url}/employee/${user._id}`,
+        {
+          upi: data.upi,
+          dob: data.dob,
+          age: data.age,
+          address: data.address,
+          gender: data.gender,
+          // profilepic: data.profilepic,
+          bankAccount: data.accountNumber,
+          ifscCode: data.ifscCode,
+          country: data.country,
+          emergencyNumber: data.emergencyNumber,
+          isVisited: true,
+          branchName: data.branchName,
+          bankName: data.bankName,
+        },
+        1700
+      );
       setLoading(false);
       saveUser(res.data.data);
       toast.success("Data Saved successfully");
@@ -58,32 +64,32 @@ const Profile = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flow-root">
             <div className="float-left w-[49%]">
-            <div className="mb-2">
+              <div className="mb-2">
                 <label
-                  for="fullName"
+                  for="upi"
                   className="block text-sm font-semibold text-gray-800"
                 >
-                  FullName
+                  UPI ID
                 </label>
                 <input
                   type="text"
-                  name="fullName"
-                  {...register("fullName", { required: true })}
+                  name="upi"
+                  {...register("upi", { required: true })}
                   className="block w-full px-4 py-2 mt-2 bg-white border rounded-md "
-                  placeholder="Enter your fullName..."
+                  placeholder="Enter your UI ID..."
                 />
               </div>
               <div className="mb-2">
                 <label
-                  for="email"
+                  for="dob"
                   className="block text-sm font-semibold text-gray-800"
                 >
-                  Email
+                  DOB
                 </label>
                 <input
-                  type="email"
-                  name="email"
-                  {...register("email", { required: true })}
+                  type="date"
+                  name="dob"
+                  {...register("dob", { required: true })}
                   className="block w-full px-4 py-2 mt-2 bg-white border rounded-md "
                   placeholder="Enter your email..."
                 />
@@ -157,6 +163,21 @@ const Profile = () => {
             <div className="float-right w-[49%]">
               <div className="mb-2">
                 <label
+                  for="bankName"
+                  className="block text-sm font-semibold text-gray-800"
+                >
+                  Bank Name
+                </label>
+                <input
+                  type="text"
+                  name="bankName"
+                  {...register("bankName", { required: true })}
+                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
+                  placeholder="Enter your Bank Name"
+                />
+              </div>
+              <div className="mb-2">
+                <label
                   for="accountNumber"
                   className="block text-sm font-semibold text-gray-800"
                 >
@@ -168,6 +189,21 @@ const Profile = () => {
                   {...register("accountNumber", { required: true })}
                   className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                   placeholder="Enter your Account Number..."
+                />
+              </div>
+              <div className="mb-2">
+                <label
+                  for="branchName"
+                  className="block text-sm font-semibold text-gray-800"
+                >
+                  Branch Name
+                </label>
+                <input
+                  type="text"
+                  name="branchName"
+                  {...register("branchName", { required: true })}
+                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
+                  placeholder="Enter Bank Brach Name"
                 />
               </div>
               <div className="mb-2">
