@@ -24,7 +24,7 @@ const Row = ({ item, index }) => {
       <th>{index + 1}</th>
       <td>{userInfo.name}</td>
       <td>{userInfo.department ? userInfo.department : "Not yet"}</td>
-      <td>{getFullDate(item.date)}</td>
+      <td>{getFullDate(item.createdAt)}</td>
       <td>{getExactTime(item.inTime)}</td>
       <td>{getExactTime(item.outTime)}</td>
     </tr>

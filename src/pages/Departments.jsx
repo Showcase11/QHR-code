@@ -5,10 +5,17 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import DepartmentData from "../components/DepartmentData";
 import EditDepartmentTable from "../components/EditDepartmentTable";
+import { useNavigate } from "react-router-dom";
 
 const Departments = () => {
-  const { departments, fetchDepartments, loading, url } = useGlobalContext();
-
+  const { departments, fetchDepartments, loading, url, user } =
+    useGlobalContext();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
   const [addFormData, setAddFormData] = useState({
     name: "",
     department_code: "",

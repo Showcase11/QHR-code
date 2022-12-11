@@ -28,25 +28,21 @@ const Profile = () => {
     formData.append("file", picture);
     try {
       setLoading(true);
-      const res = await axios.put(
-        `${url}/employee/${user._id}`,
-        {
-          upi: data.upi,
-          dob: data.dob,
-          age: data.age,
-          address: data.address,
-          gender: data.gender,
-          // profilepic: data.profilepic,
-          bankAccount: data.accountNumber,
-          ifscCode: data.ifscCode,
-          country: data.country,
-          emergencyNumber: data.emergencyNumber,
-          isVisited: true,
-          branchName: data.branchName,
-          bankName: data.bankName,
-        },
-        1700
-      );
+      const res = await axios.put(`${url}/employee/${user._id}`, {
+        upi: data.upi,
+        dob: data.dob,
+        age: data.age,
+        address: data.address,
+        gender: data.gender,
+        // profilepic: data.profilepic,
+        bankAccount: data.accountNumber,
+        ifscCode: data.ifscCode,
+        country: data.country,
+        emergencyNumber: data.emergencyNumber,
+        isVisited: true,
+        branchName: data.branchName,
+        bankName: data.bankName,
+      });
       setLoading(false);
       saveUser(res.data.data);
       toast.success("Data Saved successfully");

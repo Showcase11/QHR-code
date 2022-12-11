@@ -15,7 +15,7 @@ const DailyAttendanceTable = ({ attendances }) => {
                 <th></th>
                 <th>Name</th>
                 <th>Department</th>
-                <th>ToDay date</th>
+                <th>Date</th>
                 <th>Clock In</th>
                 <th>Clock Out</th>
               </tr>

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Layout } from "../components";
-
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useGlobalContext } from "../context/context";
 import DailyAttendanceTable from "../components/DailyAttendanceTable";
@@ -9,9 +9,15 @@ const initialState = {
   endDate: null,
 };
 const AttendanceAdmin = () => {
-  const { url } = useGlobalContext();
+  const navigate = useNavigate();
+  const { url, user } = useGlobalContext();
   const [formData, setFormData] = useState(initialState);
   const [attendances, setAttendances] = useState([]);
+  useEffect(() => {
+    if (!user) {
+      navigate("/login");
+    }
+  }, [user]);
   const onChangeHandler = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };

@@ -12,7 +12,7 @@ const EmployeeTable = ({ users }) => {
               <th>Department</th>
               <th>Phone No.</th>
               <th>Email</th>
-              <th>Pincode</th>
+              <th>Status</th>
               <th>Joining Date</th>
             </tr>
           </thead>
@@ -24,7 +24,7 @@ const EmployeeTable = ({ users }) => {
                 <td>{data.department ? data.department : "not available"}</td>
                 <td>{data.phoneNumber}</td>
                 <td>{data.email}</td>
-                <td>{data.pincode}</td>
+                <td>{data.status}</td>
                 <td>{getFullDate(data.joined)}</td>
               </tr>
             ))}
@@ -36,7 +36,7 @@ const EmployeeTable = ({ users }) => {
               <th>Department</th>
               <th>Phone No.</th>
               <th>Email</th>
-              <th>Pincode</th>
+              <th>Status</th>
               <th>Joining Date</th>
             </tr>
           </tfoot>
