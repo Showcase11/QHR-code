@@ -56,11 +56,13 @@ const TotalEmplData = () => {
     <Layout>
       <div className="flex flex-col gap-5">
         <div className="text-center mt-10 w-full flex  items-center justify-center">
-          <div className="flex items-stretch lg:card-side bg-base-100 shadow-xl">
+          <div className="flex items-stretch justify-center lg:card-side bg-base-100 shadow-xl">
             <img
-              src="https://placeimg.com/350/350/arch"
+              src={
+                data?.image ? data.image : "https://placeimg.com/350/350/arch"
+              }
               alt="Album"
-              className="max-w-[500px]"
+              className="max-w-[300px] max-h-[350px] object-cover"
             />
 
             <div className="flex flex-col px-5 justify-start items-start gap-1">

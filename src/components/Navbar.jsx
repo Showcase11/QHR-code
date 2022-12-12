@@ -109,7 +109,14 @@ const Navbar = () => {
 
                 <div tabIndex={0} className="avatar">
                   <div className="w-12 rounded-full cursor-pointer">
-                    <img src="https://placeimg.com/192/192/people" />
+                    <img
+                      src={`${
+                        user?.image
+                          ? user.image
+                          : "https://placeimg.com/192/192/people"
+                      }`}
+                      className="object-cover"
+                    />
                   </div>
                 </div>
                 {/* </label> */}
@@ -123,7 +130,14 @@ const Navbar = () => {
                         className="w-24 rounded-full cursor-pointer"
                         onClick={() => navigate("/profile")}
                       >
-                        <img src="https://placeimg.com/192/192/people" />
+                        <img
+                          src={`${
+                            user?.image
+                              ? user.image
+                              : "https://placeimg.com/192/192/people"
+                          }`}
+                          className="object-cover"
+                        />
                       </div>
                     </div>
                     <Link to="/profile" className="font-bold">
