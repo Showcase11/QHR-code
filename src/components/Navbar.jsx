@@ -13,7 +13,7 @@ const Navbar = () => {
     removeUser();
     navigate("/");
   };
-  // console.log(user);
+  console.log(user);
   return (
     <div className="bg-gradient-to-r from-indigo-800 to-indigo-300 px-8 text-white py-3">
       <div className="flex justify-between items-center">
@@ -84,6 +84,17 @@ const Navbar = () => {
                     News
                   </Link>
                 </>
+              )}
+              {user?.department === "HR" && (
+                <Link
+                  className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
+                  to="/recruitment/jobs"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Recruitment
+                </Link>
               )}
             </div>
           )}
