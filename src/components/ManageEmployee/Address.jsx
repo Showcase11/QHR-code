@@ -1,17 +1,58 @@
 import React, {useState} from 'react';
+import { useGlobalContext } from "../../context/context";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 const Address = () => {
     const[close, setClose] = useState(false);
-
+    const [getAddressDataById, setAddressDataById] = useState([])
+    const [editAddressDataById, latestEdit] = useState({ address:'', country: '', postalCode: '', city: '', state: '' })
     const onClose = () => {
         setClose(true);
     }
+    const { setLoading, saveUser, user, url } = useGlobalContext();
+    const navigate = useNavigate();
+    
+    const handleChange = ({ target }) => {
+        console.log(target);
+        const { name, value } = target
+
+        const newData = Object.assign({}, getAddressDataById, { [name]: value });
+        setAddressDataById(newData);
+
+        const latestData = Object.assign({}, editAddressDataById, { [name]: value })
+        latestEdit(latestData)
+    }
+
+    const handleSubmit = async (e)  => {
+        e.preventDefault();
+        console.log(editAddressDataById)
+        const editDataById = async () => {
+            try {
+                const response = await axios.put(`${url}/employee/${user._id}`, editAddressDataById)
+                latestEdit(response.data)
+                setLoading(false);
+      saveUser(response.data.data);
+      toast.success("Data Saved successfully");
+      navigate("/profile");
+                console.log(response.data)
+            } catch (error) {
+                toast.error(e?.response?.data?.message);
+                setLoading(false);
+                console.log(error)
+            }
+        }
+        editDataById()
+    }
+
     return (
         <div>
-             <form className="w-full">
+             <form className="w-full" onSubmit={handleSubmit}>
            <div className='flow-root'>
-  <div className='float-left w-[49%]'>
-  <div className="mb-2">
+       <div className='float-left w-[49%]'>
+           <div className="mb-2">
                         <label
                             for="firstname"
                             className="block text-sm font-semibold text-gray-800"
@@ -20,9 +61,12 @@ const Address = () => {
                         </label>
                         <textarea
                             type="text"
-                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                             placeholder='First Name'
-                            value='7 Chome-3-1 Hongo, Bunkyo City, Tokyo'
+                            name='address'
+                            required
+                            value={getAddressDataById.address} 
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="mb-2">
@@ -32,19 +76,15 @@ const Address = () => {
                         >
                             Country
                         </label>
-                        <select className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40" 
-                         placeholder="Nationality"
-                         >
-                              <option>Select  Nationality</option>
-                              <option>India</option>
-                              <option>England</option>
-                              <option>Afghan</option>
-                              <option>America</option>
-                              <option>British</option>
-                              <option>Canadian</option>
-                              <option>French</option>
-                              <option>German</option>
-                        </select>
+                        <input
+                            type="text"
+                            className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
+                            placeholder='Last Name'
+                            name='country'
+                            required
+                            value={getAddressDataById.country} 
+                            onChange={handleChange}
+                        />
                     </div>
                     <div className="mb-2">
                         <label
@@ -53,43 +93,35 @@ const Address = () => {
                         >
                             City
                         </label>
-                        <select className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40" 
-                         placeholder="Nationality"
-                         >
-                              <option>Select  Nationality</option>
-                              <option>India</option>
-                              <option>England</option>
-                              <option>Afghan</option>
-                              <option>America</option>
-                              <option>British</option>
-                              <option>Canadian</option>
-                              <option>French</option>
-                              <option>German</option>
-                        </select>
+                        <input
+                            type="text"
+                            className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
+                            placeholder='Last Name'
+                            name='city'
+                            required
+                            value={getAddressDataById.city} 
+                            onChange={handleChange}
+                        />
                     </div>
                     
-  </div>
-  <div className='float-right w-[49%]'>
-  <div className="mb-2">
+             </div>
+           <div className='float-right w-[49%]'>
+          <div className="mb-2">
                         <label
                             for="gender"
                            className="block text-sm font-semibold text-gray-800"
                         >
                             State/Province
                         </label>
-                        <select className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40" 
-                         placeholder="Nationality"
-                         >
-                              <option>Select  Nationality</option>
-                              <option>India</option>
-                              <option>England</option>
-                              <option>Afghan</option>
-                              <option>America</option>
-                              <option>British</option>
-                              <option>Canadian</option>
-                              <option>French</option>
-                              <option>German</option>
-                        </select>
+                        <input
+                            type="text"
+                            className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
+                            placeholder='Last Name'
+                            name='state'
+                            required
+                            value={getAddressDataById.state} 
+                            onChange={handleChange}
+                        />
                     </div>
                     <div className="mb-2">
                         <label
@@ -100,9 +132,12 @@ const Address = () => {
                         </label>
                         <input
                             type="text"
-                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                             placeholder='Last Name'
-                            value='113-865'
+                            name='postalCode'
+                            required
+                            value={getAddressDataById.postalCode} 
+                            onChange={handleChange}
                         />
                     </div>
                     

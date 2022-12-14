@@ -1,14 +1,56 @@
 import React, { useState } from 'react';
+import { useGlobalContext } from "../../context/context";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 const Bankinfo = () => {
+    
     const[close, setClose] = useState(false);
-
+    const [getBankInfoDataById, setBankinfoDataById] = useState([])
+    const [editBankInfoDataById, latestEdit] = useState({ branchName:'', bankName: '', upi: '', country: '' })
     const onClose = () => {
         setClose(true);
     }
+    const { setLoading, saveUser, user, url } = useGlobalContext();
+
+    const navigate = useNavigate();
+    
+    const handleChange = ({ target }) => {
+        console.log(target);
+        const { name, value } = target
+
+        const newData = Object.assign({}, getBankInfoDataById, { [name]: value });
+        setBankinfoDataById(newData);
+
+        const latestData = Object.assign({}, editBankInfoDataById, { [name]: value })
+        latestEdit(latestData)
+    }
+
+    const handleSubmit = async (e)  => {
+        e.preventDefault();
+        console.log(editBankInfoDataById)
+        const editDataById = async () => {
+            try {
+                const response = await axios.put(`${url}/employee/${user._id}`, editBankInfoDataById)
+                latestEdit(response.data)
+                setLoading(false);
+      saveUser(response.data.data);
+      toast.success("Data Saved successfully");
+      navigate("/profile");
+                console.log(response.data)
+            } catch (error) {
+                toast.error(e?.response?.data?.message);
+                setLoading(false);
+                console.log(error)
+            }
+        }
+        editDataById()
+    }
     return (
         <div>
-             <form className="w-full">
+             <form className="w-full" onSubmit={handleSubmit}>
            <div className='flow-root'>
   <div className='float-left w-[49%]'>
   <div className="mb-2">
@@ -20,8 +62,12 @@ const Bankinfo = () => {
                         </label>
                         <input
                             type="text"
-                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                             placeholder='Bank Name'
+                            name='bankName'
+                            required
+                            value={getBankInfoDataById.bankName} 
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="mb-2">
@@ -33,21 +79,12 @@ const Bankinfo = () => {
                         </label>
                         <input
                             type="text"
-                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                             placeholder='Branch'
-                        />
-                    </div>
-                    <div className="mb-2">
-                        <label
-                            for="dob"
-                            className="block text-sm font-semibold text-gray-800"
-                        >
-                            SWIFT / BIC
-                        </label>
-                        <input
-                            type="text"
-                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                            placeholder='E.g. CTBAAU2S'
+                            name='branch'
+                            required
+                            value={getBankInfoDataById.branch} 
+                            onChange={handleChange}
                         />
                     </div>
                     
@@ -62,8 +99,12 @@ const Bankinfo = () => {
                         </label>
                         <input
                             type="text"
-                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                             placeholder='Account Name'
+                            name='accountName'
+                            required
+                            value={getBankInfoDataById.accountName} 
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="mb-2">
@@ -75,8 +116,12 @@ const Bankinfo = () => {
                         </label>
                         <input
                             type="text"
-                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                             placeholder='E.G. 4932'
+                            name='accountNumber'
+                            required
+                            value={getBankInfoDataById.accountNumber} 
+                            onChange={handleChange}
                         />
                     </div>
                     <div className="mb-2">
@@ -88,8 +133,12 @@ const Bankinfo = () => {
                         </label>
                         <input
                             type="text"
-                            className="block w-full px-4 py-2 mt-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            className="block w-full px-4 py-2 mt-2  bg-white border rounded-md"
                             placeholder='E.G. NL63 HNDK 7000708362'
+                            name='upi'
+                            required
+                            value={getBankInfoDataById.upi} 
+                            onChange={handleChange}
                         />
                     </div>
                     
