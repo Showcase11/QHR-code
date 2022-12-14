@@ -13,7 +13,7 @@ const Navbar = () => {
     removeUser();
     navigate("/");
   };
-  // console.log(user);
+  console.log(user);
   return (
     <div className="bg-gradient-to-r from-indigo-800 to-indigo-300 px-8 text-white py-3">
       <div className="flex justify-between items-center">
@@ -51,6 +51,12 @@ const Navbar = () => {
                   >
                     Leaves
                   </Link>
+                  <Link
+                    to="/attendanceAdmin"
+                    className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
+                  >
+                    Attendances
+                  </Link>
                 </>
               )}
               {!user?.isAdmin && (
@@ -79,6 +85,17 @@ const Navbar = () => {
                   </Link>
                 </>
               )}
+              {user?.department === "HR" && (
+                <Link
+                  className="font-semibold text-gray-300 text-sm cursor-pointer hover:text-gray-100 transition-all ease-out duration-150"
+                  to="/recruitment/jobs"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Recruitment
+                </Link>
+              )}
             </div>
           )}
         </div>
@@ -103,7 +120,14 @@ const Navbar = () => {
 
                 <div tabIndex={0} className="avatar">
                   <div className="w-12 rounded-full cursor-pointer">
-                    <img src="https://placeimg.com/192/192/people" />
+                    <img
+                      src={`${
+                        user?.image
+                          ? user.image
+                          : "https://placeimg.com/192/192/people"
+                      }`}
+                      className="object-cover"
+                    />
                   </div>
                 </div>
                 {/* </label> */}
@@ -117,7 +141,14 @@ const Navbar = () => {
                         className="w-24 rounded-full cursor-pointer"
                         onClick={() => navigate("/profile")}
                       >
-                        <img src="https://placeimg.com/192/192/people" />
+                        <img
+                          src={`${
+                            user?.image
+                              ? user.image
+                              : "https://placeimg.com/192/192/people"
+                          }`}
+                          className="object-cover"
+                        />
                       </div>
                     </div>
                     <Link to="/profile" className="font-bold">

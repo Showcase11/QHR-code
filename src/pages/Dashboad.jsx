@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Layout } from "../components";
 import DepartmentTable from "../components/Department/DepartmentTable";
 import EmployeeTable from "../components/EmployeeTable";
@@ -7,6 +7,7 @@ import { useGlobalContext } from "../context/context";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DailyAttendanceTable from "../components/DailyAttendanceTable";
+import axios from "axios";
 const Dashboad = () => {
   const {
     user,
@@ -17,7 +18,15 @@ const Dashboad = () => {
     loading,
     fetchUsers,
     allusers,
+    url,
   } = useGlobalContext();
+  const [attendances, setAttendances] = useState([]);
+
+  const getDailyAttendance = async () => {
+    const res = await axios.get(`${url}/employee/getPerDayAttendance`);
+
+    setAttendances(res.data);
+  };
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -29,6 +38,7 @@ const Dashboad = () => {
     fetchLeaveApplications();
     fetchDepartments();
     fetchUsers();
+    getDailyAttendance();
   }, []);
   return (
     <Layout>
@@ -75,7 +85,7 @@ const Dashboad = () => {
           </div>
         </div>
         <div className="flex gap-8 mt-12">
-          <div className="flex-1">
+          <div className="w-[500px]">
             <div className="">
               <h2 className="text-xl my-5 font-roboto font-semibold ">
                 Department Data
@@ -87,20 +97,12 @@ const Dashboad = () => {
               )}
             </div>
           </div>
-          <div className="flex-1 flex flex-col items-center justify-center">
-            <h1 className="text-xl font-roboto font-semibold  ">
-              Employee Status
-            </h1>
-            <div className="px-9 py-12 h-auto w-[400px]">
-              <PeiChart />
-            </div>
-          </div>
         </div>
         <div className="my-8">
           <h1 className="text-xl my-5 font-roboto font-semibold  ">
             Today's Employee Attendance
           </h1>
-          <DailyAttendanceTable />
+          <DailyAttendanceTable attendances={attendances} />
         </div>
         <div className="mt-8">
           <h1 className="text-xl my-5 font-roboto font-semibold  ">

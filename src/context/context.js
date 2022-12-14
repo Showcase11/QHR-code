@@ -14,6 +14,7 @@ const AppProvider = ({ children }) => {
   const [departments, setDepartments] = useState([]);
   const [profile, setProfile] = useState([]);
   const [forgot, setForgot] = useState([]);
+  const [imageLink, setimageLink] = useState(null);
   const [user, setUser] = useState(
     localStorage.getItem("user")
       ? JSON.parse(localStorage.getItem("user"))
@@ -69,6 +70,17 @@ const AppProvider = ({ children }) => {
     setUser(null);
     localStorage.removeItem("user");
   };
+
+  const uploadImage = (image) => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "qhr_app");
+    data.append("cloud_name", "djnhzfwld");
+
+    return axios
+      .post("https://api.cloudinary.com/v1_1/djnhzfwld/upload", data)
+      .then((response) => setimageLink(response.data.url));
+  };
   return (
     <AppContext.Provider
       value={{
@@ -93,6 +105,8 @@ const AppProvider = ({ children }) => {
         departments,
         fetchDepartments,
         url,
+        uploadImage,
+        imageLink,
       }}
     >
       {children}

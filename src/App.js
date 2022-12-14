@@ -38,6 +38,10 @@ import TotalDeptTable from "./components/TotalDeptTable";
 import Profile from "./pages/Profile";
 import News from "./pages/News";
 import PasswordReset from "./pages/PasswordReset";
+import AttendanceAdmin from "./pages/AttendanceAdmin";
+import Recruitment from "./pages/Recruitment";
+import RecruitmentCandidate from "./pages/RecruitmentCandidate";
+import RecruitmentSettings from "./pages/RecruitmentSettings";
 
 const App = () => {
   const { loading } = useGlobalContext();
@@ -105,14 +109,12 @@ const App = () => {
           <Route path="/empprofile" element={<Profile />} />
           <Route path="/news" element={<News />} />
           <Route path="/passwordreset/:resetId" element={<PasswordReset />} />
-          {/* <Route path="/changepassword" element={<Changepswd />} /> */}
-
-          {/* <Route path="/checklist" element={<Checklist />}>
-            <Route index element={<Todos />} />
-            <Route path="onboarding" element={<Onboarding />} />
-            <Route path="offboarding" element={<Offboarding />} />
-            <Route path="settings" element={<Settings />} />
-          </Route> */}
+          <Route path="/attendanceAdmin" element={<AttendanceAdmin />} />
+          <Route path="/recruitment">
+            <Route path="jobs" element={<Recruitment />} />
+            <Route path="candidate" element={<RecruitmentCandidate />} />
+            <Route path="settings" element={<RecruitmentSettings />} />
+          </Route>
         </Routes>
       </Router>
     </div>

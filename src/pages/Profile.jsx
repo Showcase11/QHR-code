@@ -8,15 +8,16 @@ import { useGlobalContext } from "../context/context";
 
 const Profile = () => {
   const navigate = useNavigate();
-  const { setLoading, saveUser, user, url } = useGlobalContext();
-  const [picture, setPicture] = useState("");
+  const { setLoading, saveUser, user, url, imageLink, uploadImage, loading } =
+    useGlobalContext();
+
   useEffect(() => {
     if (!user) {
       navigate("/login");
     }
   }, [user]);
   const onChangePicture = (e) => {
-    setPicture(URL.createObjectURL(e.target.files[0]));
+    console.log(uploadImage(e.target.files[0]));
   };
 
   const { register, handleSubmit } = useForm();
@@ -24,23 +25,26 @@ const Profile = () => {
 
   const onSubmit = async (data) => {
     console.log(data);
-    const formData = new FormData();
-    formData.append("file", picture);
+
     try {
+      console.log(imageLink);
       setLoading(true);
       const res = await axios.put(`${url}/employee/${user._id}`, {
-        fullName: data.fullName,
-        email: data.email,
+        upi: data.upi,
+        dob: data.dob,
         age: data.age,
         address: data.address,
         gender: data.gender,
         // profilepic: data.profilepic,
-        accountNumber: data.accountNumber,
+        bankAccount: data.accountNumber,
         ifscCode: data.ifscCode,
         country: data.country,
         emergencyNumber: data.emergencyNumber,
         isVisited: true,
-      }, 1700);
+        branchName: data.branchName,
+        bankName: data.bankName,
+        image: imageLink,
+      });
       setLoading(false);
       saveUser(res.data.data);
       toast.success("Data Saved successfully");
@@ -53,178 +57,212 @@ const Profile = () => {
   };
   return (
     <Layout>
-      <div className="shadow bg-base-100 rounded-box w-2/4 p-7 mt-10 m-auto content-center">
-        <h1 className="text-xl font-roboto mb-5">Let us know about you !</h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flow-root">
-            <div className="float-left w-[49%]">
-            <div className="mb-2">
-                <label
-                  for="fullName"
-                  className="block text-sm font-semibold text-gray-800"
-                >
-                  FullName
-                </label>
-                <input
-                  type="text"
-                  name="fullName"
-                  {...register("fullName", { required: true })}
-                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md "
-                  placeholder="Enter your fullName..."
-                />
+      {loading ? (
+        <h1>Loadding..</h1>
+      ) : (
+        <div className="shadow bg-base-100 rounded-box w-2/4 p-7 mt-10 m-auto content-center">
+          <h1 className="text-xl font-roboto mb-5">Let us know about you !</h1>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="flow-root">
+              <div className="float-left w-[49%]">
+                <div className="mb-2">
+                  <label
+                    for="upi"
+                    className="block text-sm font-semibold text-gray-800"
+                  >
+                    UPI ID
+                  </label>
+                  <input
+                    type="text"
+                    name="upi"
+                    {...register("upi", { required: true })}
+                    className="block w-full px-4 py-2 mt-2 bg-white border rounded-md "
+                    placeholder="Enter your UI ID..."
+                  />
+                </div>
+                <div className="mb-2">
+                  <label
+                    for="dob"
+                    className="block text-sm font-semibold text-gray-800"
+                  >
+                    DOB
+                  </label>
+                  <input
+                    type="date"
+                    name="dob"
+                    {...register("dob", { required: true })}
+                    className="block w-full px-4 py-2 mt-2 bg-white border rounded-md "
+                    placeholder="Enter your email..."
+                  />
+                </div>
+                <div className="mb-2">
+                  <label
+                    for="age"
+                    className="block text-sm font-semibold text-gray-800"
+                  >
+                    Age
+                  </label>
+                  <input
+                    type="text"
+                    name="age"
+                    {...register("age", { required: true })}
+                    className="block w-full px-4 py-2 mt-2 bg-white border rounded-md "
+                    placeholder="Enter your age..."
+                  />
+                </div>
+                <div className="mb-2">
+                  <label
+                    for="Address"
+                    className="block text-sm font-semibold text-gray-800"
+                  >
+                    Address
+                  </label>
+                  <textarea
+                    type="text"
+                    name="address"
+                    {...register("address", { required: true })}
+                    className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
+                    placeholder="Enter your Address..."
+                  />
+                </div>
+                <div className="mb-2">
+                  <label
+                    for="gender"
+                    className="block text-sm font-semibold text-gray-800"
+                  >
+                    Gender
+                  </label>
+                  <select
+                    name="gender"
+                    required="required"
+                    className="block w-full px-4 py-2 mt-2 text-grey-700 bg-white border rounded-md"
+                    {...register("gender", { required: true })}
+                  >
+                    <option value="select">Select...</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
+                <div className="mb-2">
+                  <label
+                    for="profilepic"
+                    className="block text-sm font-semibold text-gray-800"
+                  >
+                    Profile Image
+                  </label>
+                  <input
+                    id="profilePic"
+                    type="file"
+                    name="profilepic"
+                    onChange={onChangePicture}
+                  />
+                  <div className="pt-5">
+                    <img className="w-40 h-30" src={imageLink} alt="img" />
+                  </div>
+                </div>
               </div>
-              <div className="mb-2">
-                <label
-                  for="email"
-                  className="block text-sm font-semibold text-gray-800"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  {...register("email", { required: true })}
-                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md "
-                  placeholder="Enter your email..."
-                />
+              <div className="float-right w-[49%]">
+                <div className="mb-2">
+                  <label
+                    for="bankName"
+                    className="block text-sm font-semibold text-gray-800"
+                  >
+                    Bank Name
+                  </label>
+                  <input
+                    type="text"
+                    name="bankName"
+                    {...register("bankName", { required: true })}
+                    className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
+                    placeholder="Enter your Bank Name"
+                  />
+                </div>
+                <div className="mb-2">
+                  <label
+                    for="accountNumber"
+                    className="block text-sm font-semibold text-gray-800"
+                  >
+                    Account Number
+                  </label>
+                  <input
+                    type="text"
+                    name="accountNumber"
+                    {...register("accountNumber", { required: true })}
+                    className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
+                    placeholder="Enter your Account Number..."
+                  />
+                </div>
+                <div className="mb-2">
+                  <label
+                    for="branchName"
+                    className="block text-sm font-semibold text-gray-800"
+                  >
+                    Branch Name
+                  </label>
+                  <input
+                    type="text"
+                    name="branchName"
+                    {...register("branchName", { required: true })}
+                    className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
+                    placeholder="Enter Bank Brach Name"
+                  />
+                </div>
+                <div className="mb-2">
+                  <label
+                    for="ifscCode"
+                    className="block text-sm font-semibold text-gray-800"
+                  >
+                    IFSC Code
+                  </label>
+                  <input
+                    type="text"
+                    name="ifscCode"
+                    {...register("ifscCode", { required: true })}
+                    className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
+                    placeholder="Enter your IFSC Code..."
+                  />
+                </div>
+                <div className="mb-2">
+                  <label
+                    for="country"
+                    className="block text-sm font-semibold text-gray-800"
+                  >
+                    Nationality
+                  </label>
+                  <input
+                    type="text"
+                    name="country"
+                    {...register("country", { required: true })}
+                    className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
+                    placeholder="Enter your Country..."
+                  />
+                </div>
+                <div className="mb-2">
+                  <label
+                    for="emergencyNumber"
+                    className="block text-sm font-semibold text-gray-800"
+                  >
+                    Emergency
+                  </label>
+                  <input
+                    type="text"
+                    name="emergencyNumber"
+                    {...register("emergencyNumber", { required: true })}
+                    className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
+                    placeholder="Enter your Emergency Number..."
+                  />
+                </div>
               </div>
-              <div className="mb-2">
-                <label
-                  for="age"
-                  className="block text-sm font-semibold text-gray-800"
-                >
-                  Age
-                </label>
-                <input
-                  type="text"
-                  name="age"
-                  {...register("age", { required: true })}
-                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md "
-                  placeholder="Enter your age..."
-                />
-              </div>
-              <div className="mb-2">
-                <label
-                  for="Address"
-                  className="block text-sm font-semibold text-gray-800"
-                >
-                  Address
-                </label>
-                <textarea
-                  type="text"
-                  name="address"
-                  {...register("address", { required: true })}
-                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
-                  placeholder="Enter your Address..."
-                />
-              </div>
-              <div className="mb-2">
-                <label
-                  for="gender"
-                  className="block text-sm font-semibold text-gray-800"
-                >
-                  Gender
-                </label>
-                <select
-                  name="gender"
-                  required="required"
-                  className="block w-full px-4 py-2 mt-2 text-grey-700 bg-white border rounded-md"
-                  {...register("gender", { required: true })}
-                >
-                  <option value="select">Select...</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-              </div>
-              {/* <div className="mb-2">
-                        <label
-                            for="profilepic"
-                            className="block text-sm font-semibold text-gray-800"
-                        >
-                           Profile Image
-                        </label>
-                        <input 
-                        id="profilePic"
-                        type="file" 
-                        name="profilepic"
-                        {...register("profilepic", { required: true })}
-                        onChange={onChangePicture}/>
-                        <div className="pt-5" >
-                            <img className="w-40 h-30"  src={picture} alt='img' />
-                        </div>
-                    </div> */}
             </div>
-            <div className="float-right w-[49%]">
-              <div className="mb-2">
-                <label
-                  for="accountNumber"
-                  className="block text-sm font-semibold text-gray-800"
-                >
-                  Account Number
-                </label>
-                <input
-                  type="text"
-                  name="accountNumber"
-                  {...register("accountNumber", { required: true })}
-                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
-                  placeholder="Enter your Account Number..."
-                />
-              </div>
-              <div className="mb-2">
-                <label
-                  for="ifscCode"
-                  className="block text-sm font-semibold text-gray-800"
-                >
-                  IFSC Code
-                </label>
-                <input
-                  type="text"
-                  name="ifscCode"
-                  {...register("ifscCode", { required: true })}
-                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
-                  placeholder="Enter your IFSC Code..."
-                />
-              </div>
-              <div className="mb-2">
-                <label
-                  for="country"
-                  className="block text-sm font-semibold text-gray-800"
-                >
-                  Nationality
-                </label>
-                <input
-                  type="text"
-                  name="country"
-                  {...register("country", { required: true })}
-                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
-                  placeholder="Enter your Country..."
-                />
-              </div>
-              <div className="mb-2">
-                <label
-                  for="emergencyNumber"
-                  className="block text-sm font-semibold text-gray-800"
-                >
-                  Emergency
-                </label>
-                <input
-                  type="text"
-                  name="emergencyNumber"
-                  {...register("emergencyNumber", { required: true })}
-                  className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
-                  placeholder="Enter your Emergency Number..."
-                />
-              </div>
-            </div>
-          </div>
-          <button
-            type="submit"
-            className="flex justify-center py-2 px-4 border border-transparent m-auto text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 mt-10"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
+            <button
+              type="submit"
+              className="flex justify-center py-2 px-4 border border-transparent m-auto text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 mt-10"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      )}
     </Layout>
   );
 };
