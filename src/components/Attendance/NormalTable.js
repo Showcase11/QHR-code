@@ -24,7 +24,7 @@ const NormalTable = () => {
                 <th>{index + 1}</th>
                 <td>{getFullDate(item.date)}</td>
                 <td>{getExactTime(item.inTime)}</td>
-                <td>{getExactTime(item.outTime)}</td>
+                <td>{item.outTime ? getExactTime(item.outTime) : "Not Yet"}</td>
               </tr>
             ))}
           </tbody>
