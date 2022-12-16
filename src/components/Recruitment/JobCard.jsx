@@ -43,7 +43,7 @@ const JobCard = ({ data }) => {
         <div className="flex items-center gap-3">
           <h1
             className="text-xl  font-roboto capitalize font-semibold cursor-pointer  text-gray-900 hover:underline "
-            onClick={() => navigate(`/recruitment/job/${data._id}`)}
+            onClick={() => navigate(`/recruitment/jobs/${data._id}`)}
           >
             {data.jobTitle}
           </h1>
