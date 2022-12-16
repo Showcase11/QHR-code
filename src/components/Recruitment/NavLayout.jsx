@@ -5,7 +5,7 @@ import { useGlobalContext } from "../../context/context";
 const NavLayout = ({ select, children }) => {
   const { user } = useGlobalContext();
   return (
-    <div>
+    <div className="h-full">
       <div className=" bg-white shadow-lg flex justify-between items-center px-5 py-3">
         <div className="text-lg flex items-center gap-1 justify-center">
           <SiMicrosoftoffice />
@@ -52,7 +52,7 @@ const NavLayout = ({ select, children }) => {
         </button>
       </div>
 
-      <div className="h-auto">{children}</div>
+      <div className="h-full w-full bg-gray-100">{children}</div>
     </div>
   );
 };

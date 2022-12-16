@@ -13,7 +13,7 @@ const Navbar = () => {
     removeUser();
     navigate("/");
   };
-  console.log(user);
+
   return (
     <div className="bg-gradient-to-r from-indigo-800 to-indigo-300 px-8 text-white py-3">
       <div className="flex justify-between items-center">
@@ -142,7 +142,7 @@ const Navbar = () => {
                         onClick={() => navigate("/profile")}
                       >
                         <img
-                         alt="img"
+                          alt="img"
                           src={`${
                             user?.image
                               ? user.image

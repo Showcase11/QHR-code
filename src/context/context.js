@@ -25,6 +25,7 @@ const AppProvider = ({ children }) => {
       ? JSON.parse(localStorage.getItem("password"))
       : null
   );
+  const [jobData, setJobData] = useState([]);
   const [pendingData, setPendingData] = useState([]);
   const [status, setStatus] = useState("pending");
   const [action, setAction] = useState();
@@ -39,7 +40,18 @@ const AppProvider = ({ children }) => {
       setLoading(false);
     }
   }, [status]);
-
+  const fetchJobData = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(`${url}/job`);
+      console.log(response);
+      setJobData(response.data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
   const fetchUsers = useCallback(async () => {
     setLoading(true);
     try {
@@ -107,6 +119,8 @@ const AppProvider = ({ children }) => {
         url,
         uploadImage,
         imageLink,
+        fetchJobData,
+        jobData,
       }}
     >
       {children}
