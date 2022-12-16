@@ -42,6 +42,7 @@ import AttendanceAdmin from "./pages/AttendanceAdmin";
 import Recruitment from "./pages/Recruitment";
 import RecruitmentCandidate from "./pages/RecruitmentCandidate";
 import RecruitmentSettings from "./pages/RecruitmentSettings";
+import Job from "./pages/Job";
 
 const App = () => {
   const { loading } = useGlobalContext();
@@ -115,6 +116,7 @@ const App = () => {
             <Route path="candidate" element={<RecruitmentCandidate />} />
             <Route path="settings" element={<RecruitmentSettings />} />
           </Route>
+          <Route path="/recruitment/jobs/:id" element={<Job />} />
         </Routes>
       </Router>
     </div>
