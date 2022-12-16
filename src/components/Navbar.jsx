@@ -142,6 +142,7 @@ const Navbar = () => {
                         onClick={() => navigate("/profile")}
                       >
                         <img
+                         alt="img"
                           src={`${
                             user?.image
                               ? user.image
