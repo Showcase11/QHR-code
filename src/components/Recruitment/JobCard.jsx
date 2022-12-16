@@ -12,13 +12,18 @@ const JobCard = ({ data }) => {
   const navigate = useNavigate();
   const { url, fetchJobData } = useGlobalContext();
   const [loading, setLoading] = useState(false);
-  const updateStatus = async (id, status) => {
+  const [status, setStatus] = useState("");
+  const updateStatus = async (props) => {
+    console.log(props);
+
     try {
       setLoading(true);
-      const res = await axios.put(`${url}/jobs/${id}`, { status: status });
+      const res = await axios.put(`${url}/job/${props.id}`, {
+        status: props.status,
+      });
       console.log(res);
       setLoading(false);
-      fetchJobData();
+      // fetchJobData();
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -56,7 +61,9 @@ const JobCard = ({ data }) => {
           <select
             className="select select-bordered  max-w-xs"
             value={data.status}
-            onChange={(e) => updateStatus(data._id, e.target.value)}
+            onChange={(e) =>
+              updateStatus({ id: data._id, status: e.target.value })
+            }
           >
             <option value="published">Published</option>
             <option value="closed">Closed</option>
