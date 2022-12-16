@@ -23,8 +23,17 @@ const Attendance = () => {
     handleReset,
     setOutTime,
     outTime,
-    inTime,
   } = useTimer();
+  const [isClockIn, setIsClockIn] = useState(
+    localStorage.getItem("isClockIn")
+      ? new Date(localStorage.getItem("isClockIn"))
+      : false
+  );
+  const [inTime, setInTime] = useState(
+    localStorage.getItem("inTime")
+      ? new Date(localStorage.getItem("inTime"))
+      : null
+  );
   const { setSelfAttendance, setLoading, user, url } = useGlobalContext();
   // console.log(localStorage.getItem("timer");
   const [takeData, setTakeData] = useState();
@@ -49,6 +58,44 @@ const Attendance = () => {
       console.log(res);
       console.log(new Date().getDate().toString());
       setTakeData(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const clockIn = async () => {
+    try {
+      const date = new Date();
+
+      const res = await axios.post(`${url}/employee/clockIn`, {
+        inTime: date,
+        duration: timer,
+        date: date,
+        userId: user._id,
+      });
+      setInTime(date);
+      console.log(res.data);
+      setIsClockIn(true);
+      localStorage.setItem("inTime", res.data.inTime);
+      localStorage.setItem("isClockIn", true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const clockOut = async () => {
+    const date = new Date();
+    try {
+      const res = await axios.put(`${url}/employee/clockOut`, {
+        inTime: inTime,
+        outTime: date,
+        user: user._id,
+      });
+      localStorage.removeItem("inTime");
+      localStorage.removeItem("isClockIn");
+      console.log(res);
+      setOutTime(date);
+      setIsClockIn(false);
+      fetchDailyAttendance();
     } catch (error) {
       console.log(error);
     }
@@ -91,6 +138,7 @@ const Attendance = () => {
       value: "8h",
     },
   ];
+  console.log(inTime);
   return (
     <Layout>
       <AttendanceLayout select="self">
@@ -119,11 +167,11 @@ const Attendance = () => {
                 <div className="bg-gray-100 px-3 py-2 gap-1 flex justify-between items-center my-5">
                   <h1 className="font-bold font-sans text-md">
                     Last clock in{" "}
-                    {inTime
+                    {inTime !== null
                       ? formatTime(
-                          inTime.getHours() * 3600 +
-                            inTime.getMinutes() * 60 +
-                            inTime.getSeconds()
+                          inTime?.getHours() * 3600 +
+                            inTime?.getMinutes() * 60 +
+                            inTime?.getSeconds()
                         )
                       : "00:00:00"}
                   </h1>
@@ -138,8 +186,22 @@ const Attendance = () => {
                       : "00:00:00"}
                   </h1>
                 </div>
-
-                {!isActive && !isPaused ? (
+                {isClockIn ? (
+                  <button
+                    onClick={clockOut}
+                    className="hover:scale-110 transition-transform ease-in-out delay-75 bg-red-600 font-medium font-sans  text-md flex items-center justify-center gap-2 text-white px-3 py-2 rounded-md"
+                  >
+                    <BiReset /> Clock out
+                  </button>
+                ) : (
+                  <button
+                    onClick={clockIn}
+                    className="hover:scale-110 transition-transform ease-in-out delay-75 bg-green-600 font-medium font-sans  text-md flex items-center justify-center gap-2 text-white px-3 py-2 rounded-md"
+                  >
+                    <BsArrowRightCircleFill /> Clock in
+                  </button>
+                )}
+                {/* {!isActive && !isPaused ? (
                   <button
                     onClick={handleStart}
                     className="hover:scale-110 transition-transform ease-in-out delay-75 bg-green-600 font-medium font-sans  text-md flex items-center justify-center gap-2 text-white px-3 py-2 rounded-md"
@@ -169,7 +231,7 @@ const Attendance = () => {
                   >
                     <BiReset /> Clock out
                   </button>
-                )}
+                )} */}
               </div>
             </div>
             {/* body */}

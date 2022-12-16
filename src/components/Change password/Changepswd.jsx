@@ -75,7 +75,7 @@ const Changepswd = () => {
           <div className="flex-1">
             <Lottie options={defaultOptions} height={390} />
           </div>
-          <div className="w-full flex-1 p-6 bg-gradient-to-r from-green-300 to-green-50 px-8  lg:max-w-xl">
+          <div className="w-full flex-1 p-6 bg-gradient-to-r from-sky-300 to-sky-50 px-8  lg:max-w-xl">
             <h1 className="text-3xl font-semibold text-center text-black  underline">
               Reset Password
             </h1>
@@ -122,7 +122,7 @@ const Changepswd = () => {
               </div>
               <button
                 type="primary"
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 mt-10"
               >
                 Submit
               </button>

@@ -71,7 +71,7 @@ const AppProvider = ({ children }) => {
     localStorage.removeItem("user");
   };
 
-  const uploadImage = (image) => {
+  const uploadImage = async (image) => {
     const data = new FormData();
     data.append("file", image);
     data.append("upload_preset", "qhr_app");

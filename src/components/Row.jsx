@@ -7,12 +7,17 @@ const Row = ({ item, index }) => {
   const { loading, setLoading, url } = useGlobalContext();
   useEffect(() => {
     const fetUser = async () => {
-      setLoading(true);
-      const res = await axios.get(`${url}/employee/${item.user}`);
+      try {
+        setLoading(true);
+        const res = await axios.get(`${url}/employee/${item.user}`);
 
-      setUserInfo(res.data);
-      // console.log(res.data);
-      setLoading(false);
+        setUserInfo(res.data);
+        // console.log(res.data);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+      }
     };
     fetUser();
   }, [item._id]);
@@ -26,7 +31,7 @@ const Row = ({ item, index }) => {
       <td>{userInfo.department ? userInfo.department : "Not yet"}</td>
       <td>{getFullDate(item.createdAt)}</td>
       <td>{getExactTime(item.inTime)}</td>
-      <td>{getExactTime(item.outTime)}</td>
+      <td>{item.outTime ? getExactTime(item.outTime) : "Not yet"}</td>
     </tr>
   );
 };

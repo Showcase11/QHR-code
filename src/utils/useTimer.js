@@ -6,10 +6,14 @@ const useTimer = () => {
   );
 
   const [isActive, setIsActive] = useState(
-    localStorage.getItem("isActive") ? localStorage.getItem("isActive") : false
+    localStorage.getItem("isActive")
+      ? "true" === localStorage.getItem("isActive")
+      : false
   );
   const [isPaused, setIsPaused] = useState(
-    localStorage.getItem("isPause") ? localStorage.getItem("isPause") : false
+    localStorage.getItem("isPause")
+      ? "true" === localStorage.getItem("isPause")
+      : false
   );
   const [inTime, setInTime] = useState(
     localStorage.getItem("inTime")
