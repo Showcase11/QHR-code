@@ -79,7 +79,7 @@ const JobCard = ({ data }) => {
               className="dropdown-content flex flex-col px-3 bg-sky-100 gap-2 shadow-sm menu p-2   rounded-box w-auto"
             >
               <label
-                onClick={() => navigate(`/recruitment/job/${data._id}`)}
+                onClick={() => navigate(`/recruitment/jobs/${data._id}`)}
                 className="text-sm flex items-center gap-2 justify-start font-roboto cursor-pointer "
               >
                 <GrView /> View
