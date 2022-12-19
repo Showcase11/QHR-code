@@ -30,6 +30,7 @@ const EditModel = ({ data }) => {
       console.log(res.data);
       setLoading(false);
       toast.success("Job Updated Successfully");
+      // navigate(`/recruitment/jobs`);
       fetchJobData();
     } catch (error) {
       toast.error("Something went wrong! Try again later");

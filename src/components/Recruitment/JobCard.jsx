@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useGlobalContext } from "../../context/context";
 import axios from "axios";
-import toast from "react-hot-toast";
+
 import { IoEllipsisHorizontalSharp } from "react-icons/io5";
 import { GrView } from "react-icons/gr";
 import { FaTrashAlt } from "react-icons/fa";
@@ -10,37 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const JobCard = ({ data }) => {
   const navigate = useNavigate();
-  const { url, fetchJobData } = useGlobalContext();
-  const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState("");
-  const updateStatus = async (props) => {
-    console.log(props);
-
-    try {
-      setLoading(true);
-      const res = await axios.put(`${url}/job/${props.id}`, {
-        status: props.status,
-      });
-      console.log(res);
-      setLoading(false);
-      // fetchJobData();
-    } catch (error) {
-      setLoading(false);
-      console.log(error);
-    }
-  };
-
-  const deleteJob = async (id) => {
-    try {
-      const res = await axios.delete(`${url}/job/${id}`);
-      toast.success("JOB deleted successfully");
-      console.log(res);
-      fetchJobData();
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong");
-    }
-  };
+  const { deleteJob, updateStatus } = useGlobalContext();
 
   return (
     <div className="px-8 rounded-sm bg-white py-5 shadow-sm">
