@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { createContext } from "react";
-
+import toast from "react-hot-toast";
 const url = "http://localhost:5001/api";
 // const url = "https://apiqhr.qurinomsolutions.com/api";
 
@@ -93,6 +93,33 @@ const AppProvider = ({ children }) => {
       .post("https://api.cloudinary.com/v1_1/djnhzfwld/upload", data)
       .then((response) => setimageLink(response.data.url));
   };
+  const updateStatus = async (props) => {
+    console.log(props);
+
+    try {
+      setLoading(true);
+      const res = await axios.put(`${url}/job/${props.id}`, {
+        status: props.status,
+      });
+      console.log(res);
+      setLoading(false);
+      fetchJobData();
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+  const deleteJob = async (id) => {
+    try {
+      const res = await axios.delete(`${url}/job/${id}`);
+      toast.success("JOB deleted successfully");
+      console.log(res);
+      fetchJobData();
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  };
   return (
     <AppContext.Provider
       value={{
@@ -121,6 +148,8 @@ const AppProvider = ({ children }) => {
         imageLink,
         fetchJobData,
         jobData,
+        updateStatus,
+        deleteJob,
       }}
     >
       {children}

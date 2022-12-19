@@ -140,7 +140,9 @@ const Employees = () => {
   const handleDeleteClick = async (contactId) => {
     console.log(contactId);
     try {
-      const res = await axios.delete(`${url}/employee/${contactId}`);
+      const res = await axios.delete(`${url}/employee/${contactId}`, {
+        id: user._id,
+      });
       toast.success(res.data.message);
     } catch (error) {
       console.log(error);
