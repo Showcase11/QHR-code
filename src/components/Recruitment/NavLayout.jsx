@@ -52,7 +52,7 @@ const NavLayout = ({ select, children }) => {
         </button>
       </div>
 
-      <div className="h-full w-full bg-gray-100">{children}</div>
+      <div className="w-full bg-gray-100">{children}</div>
     </div>
   );
 };
