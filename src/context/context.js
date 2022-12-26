@@ -26,6 +26,7 @@ const AppProvider = ({ children }) => {
       : null
   );
   const [jobData, setJobData] = useState([]);
+  const [candidateData, setCandidateData] = useState([]);
   const [pendingData, setPendingData] = useState([]);
   const [status, setStatus] = useState("pending");
   const [action, setAction] = useState();
@@ -50,6 +51,20 @@ const AppProvider = ({ children }) => {
     } catch (error) {
       setLoading(false);
       console.log(error);
+    }
+  };
+  const fetchCandidateData = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(`${url}/candidate`);
+      
+      setLoading(false);
+      setCandidateData(response.data);
+    
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+
     }
   };
   const fetchUsers = useCallback(async () => {
@@ -148,6 +163,8 @@ const AppProvider = ({ children }) => {
         imageLink,
         fetchJobData,
         jobData,
+        candidateData,
+        fetchCandidateData,
         updateStatus,
         deleteJob,
       }}
