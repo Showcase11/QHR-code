@@ -13,7 +13,7 @@ const JobCard = ({ data }) => {
   const { deleteJob, updateStatus } = useGlobalContext();
 
   return (
-    <div className="px-8 rounded-sm bg-white py-5 shadow-sm">
+    <div className="px-8 rounded-sm bg-white py-5 shadow-sm sm:px-3 xs:px-2 sm:py-1 xs:py-2 shadow">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-3">
           <h1
@@ -22,7 +22,7 @@ const JobCard = ({ data }) => {
           >
             {data.jobTitle}
           </h1>
-          <p className="text-sm font-normal text-gray-400">
+          <p className="text-sm font-normal text-gray-400 sm:pl-4 xs:ml-5">
             {data.department}{" "}
             <span className="font-semibold">Qurinom Solutions</span>
           </p>

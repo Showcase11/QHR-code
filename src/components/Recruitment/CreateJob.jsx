@@ -202,19 +202,19 @@ const CreateJob = () => {
                   </select>
                 </div>
               </div>
-              <div className="sm:flex sm:justify-center lg:justify-start mt-5">
-                <button className=" btn " type="submit" name="submitstatus">
+              <div className="sm:flex sm:justify-center lg:justify-start mt-5 flex">
+                <button className="btn mr-2" type="submit" name="submitstatus">
                   Create
                 </button>
-                <div className="mt-3 sm:mt-0 sm:ml-3">
+                {/* <div className="mt-3 sm:mt-0 sm:ml-3"> */}
                   <button
                     onClick={resetForm}
                     id="job"
-                    className="flex w-full items-center justify-center rounded-md border border-transparent bg-slate-300 px-3 py-2  font-bold text-slate-600 hover:bg-slate-400 md:px-5 text-lg"
+                    className="flex items-center justify-center rounded-md border border-transparent bg-slate-300 px-3 py-2  font-bold text-slate-600 hover:bg-slate-400 md:px-5 text-lg"
                   >
                     Reset
                   </button>
-                </div>
+                {/* </div> */}
               </div>
             </form>
           </div>

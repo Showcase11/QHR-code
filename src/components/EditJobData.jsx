@@ -60,19 +60,22 @@ const EditJobData = ({
           onChange={handleEditFormChange}
         ></input>
       </td>
-      <td>
-      <select
+      <td><select
                     name="isAdmin"
-                    onChange={handleEditFormChange}
+                    // onChange={handleEditFormChange}
                     className="select select-bordered select-md mx-2 max-w-xs"
                   >
-                    <option disabled selected>
-                      Is Admin?
+                    <option selected>
+                      Applied
                     </option>
-                    <option value={true}>Yes</option>
-                    <option value={false}>No</option>
+                    <option value={false}>Screening</option>
+                    <option value={false}>1st Interview</option>
+                    <option value={false}>2nd Interview</option>
+                    <option value={false}>Offered</option>
+                    <option value={false}>Hired</option>
+                    <option value={false}>Rejected</option>
                   </select>
-      </td>
+                  </td>
       <td>
         <button type="submit" className="mr-3.5"><IoMdCheckmark /></button>
         <button type="button" onClick={handleCancelClick}>

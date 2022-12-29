@@ -60,7 +60,7 @@ const Profile = () => {
       {loading ? (
         <h1>Loadding..</h1>
       ) : (
-        <div className="shadow bg-base-100 rounded-box w-2/4 p-7 mt-10 m-auto content-center">
+        <div className="shadow bg-base-100 rounded-box w-2/4 md:w-4/5 xl:w-3/5 sm:w-11/12 lg:w-3/4 xs:w-full p-7 mt-10 m-auto content-center mb-10">
           <h1 className="text-xl font-roboto mb-5">Let us know about you !</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flow-root">

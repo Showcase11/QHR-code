@@ -129,7 +129,7 @@ const Departments = () => {
         <h1>Loadding...</h1>
       ) : (
         <div className="app-container">
-          <form onSubmit={handleAddFormSubmit} className="flex pb-8 pt-10">
+          <form onSubmit={handleAddFormSubmit} className="flex pb-8 pt-10 w-full">
             <input
               type="text"
               name="name"

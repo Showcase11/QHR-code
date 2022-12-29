@@ -1,26 +1,28 @@
-import React, { useState } from "react";
-import { useGlobalContext } from "../../context/context";
-import axios from "axios";
+import React from "react";
+import { IoMdCreate } from "react-icons/io";
+import { IoTrashOutline } from "react-icons/io5";
 
-import { GrView } from "react-icons/gr";
-import { FaTrashAlt } from "react-icons/fa";
-import moment from "moment";
-import { useNavigate } from "react-router-dom";
-import { getFullDate } from "../../utils";
-
-const CandidateCard = ({ data}) => {
-  const navigate = useNavigate();
-  const { deleteJob, updateStatus } = useGlobalContext();
-console.log(data)
+const CandidateCard = ({ contact, handleEditClick, handleDeleteClick }) => {
   return (
-    <>
-   <div className="my-1 mx-8 mt-10">
-      <div className="overflow-x-auto">
-               
-          
-      </div>
-    </div>
-    </> 
+    <tr>
+    <td>{contact.name}</td>
+    <td>{contact.email}</td>
+    <td>{contact.phoneNumber}</td>
+    <td>{contact.createdAt}</td>
+    <td>{contact.resume}</td>
+    <td>{contact.status}</td>
+    <td>
+      <button
+        type="button"
+        onClick={(event) => handleEditClick(event, contact)}
+      >
+        <IoMdCreate className="mr-3.5" />
+      </button>
+      <button type="button" onClick={() => handleDeleteClick(contact.id)}>
+        <IoTrashOutline />
+      </button>
+    </td>
+  </tr>
   );
 };
 

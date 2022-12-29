@@ -174,8 +174,8 @@ const CreateCandidate = () => {
                       required="true"
                       name="gender"
                     >
-                      <option value="">Female</option>
-                      <option value="contract">Male</option>
+                      <option value="female">Female</option>
+                      <option value="male">Male</option>
                       
                     </select>
                     </div>

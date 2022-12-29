@@ -183,7 +183,6 @@ const Job = () => {
         <div className={openTab === 2 ? "block" : "hidden"}>
         <div className="overflow-x-auto mt-5">
         <form onSubmit={handleEditFormSubmit}>
-        {/* <div className="overflow-x-auto"> */}
   <table className="table w-full">
           <thead>
             <tr>
@@ -216,7 +215,6 @@ const Job = () => {
             ))}
           </tbody>
         </table>
-        {/* </div> */}
       </form>
 </div>
         </div>
