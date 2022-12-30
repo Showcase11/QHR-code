@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { createContext } from "react";
 import toast from "react-hot-toast";
-const url = "http://localhost:5001/api";
-// const url = "https://apiqhr.qurinomsolutions.com/api";
+// const url = "http://localhost:5001/api";
+const url = "https://apiqhr.qurinomsolutions.com/api";
 
 const AppContext = createContext();
 
@@ -57,14 +57,12 @@ const AppProvider = ({ children }) => {
     try {
       setLoading(true);
       const response = await axios.get(`${url}/candidate`);
-      
+
       setLoading(false);
       setCandidateData(response.data);
-    
     } catch (error) {
       setLoading(false);
       console.log(error);
-
     }
   };
   const fetchUsers = useCallback(async () => {
