@@ -6,6 +6,7 @@ const EditCandidateRow = ({
   editFormData,
   handleEditFormChange,
   handleCancelClick,
+  handleEditFormSubmit,
 }) => {
   return (
     <tr>
@@ -60,17 +61,46 @@ const EditCandidateRow = ({
         ></input>
       </td>
       <td>
-        <input
-          type="text"
-          required="required"
-          placeholder="Enter an status..."
+        <select
           name="status"
+          // onChange={handleEditFormChange}
+          className="select select-bordered select-md mx-2 max-w-xs"
           value={editFormData.status}
           onChange={handleEditFormChange}
-        ></input>
+        >
+          <option>Applied</option>
+
+          <option value="round1">1st Interview</option>
+          <option value="round2">2nd Interview</option>
+          <option value="round3">3rd Interview</option>
+          <option value="hired">Hired</option>
+          <option value="rejected">Rejected</option>
+        </select>
       </td>
       <td>
-        <button type="submit" className="mr-5">
+        <select
+          name="job"
+          // onChange={handleEditFormChange}
+          className="select select-bordered select-md mx-2 max-w-xs"
+          value={editFormData.job}
+          onChange={handleEditFormChange}
+        >
+          <option value="">All Departments</option>
+          <option value="FOP">Finance</option>
+          <option value="HR">HR</option>
+          <option value="UIX">UI/UX</option>
+          <option value="FOP">Finance Operations</option>
+          <option value="MDV">Mobile Development</option>
+          <option value="DMR">Degital Marketing</option>
+          <option value="GPS">Graphics Design</option>
+          <option value="COT">Content Team</option>
+          <option value="SAT">Sales Team</option>
+          <option value="WEB">Web Development</option>
+          <option value="DVS">DEVOPS</option>
+        </select>
+      </td>
+      <td>
+        <button type="submit" className="mr-5" onClick={handleEditFormSubmit}>
           <IoMdCheckmark />
         </button>
         <button type="button" onClick={handleCancelClick}>

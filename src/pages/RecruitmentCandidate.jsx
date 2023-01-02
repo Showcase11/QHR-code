@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import CreateCandidate from "../components/Recruitment/CreateCandidate";
 import CandidateCard from "../components/Recruitment/CandidateCard";
 import EditCandidateRow from "../components/Recruitment/EditCandidateRow";
+import CandidateTable from "../components/Recruitment/CandidateTable";
 
 const RecruitmentCandidate = () => {
   const { loading, candidateData, fetchCandidateData, url, user } =
@@ -14,90 +15,6 @@ const RecruitmentCandidate = () => {
   useEffect(() => {
     fetchCandidateData();
   }, []);
-  const [editFormData, setEditFormData] = useState({
-    name: "",
-    email: "",
-    phoneNumber: "",
-    createdAt: "",
-    resume: "",
-    status: "",
-  });
-
-  const [editContactId, setEditContactId] = useState(null);
-  const handleEditFormSubmit = async (event) => {
-    event.preventDefault();
-
-    const editedContact = {
-      id: editContactId,
-      name: editFormData.name,
-      email: editFormData.email,
-      phoneNumber: editFormData.phoneNumber,
-      createdAt: editFormData.createdAt,
-      resume: editFormData.resume,
-      status: editFormData.status,
-    };
-    try {
-      console.log(editFormData);
-      const res = await axios.put(
-        `${url}/candidate/${editContactId}`,
-        editedContact
-      );
-      console.log(res);
-      toast.success("Updated");
-      fetchCandidateData();
-    } catch (error) {
-      toast.error("Something went wrong");
-      console.log(error);
-    }
-    setEditContactId(null);
-  };
-
-  const handleEditClick = (event, contact) => {
-    event.preventDefault();
-    setEditContactId(contact._id);
-
-    const formValues = {
-      name: contact.name,
-      email: contact.email,
-      phoneNumber: contact.phoneNumber,
-      createdAt: contact.createdAt,
-      resume: contact.resume,
-      status: contact.status,
-    };
-
-    setEditFormData(formValues);
-  };
-  console.log(editContactId);
-  const handleDeleteClick = async (contactId) => {
-    try {
-      const res = await axios.delete(`${url}/candidate/${contactId}`);
-      toast.success(res.data.message);
-    } catch (error) {
-      console.log(error);
-      toast.error(error.response.data);
-    }
-    fetchCandidateData();
-  };
-
-  const handleEditFormChange = (event) => {
-    event.preventDefault();
-
-    const fieldName = event.target.getAttribute("name");
-    const fieldValue = event.target.value;
-
-    const newFormData = { ...editFormData };
-    newFormData[fieldName] = fieldValue;
-    console.log(newFormData);
-    setEditFormData(newFormData);
-  };
-
-  const handleCancelClick = () => {
-    setEditContactId(null);
-  };
-
-  // useEffect(() => {
-  //   fetchCandidateData();
-  // });
 
   return (
     <Layout>
@@ -121,45 +38,7 @@ const RecruitmentCandidate = () => {
                   No data available
                 </h1>
               ) : (
-                <div className="overflow-x-scroll w-auto max-w-[1000px] mt-5">
-                  <form
-                    onSubmit={handleEditFormSubmit}
-                    className="overflow-scroll"
-                  >
-                    <table className="table table-zebra w-full">
-                      <thead>
-                        <tr>
-                          <th>name</th>
-                          <th>email</th>
-                          <th>phone number</th>
-                          <th>apply date</th>
-                          <th>resume</th>
-                          <th>status</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {candidateData.map((contact) => (
-                          <Fragment>
-                            {editContactId === contact._id ? (
-                              <EditCandidateRow
-                                editFormData={editFormData}
-                                handleEditFormChange={handleEditFormChange}
-                                handleCancelClick={handleCancelClick}
-                              />
-                            ) : (
-                              <CandidateCard
-                                contact={contact}
-                                handleEditClick={handleEditClick}
-                                handleDeleteClick={handleDeleteClick}
-                              />
-                            )}
-                          </Fragment>
-                        ))}
-                      </tbody>
-                    </table>
-                  </form>
-                </div>
+                <CandidateTable candidateData={candidateData} />
               )}
             </div>
           )}

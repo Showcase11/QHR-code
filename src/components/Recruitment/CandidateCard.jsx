@@ -21,6 +21,7 @@ const CandidateCard = ({ contact, handleEditClick, handleDeleteClick }) => {
         <FaFileDownload />
       </td>
       <td>{contact.status}</td>
+      <td>{contact.job}</td>
       <td>
         <button
           type="button"
