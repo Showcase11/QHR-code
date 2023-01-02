@@ -95,7 +95,9 @@ const RecruitmentCandidate = () => {
     setEditContactId(null);
   };
 
-  console.log(candidateData);
+  // useEffect(() => {
+  //   fetchCandidateData();
+  // });
 
   return (
     <Layout>
@@ -110,7 +112,7 @@ const RecruitmentCandidate = () => {
                   htmlFor="my-modal-3"
                   className="btn btn-sm absolute top-3 right-0 mr-5 mb-4 border-none bg-sky-500 text-white "
                 >
-                  Create
+                  New Candidate
                 </label>
                 <CreateCandidate />
               </div>
@@ -119,7 +121,7 @@ const RecruitmentCandidate = () => {
                   No data available
                 </h1>
               ) : (
-                <div className="overflow-x-scroll md:max-w-[1000px] mt-5">
+                <div className="overflow-x-scroll w-auto max-w-[1000px] mt-5">
                   <form
                     onSubmit={handleEditFormSubmit}
                     className="overflow-scroll"
