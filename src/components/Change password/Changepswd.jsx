@@ -71,13 +71,13 @@ const Changepswd = () => {
         }}
       />
       <div className=" flex items-center justify-center h-screen">
-        <div className="relative items-stretch flex w-[60%] border-[1px] border-gray-200 shadow-lg bg-white justify-center overflow-hidden">
-          <div className="flex-1">
+        <div className="relative items-stretch flex w-[60%] xs:w-[80%] sm:w-[98%] md:w-[85%] lg:w-[60%] border-[1px] border-gray-200 shadow-lg bg-white justify-center overflow-hidden">
+          <div className="flex-1 xs:hidden sm:hidden md:block max-sm:block lg:block">
             <Lottie options={defaultOptions} height={390} />
           </div>
           <div className="w-full flex-1 p-6 bg-gradient-to-r from-sky-300 to-sky-50 px-8  lg:max-w-xl">
-            <h1 className="text-3xl font-semibold text-center text-black  underline">
-              Reset Password
+            <h1 className="text-3xl xs:text-xl sm:text-2xl font-semibold text-center text-black  underline">
+              Change Password
             </h1>
             <form onSubmit={handleSubmit(onFormSubmit)} className="mt-8">
               <div className="my-5 w-full">
