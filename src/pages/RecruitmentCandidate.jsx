@@ -9,7 +9,8 @@ import CandidateCard from "../components/Recruitment/CandidateCard";
 import EditCandidateRow from "../components/Recruitment/EditCandidateRow";
 
 const RecruitmentCandidate = () => {
-  const { loading, candidateData, fetchCandidateData, url, user} = useGlobalContext();
+  const { loading, candidateData, fetchCandidateData, url, user } =
+    useGlobalContext();
   useEffect(() => {
     fetchCandidateData();
   }, []);
@@ -18,8 +19,8 @@ const RecruitmentCandidate = () => {
     email: "",
     phoneNumber: "",
     createdAt: "",
-    resume : "",
-    status: ""
+    resume: "",
+    status: "",
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -31,13 +32,14 @@ const RecruitmentCandidate = () => {
       name: editFormData.name,
       email: editFormData.email,
       phoneNumber: editFormData.phoneNumber,
-      createdAt : editFormData.createdAt,
+      createdAt: editFormData.createdAt,
       resume: editFormData.resume,
-      status: editFormData.status
+      status: editFormData.status,
     };
     try {
+      console.log(editFormData);
       const res = await axios.put(
-        `${url}/candidate/${editFormData.id}`,
+        `${url}/candidate/${editContactId}`,
         editedContact
       );
       console.log(res);
@@ -52,7 +54,7 @@ const RecruitmentCandidate = () => {
 
   const handleEditClick = (event, contact) => {
     event.preventDefault();
-    setEditContactId(contact.id);
+    setEditContactId(contact._id);
 
     const formValues = {
       name: contact.name,
@@ -60,17 +62,15 @@ const RecruitmentCandidate = () => {
       phoneNumber: contact.phoneNumber,
       createdAt: contact.createdAt,
       resume: contact.resume,
-      status: contact.status
+      status: contact.status,
     };
 
     setEditFormData(formValues);
   };
-
+  console.log(editContactId);
   const handleDeleteClick = async (contactId) => {
     try {
-      const res = await axios.delete(`${url}/candidate/${contactId}`, {
-        id: user._id,
-      });
+      const res = await axios.delete(`${url}/candidate/${contactId}`);
       toast.success(res.data.message);
     } catch (error) {
       console.log(error);
@@ -87,7 +87,7 @@ const RecruitmentCandidate = () => {
 
     const newFormData = { ...editFormData };
     newFormData[fieldName] = fieldValue;
-
+    console.log(newFormData);
     setEditFormData(newFormData);
   };
 
@@ -95,22 +95,24 @@ const RecruitmentCandidate = () => {
     setEditContactId(null);
   };
 
-  console.log (candidateData)
-  
+  // useEffect(() => {
+  //   fetchCandidateData();
+  // });
+
   return (
     <Layout>
       <NavLayout select="candidate">
-      <div className="py-4">
+        <div className="py-4">
           {loading ? (
             <h1>Loading..</h1>
           ) : (
-            <div>
-              <div className="flex justify-end items-center">
+            <div className="flex items-center justify-center flex-col relative">
+              <div className="flex justify-end items-center  pt-5">
                 <label
                   htmlFor="my-modal-3"
-                  className="btn mr-5 mb-6 border-none bg-sky-500 text-white "
+                  className="btn btn-sm absolute top-3 right-0 mr-5 mb-4 border-none bg-sky-500 text-white "
                 >
-                  Create
+                  New Candidate
                 </label>
                 <CreateCandidate />
               </div>
@@ -119,43 +121,46 @@ const RecruitmentCandidate = () => {
                   No data available
                 </h1>
               ) : (
-                  <div className="overflow-x-auto mt-5">
-        <form onSubmit={handleEditFormSubmit}>
-  <table className="table table-zebra">
-          <thead>
-            <tr>
-              <th>name</th>
-              <th>email</th>
-              <th>phone number</th>
-              <th>apply date</th>
-              <th>resume</th>
-              <th>status</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-                  {candidateData.map((contact) => (
-              <Fragment>
-                {editContactId === contact.id ? (
-                  <EditCandidateRow
-                    editFormData={editFormData}
-                    handleEditFormChange={handleEditFormChange}
-                    handleCancelClick={handleCancelClick}
-                  />
-                ) : (
-                  <CandidateCard
-                    contact={contact}
-                    handleEditClick={handleEditClick}
-                    handleDeleteClick={handleDeleteClick}
-                  />
-                )}
-              </Fragment>
-            ))}
-            </tbody>
-            </table>
-            </form>
-            </div>
-            )}              
+                <div className="overflow-x-scroll w-auto max-w-[1000px] mt-5">
+                  <form
+                    onSubmit={handleEditFormSubmit}
+                    className="overflow-scroll"
+                  >
+                    <table className="table table-zebra w-full">
+                      <thead>
+                        <tr>
+                          <th>name</th>
+                          <th>email</th>
+                          <th>phone number</th>
+                          <th>apply date</th>
+                          <th>resume</th>
+                          <th>status</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {candidateData.map((contact) => (
+                          <Fragment>
+                            {editContactId === contact._id ? (
+                              <EditCandidateRow
+                                editFormData={editFormData}
+                                handleEditFormChange={handleEditFormChange}
+                                handleCancelClick={handleCancelClick}
+                              />
+                            ) : (
+                              <CandidateCard
+                                contact={contact}
+                                handleEditClick={handleEditClick}
+                                handleDeleteClick={handleDeleteClick}
+                              />
+                            )}
+                          </Fragment>
+                        ))}
+                      </tbody>
+                    </table>
+                  </form>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -165,4 +170,3 @@ const RecruitmentCandidate = () => {
 };
 
 export default RecruitmentCandidate;
-

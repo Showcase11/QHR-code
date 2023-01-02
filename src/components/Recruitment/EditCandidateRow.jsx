@@ -1,15 +1,14 @@
-import React from 'react';
+import React from "react";
 import { IoMdCheckmark } from "react-icons/io";
 import { IoMdClose } from "react-icons/io";
 
 const EditCandidateRow = ({
-    editFormData,
-    handleEditFormChange,
-    handleCancelClick,
-  }) => {
-    console.log(editFormData);
-    return (
-        <tr>
+  editFormData,
+  handleEditFormChange,
+  handleCancelClick,
+}) => {
+  return (
+    <tr>
       <td>
         <input
           type="text"
@@ -79,7 +78,7 @@ const EditCandidateRow = ({
         </button>
       </td>
     </tr>
-    );
+  );
 };
 
 export default EditCandidateRow;
