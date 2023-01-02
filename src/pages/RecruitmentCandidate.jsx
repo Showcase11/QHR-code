@@ -105,7 +105,7 @@ const RecruitmentCandidate = () => {
             <h1>Loading..</h1>
           ) : (
             <div>
-              <div className="flex justify-end items-center bg-gray-100 pt-5">
+              <div className="flex justify-end items-center">
                 <label
                   htmlFor="my-modal-3"
                   className="btn mr-5 mb-6 border-none bg-sky-500 text-white "
@@ -121,7 +121,7 @@ const RecruitmentCandidate = () => {
               ) : (
                   <div className="overflow-x-auto mt-5">
         <form onSubmit={handleEditFormSubmit}>
-  <table className="table table-zebra w-full">
+  <table className="table table-zebra">
           <thead>
             <tr>
               <th>name</th>
