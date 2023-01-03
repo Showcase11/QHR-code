@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
 const Newsdata = ({ news }) => {
   const [newsdata, setnewsdata] = useState();
 console.log(news)
@@ -19,7 +18,6 @@ console.log(news)
         <tbody>
           {/* <!-- row 1 --> */}
           {news.map((data, index) => (
-            
             <tr key={index}>
               <th>{index + 1}</th>
               <td>{data.title}</td>

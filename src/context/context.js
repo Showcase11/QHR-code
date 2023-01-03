@@ -26,6 +26,7 @@ const AppProvider = ({ children }) => {
       : null
   );
   const [jobData, setJobData] = useState([]);
+  const [newsData, setNewsData] = useState([]);
   const [candidateData, setCandidateData] = useState([]);
   const [pendingData, setPendingData] = useState([]);
   const [status, setStatus] = useState("pending");
@@ -47,6 +48,18 @@ const AppProvider = ({ children }) => {
       const response = await axios.get(`${url}/job`);
       console.log(response);
       setJobData(response.data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+   const fetchNewsData = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(`${url}/news`);
+      console.log(response);
+      setNewsData(response.data);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -163,6 +176,8 @@ const AppProvider = ({ children }) => {
         imageLink,
         fetchJobData,
         jobData,
+        newsData,
+        fetchNewsData,
         candidateData,
         fetchCandidateData,
         updateStatus,
