@@ -33,7 +33,7 @@ const NavLayout = ({ select, children }) => {
               </p>
             </Link>
           )}
-
+          {/* 
           {user?.department === "HR" && (
             <Link to="/recruitment/settings">
               <p
@@ -44,7 +44,7 @@ const NavLayout = ({ select, children }) => {
                 settings
               </p>
             </Link>
-          )}
+          )} */}
         </div>
         {/* Upgrade */}
         <button className="font-semibold rounded-lg px-6 btn-sm text-white">
