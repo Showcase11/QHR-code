@@ -95,7 +95,7 @@ const CandidateTable = ({ candidateData }) => {
             <th>name</th>
             <th>email</th>
             <th>phone number</th>
-            <th>apply date</th>
+            <th>Updated at</th>
             <th>resume</th>
             <th>status</th>
             <th>Dept</th>
