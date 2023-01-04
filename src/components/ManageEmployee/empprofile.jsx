@@ -27,9 +27,9 @@ const Empprofile = () => {
   return (
     <Layout>
       {user && (
-        <div className="flex p-12 bg-zinc-100">
-          <div className="flex flex-col p-3 bg-base-100 border w-1/5 mr-6">
-            <div className="p-7 flex flex-col items-start">
+        <div className="w-full p-7 bg-zinc-100 grid grid-cols-3 sm:grid-cols-1 xs:grid-cols-1 md:grid-cols-3 max-sm:grid-cols-3 gap-2">
+          <div className="w-full flex flex-col p-3 bg-base-100 border mr-6">
+            <div className="p-7 md:p-0 lg:p-7 max-sm:p-0 xl:p-7 flex flex-col items-start">
               <img
                 src={
                   user?.image
@@ -48,6 +48,7 @@ const Empprofile = () => {
               </select>
 
               <hr className="pb-5" />
+              <div className="md:text-sm lg:text-lg max-sm:text-sm ">
               <div className="flex">
                 <IoMailOutline className="text-lg mr-2.5 mt-1 text-slate-500" />
                 {user?.email}
@@ -59,6 +60,7 @@ const Empprofile = () => {
               <div className="pb-2 flex">
                 <IoGlobeOutline className="text-lg mr-2.5 mt-1 text-slate-500" />
                 GMT +07:00
+              </div>
               </div>
               <hr className="pb-5" />
               <div className="dropdown pb-3">
@@ -88,7 +90,7 @@ const Empprofile = () => {
               <div className="pb-4">Qurinom solutions</div>
             </div>
           </div>
-          <div className="container w-3/4">
+          <div className="col-span-2">
             <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-1">
               <General />
             </div>

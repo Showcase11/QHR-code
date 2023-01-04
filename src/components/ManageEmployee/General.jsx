@@ -55,13 +55,13 @@ const General = () => {
                   <p className="pb-3">{user?.name}</p>
                   <p className="pb-3">{user?.age}</p>
                   <p className="pb-3">{user?.country}</p>
-                  <p className="pb-3">{user?.email}</p>
+                  <p className="pb-3 sm:text-sm">{user?.email}</p>
                 </div>
               </div>
             </div>
             <div className="grid flex-grow bg-base-100 place-items-right">
               <div className="flow-root">
-                <div className="float-left pr-24">
+                <div className="float-left">
                   <p className="pb-3 text-zinc-400">Gender</p>
                   <p className="pb-3 text-zinc-400">Phone Number</p>
                   <p className="pb-3 text-zinc-400">Emergency Number</p>
