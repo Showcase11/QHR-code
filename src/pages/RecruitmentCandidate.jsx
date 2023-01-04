@@ -1,76 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Layout } from "../components";
 import NavLayout from "../components/Recruitment/NavLayout";
 import { useGlobalContext } from "../context/context";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
+import toast from "react-hot-toast";
 import CreateCandidate from "../components/Recruitment/CreateCandidate";
 import CandidateCard from "../components/Recruitment/CandidateCard";
+import EditCandidateRow from "../components/Recruitment/EditCandidateRow";
+import CandidateTable from "../components/Recruitment/CandidateTable";
+
 const RecruitmentCandidate = () => {
-  const { loading, candidateData, fetchCandidateData} = useGlobalContext();
+  const { loading, candidateData, fetchCandidateData, url, user } =
+    useGlobalContext();
   useEffect(() => {
     fetchCandidateData();
   }, []);
-  console.log (candidateData)
+
   return (
     <Layout>
       <NavLayout select="candidate">
-      <div className="py-4">
+        <div className="py-4">
           {loading ? (
             <h1>Loading..</h1>
           ) : (
-            <div className="">
-              <div className="flex justify-end items-center ">
+            <div className="flex items-center justify-center flex-col relative">
+              <div className="flex justify-end items-center  pt-5">
                 <label
                   htmlFor="my-modal-3"
-                  className="btn mr-5 mb-6 border-none bg-sky-500 text-white "
+                  className="btn btn-sm absolute top-3 right-0 mr-5 mb-4 border-none bg-sky-500 text-white "
                 >
-                  Create
+                  New Candidate
                 </label>
-                <CreateCandidate/>
+                <CreateCandidate />
               </div>
               {candidateData.length === 0 ? (
                 <h1 className="text-md font-semibold text-gray-700 mx-8">
                   No data available
                 </h1>
               ) : (
-                <div className="flex flex-col justify-center mx-5  gap-5">
-                   <table className="table table-zebra w-full">
-          {/* <!-- head --> */}
-          <thead>
-            <tr>
-              <th>s.no</th>
-              <th>name</th>
-              <th>email</th>
-              <th>phone number</th>
-              <th>apply date</th>
-              <th>resume</th>
-              <th>status</th>
-               
-            </tr>
-          </thead>
-          <tbody>
-            {/* <!-- row 1 --> */}
-            {candidateData?.map((item, index) => (
-               <tr key={index}>
-               <th>{index + 1}</th>
-               <td>{item.name}</td>
-               
-               <td>{item.email}</td>
-               <td>{item.phoneNumber}</td>
-               <td>{item.createdAt}</td>
-               <td>{item.resume}</td>
-               <td>{item.status}</td>
-             </tr>
-              
-            ))}
-          </tbody>
-        </table>
-                    
-                  
-                
-                </div>
+                <CandidateTable candidateData={candidateData} />
               )}
             </div>
           )}
@@ -81,4 +49,3 @@ const RecruitmentCandidate = () => {
 };
 
 export default RecruitmentCandidate;
-

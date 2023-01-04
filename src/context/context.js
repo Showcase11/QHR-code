@@ -70,14 +70,12 @@ const AppProvider = ({ children }) => {
     try {
       setLoading(true);
       const response = await axios.get(`${url}/candidate`);
-      
+
       setLoading(false);
       setCandidateData(response.data);
-    
     } catch (error) {
       setLoading(false);
       console.log(error);
-
     }
   };
   const fetchUsers = useCallback(async () => {

@@ -33,7 +33,7 @@ const NavLayout = ({ select, children }) => {
               </p>
             </Link>
           )}
-
+          {/* 
           {user?.department === "HR" && (
             <Link to="/recruitment/settings">
               <p
@@ -44,15 +44,15 @@ const NavLayout = ({ select, children }) => {
                 settings
               </p>
             </Link>
-          )}
+          )} */}
         </div>
         {/* Upgrade */}
-        <button className="btn bg-pink-600 font-semibold rounded-lg px-6 btn-sm text-white">
-          Help Desk
+        <button className="font-semibold rounded-lg px-6 btn-sm text-white">
+          {/* Help Desk */}
         </button>
       </div>
 
-      <div className="w-full bg-gray-100">{children}</div>
+      <div className="w-full">{children}</div>
     </div>
   );
 };

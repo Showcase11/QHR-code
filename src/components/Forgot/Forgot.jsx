@@ -4,11 +4,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../context/context";
+import { Layout } from "../../components";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+// import Lottie from "react-lottie";
+import img1 from "../../Images/nest_forgot_password_dribbble.gif";
 
 const Forgot = () => {
-  const { setLoading, setForgot, user, url } = useGlobalContext();
+  const { setForgot, url } = useGlobalContext();
   const schema = Yup.object().shape({
     email: Yup.string()
       .required("Email is required")
@@ -39,14 +42,34 @@ const Forgot = () => {
       console.log(error);
     }
   };
+  // const defaultOptions = {
+  //   loop: true,
+  //   autoplay: true,
+  //   animationData: animationData,
+  //   rendererSettings: {
+  //     preserveAspectRatio: "xMidYMid slice",
+  //   },
+  // };
   return (
-    <div className="bg-zinc-100">
-      <div className="relative flex flex-col justify-center h-screen overflow-hidden">
-        <div className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
-          <h1 className="text-3xl font-semibold text-center text-blue-700 underline">
-            Forgot
-          </h1>
-          <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
+    <Layout>
+      <Toaster
+        toastOptions={{
+          className: "",
+          style: {
+            padding: "16px",
+          },
+        }}
+      />
+    <div className="flex items-center justify-center h-screen">
+    <div className="relative items-stretch flex w-[60%] sm:w-[98%] md:w-[80%] lg:w-[60%] border-[1px] border-gray-200 shadow-lg bg-white justify-center overflow-hidden">
+      <div className="flex-1 xs:hidden sm:hidden md:block max-sm:block lg:block">
+        <img src={img1} className='w-full h-full' alt='img' height={390} />
+      </div>
+      <div className="flex-1 p-6 px-8 lg:max-w-xl">
+        <h1 className="text-3xl font-semibold text-center text-black  underline">
+          Forgot
+        </h1>
+        <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
             <div className="my-5 w-full">
               <label
                 for="email"
@@ -72,9 +95,10 @@ const Forgot = () => {
               Submit
             </button>
           </form>
-        </div>
       </div>
     </div>
+  </div>
+  </Layout>
   );
 };
 

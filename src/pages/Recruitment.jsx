@@ -37,7 +37,7 @@ const Recuirtment = () => {
                   No data available
                 </h1>
               ) : (
-                <div className="flex flex-col justify-center mx-5  gap-5">
+                <div className="flex flex-col justify-center mx-5 sm:mx-0 xs:mx-0 gap-5">
                   {jobData?.map((job) => (
                     <JobCard key={job._id} data={job} />
                   ))}

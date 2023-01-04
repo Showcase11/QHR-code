@@ -72,12 +72,12 @@ const Signin = () => {
           },
         }}
       />
-      <div className=" flex items-center justify-center h-screen">
-        <div className="relative items-stretch flex w-[60%] border-[1px] border-gray-200 shadow-lg bg-white justify-center overflow-hidden">
-          <div className="flex-1">
+      <div className="flex items-center justify-center h-screen">
+        <div className="relative items-stretch flex w-[60%] xs:w-[90%] sm:w-[98%] md:w-[85%] lg:w-[85%] xl:w-[60%] border-[1px] border-gray-200 shadow-lg bg-white justify-center overflow-hidden">
+          <div className="flex-1 xs:hidden sm:hidden max-sm:block lg:block">
             <Lottie options={defaultOptions} height={390} />
           </div>
-          <div className="w-full h-full flex-1 p-6 m-auto bg-gradient-to-r from-indigo-200 to-indigo-50 px-8  lg:max-w-xl">
+          <div className="flex-1 p-6 m-auto bg-gradient-to-r from-indigo-200 to-indigo-50 px-8 lg:max-w-xl">
             <h1 className="text-3xl font-semibold text-center text-black  underline">
               Sign in
             </h1>
@@ -135,7 +135,7 @@ const Signin = () => {
                   </label>
                 </div>
 
-                <div className="text-sm">
+                <div className="text-sm xs:pl-10 sm:pl-8">
                   <Link
                     to="/forgot"
                     className="font-medium text-grey-600 hover:text-black-500"
