@@ -3,13 +3,12 @@ import React from "react";
 import Row from "./Row";
 const DailyAttendanceTable = ({ attendances }) => {
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-scroll">
       {attendances.length == 0 ? (
         <h1>No data found !</h1>
       ) : (
         <div>
-          <table className="table w-full">
-            {/* <!-- head --> */}
+          <table className="table">
             <thead>
               <tr>
                 <th></th>
@@ -21,7 +20,6 @@ const DailyAttendanceTable = ({ attendances }) => {
               </tr>
             </thead>
             <tbody>
-              {/* <!-- row 1 --> */}
               {attendances?.map((item, index) => (
                 <Row item={item} key={index} index={index} />
               ))}

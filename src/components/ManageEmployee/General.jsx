@@ -35,11 +35,11 @@ const General = () => {
             <h1 className='font-bold'>Personal Info</h1>
             </div>
             {info ? <Personalinfo /> : (
-            <div className="flex w-full">
+            <div className="flex w-full col-span-5 md:col-span-1">
               <div className="absolute right-16 top-60 mr-12 border border-green-300 py-1 px-4 rounded-sm btn-outline btn-success text-white">
             <button onClick={Oninfo} value={info}>Edit</button>
         </div>
-  <div className="grid flex-grow bg-base-100 place-items-left">
+  <div className="grid flex-grow bg-base-100 place-items-left col-span-5 md:col-span-1">
   <div className='flow-root'>
   <div className='float-left pr-24'>
 <p className='pb-3 text-zinc-400'>Full Name</p>
@@ -55,7 +55,7 @@ const General = () => {
   </div>
   </div>
   </div>
-  <div className="grid flex-grow bg-base-100 place-items-right">
+  <div className="grid flex-grow bg-base-100 place-items-right col-span-5 md:col-span-3">
   <div className='flow-root'>
   <div className='float-left pr-24'>
 <p className='pb-3 text-zinc-400'>Gender</p>
