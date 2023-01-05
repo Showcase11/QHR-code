@@ -43,12 +43,12 @@ const Dashboad = () => {
   return (
     <Layout>
       <div className="h-full px-16 mb-12">
-        <div className="flex flex-wrap gap-5 items-center justify-center ">
+        <div className="grid xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 max-sm:grid-cols-2 lg:grid-cols-4 gap-4 flex flex-wrap gap-5 items-center justify-center ">
           <div
             className="shadow-md rounded-sm px-6 py-3 border-l-4 border-green-600 mt-12 cursor-pointer"
             onClick={() => navigate("/departments")}
           >
-            <h1 className="text-2xl font-semibold text-green-600  font-rubik">
+            <h1 className="xs:text-3xl sm:text-2xl md:text-xl lg:text-xl xl:text-xl font-semibold text-green-600  font-rubik">
               DEPARMENTS
             </h1>
             <p className="text-center text-green-600 font-semibold text-xl font-roboto">
@@ -56,7 +56,7 @@ const Dashboad = () => {
             </p>
           </div>
           <div className="shadow-md rounded-sm px-6 py-3 border-l-4 border-blue-600 mt-12">
-            <h1 className="text-2xl font-semibold text-blue-600 font-rubik ">
+            <h1 className="xs:text-3xl sm:text-2xl md:text-xl lg:text-xl xl:text-xl font-semibold text-blue-600 font-rubik ">
               EMP ON WORK
             </h1>
             <p className="text-center font-semibold text-blue-600 text-xl font-roboto">
@@ -65,7 +65,7 @@ const Dashboad = () => {
           </div>
 
           <div className="shadow-md rounded-sm px-6 py-3 border-l-4 border-red-600 mt-12">
-            <h1 className="text-2xl font-semibold font-rubik text-red-600">
+            <h1 className="xs:text-3xl sm:text-2xl md:text-xl lg:text-xl xl:text-xl font-semibold font-rubik text-red-600">
               EMP ON LEAVE
             </h1>
             <p className="text-center font-semibold text-red-600 text-xl font-roboto">
@@ -76,7 +76,7 @@ const Dashboad = () => {
             className="shadow-md rounded-sm px-6 py-3 border-l-4 border-cyan-600 mt-12 cursor-pointer"
             onClick={() => navigate("/leaveAdmin")}
           >
-            <h1 className="text-2xl font-semibold text-cyan-600 font-rubik ">
+            <h1 className="xs:text-3xl sm:text-2xl md:text-xl lg:text-xl xl:text-xl font-semibold text-cyan-600 font-rubik ">
               LEAVE APPLICATION
             </h1>
             <p className="text-center font-semibold text-cyan-600 text-xl font-roboto">

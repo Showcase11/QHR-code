@@ -42,8 +42,46 @@ const AttendanceAdmin = () => {
           You can also check perday attendance by selecting same date in both
           side
         </h1>
-        <div className="flex gap-2 items-end mt-8">
-          <div className="form-control  max-w-xs">
+        <div className="lg:w-[80%] md:w-full xl:w-[60%] max-sm:w-full sm:w-full grid xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-3 max-sm:grid-cols-3 lg:grid-cols-3 gap-4 pt-5">
+        <div className="form-control">
+        <label className="label text-sm font-roboto">
+              Choose Start date
+            </label>
+            <input
+              required
+              type="date"
+              id="startDate"
+              value={formData.leaveDate}
+              className="input input-bordered input-md"
+              onChange={onChangeHandler}
+            />
+            </div>
+            <div className="form-control">
+            <label className="label text-sm font-roboto">Choose End date</label>
+            <input
+              required
+              type="date"
+              id="endDate"
+              value={formData.leaveDate}
+              className="input input-bordered input-md"
+              onChange={onChangeHandler}
+            />
+            </div>
+            <div className="form-control">
+            <label className="label text-sm font-roboto">
+              Search
+            </label>
+            <button
+            disabled={!isFill}
+            className={`btn `}
+            onClick={SearchAttendance}
+          >
+            Search
+          </button>
+          </div>
+          </div>
+        {/* <div className="flex gap-2 w-full md:[50%] lg:[50%] items-end mt-8 grid xs:grid-cols-1 md:grid-cols-3 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-3">
+          <div className="form-control">
             <label className="label text-sm font-roboto">
               Choose Start date
             </label>
@@ -52,18 +90,18 @@ const AttendanceAdmin = () => {
               type="date"
               id="startDate"
               value={formData.leaveDate}
-              className="input input-bordered input-md max-w-xs"
+              className="input input-bordered input-md"
               onChange={onChangeHandler}
             />
           </div>
-          <div className="form-control  max-w-xs">
+          <div className="form-control">
             <label className="label text-sm font-roboto">Choose End date</label>
             <input
               required
               type="date"
               id="endDate"
               value={formData.leaveDate}
-              className="input input-bordered input-md  max-w-xs"
+              className="input input-bordered input-md"
               onChange={onChangeHandler}
             />
           </div>
@@ -74,7 +112,7 @@ const AttendanceAdmin = () => {
           >
             Search
           </button>
-        </div>
+        </div> */}
         <div className="mt-8">
           <DailyAttendanceTable attendances={attendances} />
         </div>

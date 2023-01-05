@@ -167,7 +167,7 @@ const Employees = () => {
         <h1>Loadding...</h1>
       ) : (
         <div className="app-container  mb-12">
-          <div className="flex md:px-16 px-4 items-center justify-between my-3 ">
+          <div className="flex grid xs:grid-cols-1 md:grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 md:px-16 sm:px-16 xs:px-16 px-4 items-center justify-between my-3 ">
             <div className="flex-1">
               <h1 className="text-xl font-roboto my-2  font-semibold">
                 Add new employees

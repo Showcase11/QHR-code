@@ -128,8 +128,8 @@ const Departments = () => {
       {loading ? (
         <h1>Loadding...</h1>
       ) : (
-        <div className="app-container">
-          <form onSubmit={handleAddFormSubmit} className="flex pb-8 pt-10 w-full">
+        <div className="container">
+          <form onSubmit={handleAddFormSubmit} className="lg:w-[50%] sm:w-full grid xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-3 max-sm:grid-cols-3 lg:grid-cols-3 gap-4 pt-5">
             <input
               type="text"
               name="name"
@@ -141,14 +141,14 @@ const Departments = () => {
             <input
               type="text"
               name="department_code"
-              className="block px-4 py-2 mt-2 mr-3 ml-8 bg-white border rounded-md focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block px-4 py-2 mt-2 ml-8 bg-white border rounded-md focus:outline-none focus:ring focus:ring-opacity-40"
               required="required"
               placeholder="Enter a code..."
               onChange={handleAddFormChange}
             />
             <button
               type="submit"
-              className="group py-2.5 pr-7 pl-7 relative flex justify-center border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+              className="group py-2.5 pr-7 pl-7 sm:ml-8 relative flex justify-center border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
             >
               Submit
             </button>
