@@ -37,7 +37,7 @@ const Personaliinfo = ({ setInfo }) => {
     <div class="flex flex-col justify-center">
   <div class="relative">
   <form onSubmit={handleSubmit}>
-    <div class="grid xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 pb-3">
+    <div class="grid xs:grid-cols-1 sm:grid-cols-1 max-sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 pb-3">
       <div class="relative">
       <div className="form-group">
                     <label

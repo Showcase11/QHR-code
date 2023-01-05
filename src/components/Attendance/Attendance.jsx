@@ -144,12 +144,12 @@ const Attendance = () => {
       <AttendanceLayout select="self">
         <div className="px-5 py-4 bg-indigo-50 h-screen">
           {/* Notification */}
-          <div className="mt-5 px-5 py-3 shadow-sm rounded-sm bg-white flex gap-2 justify-start items-center">
+          {/* <div className="mt-5 px-5 py-3 shadow-sm rounded-sm bg-white flex gap-2 justify-start items-center">
             <ImBell className="text-yellow-400 text-xl" />
             <h2 className="text-md text-gray-700">
               Alert- Don't Change the page while you are Clock in.
             </h2>
-          </div>
+          </div> */}
           {/* First part */}
           <div className="flex  flex-col   mt-5 bg-white shadow-sm py-3">
             {/* header */}

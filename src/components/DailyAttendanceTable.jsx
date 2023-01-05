@@ -3,7 +3,7 @@ import React from "react";
 import Row from "./Row";
 const DailyAttendanceTable = ({ attendances }) => {
   return (
-    <div className="overflow-x-scroll">
+    <div className="overflow-x-auto">
       {attendances.length == 0 ? (
         <h1>No data found !</h1>
       ) : (
