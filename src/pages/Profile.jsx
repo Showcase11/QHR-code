@@ -60,12 +60,12 @@ const Profile = () => {
       {loading ? (
         <h1>Loadding..</h1>
       ) : (
-        <div className="shadow bg-base-100 rounded-box w-2/4 md:w-4/5 xl:w-3/5 sm:w-11/12 lg:w-3/4 xs:w-full p-7 mt-10 m-auto content-center mb-10">
+        <div className="shadow bg-base-100 rounded-box w-2/4 md:w-[97%] xl:w-3/5 sm:w-11/12 lg:w-3/4 xs:w-full p-7 mt-10 m-auto content-center mb-10">
           <h1 className="text-xl font-roboto mb-5">Let us know about you !</h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="flow-root">
-              <div className="float-left w-[49%]">
-                <div className="mb-2">
+          <form onSubmit={handleSubmit}>
+    <div class="grid xs:grid-cols-1 sm:grid-cols-1 max-sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 pb-3">
+      <div class="relative">
+                <div className="form-group">
                   <label
                     for="upi"
                     className="block text-sm font-semibold text-gray-800"
@@ -75,12 +75,13 @@ const Profile = () => {
                   <input
                     type="text"
                     name="upi"
+                    required
                     {...register("upi", { required: true })}
                     className="block w-full px-4 py-2 mt-2 bg-white border rounded-md "
                     placeholder="Enter your UI ID..."
                   />
                 </div>
-                <div className="mb-2">
+                <div className="form-group">
                   <label
                     for="dob"
                     className="block text-sm font-semibold text-gray-800"
@@ -90,12 +91,13 @@ const Profile = () => {
                   <input
                     type="date"
                     name="dob"
+                    required
                     {...register("dob", { required: true })}
                     className="block w-full px-4 py-2 mt-2 bg-white border rounded-md "
                     placeholder="Enter your email..."
                   />
                 </div>
-                <div className="mb-2">
+                <div className="form-group">
                   <label
                     for="age"
                     className="block text-sm font-semibold text-gray-800"
@@ -105,12 +107,13 @@ const Profile = () => {
                   <input
                     type="text"
                     name="age"
+                    required
                     {...register("age", { required: true })}
                     className="block w-full px-4 py-2 mt-2 bg-white border rounded-md "
                     placeholder="Enter your age..."
                   />
                 </div>
-                <div className="mb-2">
+                <div className="form-group">
                   <label
                     for="Address"
                     className="block text-sm font-semibold text-gray-800"
@@ -120,12 +123,13 @@ const Profile = () => {
                   <textarea
                     type="text"
                     name="address"
+                    required
                     {...register("address", { required: true })}
                     className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                     placeholder="Enter your Address..."
                   />
                 </div>
-                <div className="mb-2">
+                <div className="form-group">
                   <label
                     for="gender"
                     className="block text-sm font-semibold text-gray-800"
@@ -134,7 +138,7 @@ const Profile = () => {
                   </label>
                   <select
                     name="gender"
-                    required="required"
+                    required
                     className="block w-full px-4 py-2 mt-2 text-grey-700 bg-white border rounded-md"
                     {...register("gender", { required: true })}
                   >
@@ -143,7 +147,7 @@ const Profile = () => {
                     <option value="Female">Female</option>
                   </select>
                 </div>
-                <div className="mb-2">
+                <div className="form-group">
                   <label
                     for="profilepic"
                     className="block text-sm font-semibold text-gray-800"
@@ -154,15 +158,16 @@ const Profile = () => {
                     id="profilePic"
                     type="file"
                     name="profilepic"
+                    required
                     onChange={onChangePicture}
                   />
                   <div className="pt-5">
                     <img className="w-40 h-30" src={imageLink} alt="img" />
                   </div>
                 </div>
-              </div>
-              <div className="float-right w-[49%]">
-                <div className="mb-2">
+                </div>
+              <div className="">
+                <div className="form-group">
                   <label
                     for="bankName"
                     className="block text-sm font-semibold text-gray-800"
@@ -172,12 +177,13 @@ const Profile = () => {
                   <input
                     type="text"
                     name="bankName"
+                    required
                     {...register("bankName", { required: true })}
                     className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                     placeholder="Enter your Bank Name"
                   />
                 </div>
-                <div className="mb-2">
+                <div className="form-group">
                   <label
                     for="accountNumber"
                     className="block text-sm font-semibold text-gray-800"
@@ -187,12 +193,13 @@ const Profile = () => {
                   <input
                     type="text"
                     name="accountNumber"
+                    required
                     {...register("accountNumber", { required: true })}
                     className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                     placeholder="Enter your Account Number..."
                   />
                 </div>
-                <div className="mb-2">
+                <div className="form-group">
                   <label
                     for="branchName"
                     className="block text-sm font-semibold text-gray-800"
@@ -202,12 +209,13 @@ const Profile = () => {
                   <input
                     type="text"
                     name="branchName"
+                    required
                     {...register("branchName", { required: true })}
                     className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                     placeholder="Enter Bank Brach Name"
                   />
                 </div>
-                <div className="mb-2">
+                <div className="form-group">
                   <label
                     for="ifscCode"
                     className="block text-sm font-semibold text-gray-800"
@@ -217,12 +225,13 @@ const Profile = () => {
                   <input
                     type="text"
                     name="ifscCode"
+                    required
                     {...register("ifscCode", { required: true })}
                     className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                     placeholder="Enter your IFSC Code..."
                   />
                 </div>
-                <div className="mb-2">
+                <div className="form-group">
                   <label
                     for="country"
                     className="block text-sm font-semibold text-gray-800"
@@ -232,12 +241,13 @@ const Profile = () => {
                   <input
                     type="text"
                     name="country"
+                    required
                     {...register("country", { required: true })}
                     className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                     placeholder="Enter your Country..."
                   />
                 </div>
-                <div className="mb-2">
+                <div className="form-group">
                   <label
                     for="emergencyNumber"
                     className="block text-sm font-semibold text-gray-800"
@@ -247,6 +257,7 @@ const Profile = () => {
                   <input
                     type="text"
                     name="emergencyNumber"
+                    required
                     {...register("emergencyNumber", { required: true })}
                     className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                     placeholder="Enter your Emergency Number..."

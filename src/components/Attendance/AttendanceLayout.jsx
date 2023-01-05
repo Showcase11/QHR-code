@@ -58,8 +58,8 @@ const AttendanceLayout = ({ select, children }) => {
           )}
         </div>
         {/* Upgrade */}
-        <button className="btn bg-pink-600 font-semibold rounded-lg px-6 btn-sm text-white">
-          upgrade plan
+        <button className="">
+          {/* upgrade plan */}
         </button>
       </div>
 

@@ -88,7 +88,7 @@ const CandidateTable = ({ candidateData }) => {
   };
 
   return (
-    <div className="overflow-x-scroll w-auto max-w-[1000px] mt-5">
+    <div className="overflow-x-auto w-auto max-w-[1000px] mt-5">
       <table className="table table-zebra w-full">
         <thead>
           <tr>
