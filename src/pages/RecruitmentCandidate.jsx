@@ -24,7 +24,7 @@ const RecruitmentCandidate = () => {
             <h1>Loading..</h1>
           ) : (
             <div className="flex items-center justify-center flex-col relative">
-              <div className="flex justify-end items-center  pt-5">
+              <div className="flex justify-end items-center pt-5 mb-5">
                 <label
                   htmlFor="my-modal-3"
                   className="btn btn-sm absolute top-3 right-0 mr-5 mb-4 border-none bg-sky-500 text-white "
