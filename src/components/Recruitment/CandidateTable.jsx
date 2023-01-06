@@ -13,6 +13,7 @@ const CandidateTable = ({ candidateData }) => {
     createdAt: "",
     resume: "",
     status: "",
+    job:""
   });
 
   const [editContactId, setEditContactId] = useState(null);
@@ -27,6 +28,7 @@ const CandidateTable = ({ candidateData }) => {
       createdAt: editFormData.createdAt,
       resume: editFormData.resume,
       status: editFormData.status,
+      job:editFormData.job
     };
     try {
       console.log(editFormData);
@@ -55,6 +57,7 @@ const CandidateTable = ({ candidateData }) => {
       createdAt: contact.createdAt,
       resume: contact.resume,
       status: contact.status,
+      job:contact.job
     };
 
     setEditFormData(formValues);

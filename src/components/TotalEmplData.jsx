@@ -54,15 +54,15 @@ const TotalEmplData = () => {
   }, []);
   return (
     <Layout>
-      <div className="flex flex-col gap-5">
-        <div className="text-center mt-10 w-full flex  items-center justify-center">
-          <div className="flex items-stretch justify-center lg:card-side bg-base-100 shadow-xl">
+     <div className="flex flex-col justify-center">
+  <div className="flex items-center justify-center pt-4">
+        <div className="relative items-stretch flex w-[60%] xs:w-full sm:w-[98%] md:w-[85%] max-sm:w-full lg:w-[65%] xl:w-[43%] border-[1px] border-gray-200 shadow-lg bg-white justify-center overflow-hidden">
             <img
               src={
                 data?.image ? data.image : "https://placeimg.com/350/350/arch"
               }
               alt="Album"
-              className="max-w-[300px] max-h-[350px] object-cover"
+              className="object-cover flex-1 xs:hidden sm:hidden md:block max-sm:block lg:block"
             />
 
             <div className="flex flex-col px-5 justify-start items-start gap-1">
@@ -127,8 +127,9 @@ const TotalEmplData = () => {
           <h1 className="text-xl font-semibold font-roboto">
             See employee all time attendance by date
           </h1>
-          <div className="flex gap-2 items-end mt-8">
-            <div className="form-control  max-w-xs">
+          <div className="flex gap-2 items-end mt-8 grid grid-cols-3 xs:grid-cols-1 md:grid-cols-3 sm:grid-cols-1 
+          lg:grid-cols-3 xl:grid-cols-3 max-sm:grid-cols-3 sm:w-full md:w-[80%] lg:w-[80%] xl:w-[60%] xs:w-full">
+            <div className="form-control">
               <label className="label text-sm font-roboto">
                 Choose Start date
               </label>
@@ -137,11 +138,11 @@ const TotalEmplData = () => {
                 type="date"
                 id="startDate"
                 value={formData.leaveDate}
-                className="input input-bordered input-md max-w-xs"
+                className="input input-bordered input-md"
                 onChange={onChangeHandler}
               />
             </div>
-            <div className="form-control  max-w-xs">
+            <div className="form-control">
               <label className="label text-sm font-roboto">
                 Choose End date
               </label>
@@ -150,7 +151,7 @@ const TotalEmplData = () => {
                 type="date"
                 id="endDate"
                 value={formData.leaveDate}
-                className="input input-bordered input-md  max-w-xs"
+                className="input input-bordered input-md"
                 onChange={onChangeHandler}
               />
             </div>
