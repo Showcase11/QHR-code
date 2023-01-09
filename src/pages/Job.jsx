@@ -77,38 +77,18 @@ const Job = () => {
             >
               Edit
             </label>
-            <ul className="flex border-2">
-              <li>
-                <Link onClick={() => setOpenTab(1)}>
-                  <IoMdReorder className="text-4xl" />
-                </Link>
-              </li>
-              <li>
-                <Link onClick={() => setOpenTab(2)}>
-                  <IoMdGrid className="text-4xl" />
-                </Link>
-              </li>
-            </ul>
+
             <EditModel data={job} />
           </div>
         )}
-        <div className={openTab === 2 ? "block" : "hidden"}>
-          <div className="overflow-x-auto mt-5 flex items-center justify-center">
-            {contacts.length === 0 ? (
-              <h1 className="text-md font-semibold text-gray-700 mx-8">
-                No data available
-              </h1>
-            ) : (
-              <CandidateTable candidateData={contacts} />
-            )}
-          </div>
-        </div>
-        <div className={openTab === 1 ? "block" : "hidden"}>
-          <h1 className="menu overflow-y-auto bg-base-100 text-base-content">
-            <DndProvider backend={HTML5Backend}>
-              <DragDrop />
-            </DndProvider>
-          </h1>
+        <div className="flex items-center justify-center">
+          {contacts.length === 0 ? (
+            <h1 className="text-md font-semibold text-gray-700 mx-8">
+              No data available
+            </h1>
+          ) : (
+            <CandidateTable candidateData={contacts} />
+          )}
         </div>
       </NavLayout>
     </Layout>

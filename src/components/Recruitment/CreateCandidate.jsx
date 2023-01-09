@@ -203,6 +203,7 @@ const CreateCandidate = () => {
                           required="true"
                           name="gender"
                         >
+                          <option value="">Select</option>
                           <option value="female">Female</option>
                           <option value="male">Male</option>
                         </select>
@@ -234,12 +235,13 @@ const CreateCandidate = () => {
                           Resume
                         </label>
                         <input
-                          type="file"
+                          type="text"
                           name="resume"
                           required
-                          value={formData.file}
+                          placeholder="Enter resume link"
+                          value={formData.resume}
                           onChange={handleChange}
-                          className="file-input w-full max-w-xs"
+                          className="block w-full px-4 py-2 mt-2 bg-white border rounded-md"
                           id="name"
                         ></input>
                       </div>

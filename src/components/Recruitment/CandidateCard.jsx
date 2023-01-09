@@ -18,7 +18,9 @@ const CandidateCard = ({ contact, handleEditClick, handleDeleteClick }) => {
       <td>{contact.phoneNumber}</td>
       <td>{moment(contact.updatedAt).fromNow()}</td>
       <td className="cursor-pointer flex items-center justify-center">
-        <FaFileDownload />
+        <a href={contact.resume} className="" target="_blank" download>
+          <FaFileDownload />
+        </a>
       </td>
       <td>{contact.status}</td>
       <td>{contact.job}</td>
