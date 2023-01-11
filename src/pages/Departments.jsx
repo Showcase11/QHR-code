@@ -129,7 +129,7 @@ const Departments = () => {
         <h1>Loadding...</h1>
       ) : (
         <div className="container">
-          <form onSubmit={handleAddFormSubmit} className="lg:w-[50%] sm:w-full grid xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-3 max-sm:grid-cols-3 lg:grid-cols-3 gap-4 pt-5">
+          <form onSubmit={handleAddFormSubmit} className="lg:w-[50%] xs:w-full sm:w-full grid xs:grid-cols-1 sm:grid-cols-1 md:grid-cols-3 max-sm:grid-cols-3 lg:grid-cols-3 gap-4 pt-5">
             <input
               type="text"
               name="name"
@@ -148,7 +148,7 @@ const Departments = () => {
             />
             <button
               type="submit"
-              className="group py-2.5 pr-7 pl-7 sm:ml-8 relative flex justify-center border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+              className="group py-2.5 pr-7 pl-7 xs:ml-8 sm:ml-8 relative flex justify-center border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
             >
               Submit
             </button>
